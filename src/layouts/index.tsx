@@ -262,19 +262,14 @@ const GlobalStyles = css`
   html {
     overflow-x: hidden;
     overflow-y: scroll;
-    font-size: 62.5%;
+    font-size: 1em;
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   body {
     overflow-x: hidden;
     color: ${darken('0.25', colors.midgrey)};
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
-      'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1.5rem;
-    line-height: 1.6em;
-    font-weight: 400;
-    font-style: normal;
+    font: normal 29px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Open Sans', "Helvetica Neue", sans-serif;
     letter-spacing: 0;
     text-rendering: optimizeLegibility;
     background: #fff;
