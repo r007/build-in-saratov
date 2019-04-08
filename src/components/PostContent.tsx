@@ -6,14 +6,7 @@ import RehypeReact from 'rehype-react';
 import { colors } from '../styles/colors';
 
 export const PostFullContent = styled.section`
-  position: relative;
-  margin: 0 auto;
-  padding: 70px 100px 0;
-  min-height: 230px;
-  font-family: Georgia, serif;
-  font-size: 1rem;
   line-height: 1.6em;
-  background: #fff;
 
   @media (max-width: 1170px) {
     padding: 5vw 7vw 0;

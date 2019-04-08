@@ -1,7 +1,6 @@
 import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import * as _ from 'lodash';
-import { setLightness } from 'polished';
 import * as React from 'react';
 import styled from '@emotion/styled';
 import { css } from '@emotion/core';
@@ -45,14 +44,15 @@ export const NoImage = css`
   }
 `;
 
-export const PostFullHeader = styled.header`
-  margin: 0 auto;
-  padding: 6vw 3vw 3vw;
-  max-width: 1040px;
-  text-align: center;
-
-  @media (max-width: 500px) {
-    padding: 14vw 3vw 10vw;
+export const PostFullHeader = styled.section`
+  padding-top: 2.5rem;
+  padding-bottom: 3rem;
+  box-sizing: border-box;
+  background: #164194;
+  width: 100vw;
+  
+  header {
+    width: 90%;
   }
 `;
 
@@ -76,11 +76,8 @@ const PostFullMetaDate = styled.time`
 `;
 
 export const PostFullTitle = styled.h1`
+  color: #fff;
   margin: 0;
-  color: ${setLightness('0.05', colors.darkgrey)};
-  @media (max-width: 500px) {
-    font-size: 2.9rem;
-  }
 `;
 
 const PostFullImage = styled.figure`

@@ -41,6 +41,24 @@ const GlobalStyles = css`
     background: ${lighten('0.3', colors.blue)};
   }
 
+  section {
+    background: #fff;
+    position: relative;
+    padding: 3rem 3rem 0 20rem;
+    overflow: hidden;
+  }
+
+  section blockquote,
+  section h2,
+  section h3,
+  section ol,
+  section p,
+  section ul {
+    max-width: 30em;
+    position: relative;
+    font-family: Georgia, serif;
+  }
+
   hr {
     position: relative;
     display: block;
