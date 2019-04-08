@@ -18,7 +18,7 @@ import Subscribe from '../components/subscribe/Subscribe';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
-import { inner, outer, SiteHeader, SiteMain } from '../styles/shared';
+import { inner, outer, SiteHeader } from '../styles/shared';
 import config from '../website-config';
 
 const PostTemplate = css`
@@ -261,16 +261,15 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
             <SiteNav />
           </div>
         </header>
-        <main id="site-main" className="site-main" css={[SiteMain, outer]}>
-          <div css={inner}>
-            {/* TODO: no-image css tag? */}
-            <article css={[PostFull, !post.frontmatter.image && NoImage]}>
-              <PostFullHeader>
-                <PostFullMeta>
-                  <PostFullMetaDate dateTime={post.frontmatter.date}>
-                    {post.frontmatter.userDate}
-                  </PostFullMetaDate>
-                  {post.frontmatter.tags &&
+        <main id="content">
+          {/* TODO: no-image css tag? */}
+          <article css={[PostFull, !post.frontmatter.image && NoImage]}>
+            <PostFullHeader>
+              <PostFullMeta>
+                <PostFullMetaDate dateTime={post.frontmatter.date}>
+                  {post.frontmatter.userDate}
+                </PostFullMetaDate>
+                {post.frontmatter.tags &&
                     post.frontmatter.tags.length > 0 && (
                       <>
                         <DateDivider>/</DateDivider>
@@ -278,30 +277,29 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                           {post.frontmatter.tags[0]}
                         </Link>
                       </>
-                  )}
-                </PostFullMeta>
-                <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
-              </PostFullHeader>
+                )}
+              </PostFullMeta>
+              <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
+            </PostFullHeader>
 
-              {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
-                <PostFullImage>
-                  <Img
-                    style={{ height: '100%' }}
-                    fluid={post.frontmatter.image.childImageSharp.fluid}
-                  />
-                </PostFullImage>
-              )}
-              <PostContent htmlAst={post.htmlAst} />
+            {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
+              <PostFullImage>
+                <Img
+                  style={{ height: '100%' }}
+                  fluid={post.frontmatter.image.childImageSharp.fluid}
+                />
+              </PostFullImage>
+            )}
+            <PostContent htmlAst={post.htmlAst} />
 
-              {/* The big email subscribe modal content */}
-              {config.showSubscribe && <Subscribe title={config.title} />}
+            {/* The big email subscribe modal content */}
+            {config.showSubscribe && <Subscribe title={config.title} />}
 
-              <PostFullFooter>
-                <AuthorCard author={post.frontmatter.author} />
-                <PostFullFooterRight authorId={post.frontmatter.author.id} />
-              </PostFullFooter>
-            </article>
-          </div>
+            <PostFullFooter>
+              <AuthorCard author={post.frontmatter.author} />
+              <PostFullFooterRight authorId={post.frontmatter.author.id} />
+            </PostFullFooter>
+          </article>
         </main>
 
         {/* Links to Previous/Next posts */}
