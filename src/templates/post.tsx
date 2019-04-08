@@ -3,7 +3,6 @@ import Img from 'gatsby-image';
 import * as _ from 'lodash';
 import * as React from 'react';
 import styled from '@emotion/styled';
-import { css } from '@emotion/core';
 import { Helmet } from 'react-helmet';
 
 import AuthorCard from '../components/AuthorCard';
@@ -18,31 +17,8 @@ import Subscribe from '../components/subscribe/Subscribe';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
-import { inner, outer, SiteHeader } from '../styles/shared';
+import { inner, outer } from '../styles/shared';
 import config from '../website-config';
-
-const PostTemplate = css`
-  .site-main {
-    background: #fff;
-    padding-bottom: 4vw;
-  }
-`;
-
-export const PostFull = css`
-  position: relative;
-  z-index: 50;
-`;
-
-export const NoImage = css`
-  .post-full-content {
-    padding-top: 0;
-  }
-
-  .post-full-content:before,
-  .post-full-content:after {
-    display: none;
-  }
-`;
 
 export const PostFullHeader = styled.section`
   padding-top: 2.5rem;
@@ -255,21 +231,15 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         {width && <meta property="og:image:width" content={width} />}
         {height && <meta property="og:image:height" content={height} />}
       </Helmet>
-      <Wrapper css={PostTemplate}>
-        <header css={[outer, SiteHeader]}>
-          <div css={inner}>
-            <SiteNav />
-          </div>
-        </header>
+      <Wrapper>
+        <SiteNav />
         <main id="content">
-          {/* TODO: no-image css tag? */}
-          <article css={[PostFull, !post.frontmatter.image && NoImage]}>
-            <PostFullHeader>
-              <PostFullMeta>
-                <PostFullMetaDate dateTime={post.frontmatter.date}>
-                  {post.frontmatter.userDate}
-                </PostFullMetaDate>
-                {post.frontmatter.tags &&
+          <PostFullHeader>
+            <PostFullMeta>
+              <PostFullMetaDate dateTime={post.frontmatter.date}>
+                {post.frontmatter.userDate}
+              </PostFullMetaDate>
+              {post.frontmatter.tags &&
                     post.frontmatter.tags.length > 0 && (
                       <>
                         <DateDivider>/</DateDivider>
@@ -277,29 +247,28 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                           {post.frontmatter.tags[0]}
                         </Link>
                       </>
-                )}
-              </PostFullMeta>
-              <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
-            </PostFullHeader>
+              )}
+            </PostFullMeta>
+            <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
+          </PostFullHeader>
 
-            {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
-              <PostFullImage>
-                <Img
-                  style={{ height: '100%' }}
-                  fluid={post.frontmatter.image.childImageSharp.fluid}
-                />
-              </PostFullImage>
-            )}
-            <PostContent htmlAst={post.htmlAst} />
+          {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
+            <PostFullImage>
+              <Img
+                style={{ height: '100%' }}
+                fluid={post.frontmatter.image.childImageSharp.fluid}
+              />
+            </PostFullImage>
+          )}
+          <PostContent htmlAst={post.htmlAst} />
 
-            {/* The big email subscribe modal content */}
-            {config.showSubscribe && <Subscribe title={config.title} />}
+          {/* The big email subscribe modal content */}
+          {config.showSubscribe && <Subscribe title={config.title} />}
 
-            <PostFullFooter>
-              <AuthorCard author={post.frontmatter.author} />
-              <PostFullFooterRight authorId={post.frontmatter.author.id} />
-            </PostFullFooter>
-          </article>
+          <PostFullFooter>
+            <AuthorCard author={post.frontmatter.author} />
+            <PostFullFooterRight authorId={post.frontmatter.author.id} />
+          </PostFullFooter>
         </main>
 
         {/* Links to Previous/Next posts */}
