@@ -22,6 +22,21 @@ const SiteNavWrapper = styled.nav`
   -webkit-overflow-scrolling: touch;
   -webkit-transform: translate3d(0,0,0);
   transition: all .3s cubic-bezier(.645,.045,.355,1);
+ 
+  @media only screen and (max-width: 1560px) {
+    width: 12rem;
+  }
+
+  @media only screen and (max-width: 1280px) {
+    position: fixed;
+    display: block;
+    top: 85px;
+    bottom: 0;
+    height: auto;
+    z-index: 950;
+    transform: translateX(-600px);
+    width: 100%;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -80,8 +95,8 @@ class SiteNav extends React.Component {
         <Wrapper>
           <NavWrapper>
             <SiteNavLogo />
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/">Главная</NavLink>
+            <NavLink to="/about">О сайте</NavLink>
             <NavLink to="/tags/getting-started/">Getting Started</NavLink>
           </NavWrapper>
         </Wrapper>
