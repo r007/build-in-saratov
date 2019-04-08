@@ -121,6 +121,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:image:height" content={height} />
       </Helmet>
       <Wrapper>
+        <SiteNav />
         <header
           css={[outer, SiteHeader]}
           style={{
@@ -142,7 +143,6 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               </SiteTitle>
               <SiteDescription>{config.description}</SiteDescription>
             </SiteHeaderContent>
-            <SiteNav isHome />
           </div>
         </header>
         <main id="site-main" css={[SiteMain, outer]}>
