@@ -22,7 +22,7 @@ const SiteNavLogoStyles = css`
   img {
     display: block;
     width: auto;
-    height: 21px;
+    height: 45px;
   }
 `;
 
