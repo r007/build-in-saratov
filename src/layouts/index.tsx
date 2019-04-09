@@ -27,7 +27,7 @@ const GlobalStyles = css`
     overflow-y: scroll;
     font-family: sans-serif;
     -webkit-text-size-adjust: 100%;
-    color: ${darken('0.25', colors.midgrey)};
+    color: #000000;
     font-size: 1em;
     line-height: 1.4;
   }
