@@ -121,26 +121,21 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <SiteNav />
         <header
           css={[outer, SiteHeader]}
-          style={{
-            backgroundImage: `url('${props.data.header.childImageSharp.fluid.src}')`,
-          }}
         >
-          <section>
-            <SiteHeaderContent>
-              <SiteTitle>
-                {props.data.logo ? (
-                  <img
-                    style={{ maxHeight: '45px' }}
-                    src={props.data.logo.childImageSharp.fixed.src}
-                    alt={config.title}
-                  />
-                ) : (
-                  config.title
-                )}
-              </SiteTitle>
-              <SiteDescription>{config.description}</SiteDescription>
-            </SiteHeaderContent>
-          </section>
+          <SiteHeaderContent>
+            <SiteTitle>
+              {props.data.logo ? (
+                <img
+                  style={{ maxHeight: '45px' }}
+                  src={props.data.logo.childImageSharp.fixed.src}
+                  alt={config.title}
+                />
+              ) : (
+                config.title
+              )}
+            </SiteTitle>
+            <SiteDescription>{config.description}</SiteDescription>
+          </SiteHeaderContent>
         </header>
         <main id="content">
           <section>
