@@ -17,23 +17,18 @@ const About: React.FunctionComponent = () => (
       <main id="content">
         <PostFullHeader>
           <header>
-            <PostFullTitle>About</PostFullTitle>
+            <PostFullTitle>Сделано в Саратове</PostFullTitle>
           </header>
         </PostFullHeader>
 
         <PostFullContent>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc commodo finibus leo,
-            non tempus magna vehicula ac. Maecenas mollis ante finibus pharetra imperdiet.
-            Maecenas in aliquam purus. Nam et massa a nulla fermentum dapibus sit amet in neque.
-            Ut ipsum ipsum, rhoncus a sodales pellentesque, interdum a elit. Nullam aliquam
-            tellus nibh, eget laoreet dui aliquet non. Vestibulum malesuada ante at diam tempus,
-            ac interdum risus scelerisque. Sed ipsum neque, vulputate porta diam eget, consequat
-            blandit nulla. Integer volutpat velit vitae purus lacinia aliquam. Integer bibendum
-            ipsum vitae magna pulvinar, nec vehicula dolor vulputate. Nulla eu massa id orci
-            placerat finibus vel sit amet eros. Vestibulum quis consequat massa. Sed sagittis
-            sollicitudin massa at commodo. Praesent diam nisi, imperdiet posuere eleifend nec,
-            blandit ac massa.
+            У нас принято ругать всё русское и ставить в пример Европу, Америку, Австралию.
+            Забывая при этом, что здесь тоже живут и работают люди. И мы тоже делаем классные вещи (иногда).
+            Да, Саратов не самый лучший город на земле. Он просто один из многих –
+            грязный, бедный, депрессивный. Но даже здесь есть своя интеллигенция, специалисты, инженеры...
+            Не всё ещё пропито. Я назвал сайт "Сделано в Саратове", чтобы показать, что мы ещё
+            не разучились делать хорошие вещи.
           </p>
           <p>
             Vestibulum semper pretium ipsum nec congue. Ut ac eros nisi. Donec leo sem, aliquam
