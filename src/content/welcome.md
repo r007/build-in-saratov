@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Welcome to Ghost"
-author: Ghost
-tags: ["Getting Started"]
+title: "Что такое «инклюзивный дизайн»?"
+author: Сергей Монин
+tags: ["Разбор"]
 image: img/welcome-to-ghost.jpg
 date: "2018-05-06T23:46:37.121Z"
 draft: false
