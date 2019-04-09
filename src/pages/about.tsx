@@ -2,19 +2,11 @@ import IndexLayout from '../layouts';
 import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
 import * as React from 'react';
-import { css } from '@emotion/core';
 
 import { PostFullHeader, PostFullTitle } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
 import Footer from '../components/Footer';
 import Helmet from 'react-helmet';
-
-const PageTemplate = css`
-  .site-main {
-    background: #fff;
-    padding-bottom: 4vw;
-  }
-`;
 
 const About: React.FunctionComponent = () => (
   <IndexLayout>
@@ -22,7 +14,7 @@ const About: React.FunctionComponent = () => (
       <title>About</title>
     </Helmet>
     <SiteNav />
-    <Wrapper css={PageTemplate}>
+    <Wrapper>
       <main id="content">
         <PostFullHeader>
           <header>
