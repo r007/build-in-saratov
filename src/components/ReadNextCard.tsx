@@ -3,13 +3,7 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import * as _ from 'lodash';
 
-import { colors } from '../styles/colors';
 import InfinityIcon from './icons/infinity';
-import config from '../website-config';
-
-export interface ReadNextCardStylesProps {
-  coverImage: string;
-}
 
 const ReadNextCardStyles = styled.article`
   position: relative;
@@ -20,24 +14,9 @@ const ReadNextCardStyles = styled.article`
   margin: 0 20px 40px;
   padding: 25px;
   color: #fff;
-  background: ${colors.darkgrey} center center;
-  background-size: cover;
+  background: #164194;
   border-radius: 5px;
   box-shadow: rgba(39, 44, 49, 0.06) 8px 14px 38px, rgba(39, 44, 49, 0.03) 1px 3px 8px;
-  background-image: url(${(props: ReadNextCardStylesProps) => props.coverImage});
-
-  :before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: block;
-    background: linear-gradient(135deg, rgba(0,40,60,0.8) 0%,rgba(0,20,40,0.7) 100%);
-    border-radius: 5px;
-    backdrop-filter: blur(2px);
-  }
 `;
 
 const ReadNextCardHeader = styled.header`
@@ -58,7 +37,7 @@ const ReadNextCardHeaderTitle = styled.h3`
   margin: 0;
   padding: 0 20px;
   color: #fff;
-  font-size: 3rem;
+  font-size: 1.5rem;
   line-height: 1.2em;
   letter-spacing: 1px;
 
@@ -94,7 +73,7 @@ const ReadNextCardContent = styled.div`
   z-index: 50;
   flex-grow: 1;
   display: flex;
-  font-size: 1.7rem;
+  font-size: 0.9rem;
 
   ul {
     display: flex;
@@ -108,7 +87,7 @@ const ReadNextCardContent = styled.div`
   li {
     margin: 0;
     padding: 0;
-    font-size: 1.6rem;
+    font-size: 1rem;
     line-height: 1.25em;
     font-weight: 200;
     letter-spacing: -0.5px;
@@ -139,6 +118,7 @@ const ReadNextCardFooter = styled.footer`
   text-align: center;
 
   a {
+    font-size: 0.7rem;
     color: #fff;
   }
 `;
@@ -161,14 +141,6 @@ export interface ReadNextProps {
   };
 }
 
-export interface ReadNextQuery {
-  header: {
-    childImageSharp: {
-      fluid: any;
-    };
-  };
-}
-
 const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
   return (
     <StaticQuery
@@ -186,11 +158,11 @@ const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
         }
       `}
       // tslint:disable-next-line:react-this-binding-issue
-      render={({ header }: ReadNextQuery) => (
-        <ReadNextCardStyles coverImage={header.childImageSharp.fluid.src}>
+      render={() => (
+        <ReadNextCardStyles>
           <ReadNextCardHeader>
             <ReadNextCardHeaderSitetitle>
-              &mdash; {config.title} &mdash;
+              Категория
             </ReadNextCardHeaderSitetitle>
             <ReadNextCardHeaderTitle>
               <Link to={`/tags/${_.kebabCase(props.tags[0])}/`}>{props.tags[0]}</Link>
@@ -213,9 +185,9 @@ const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
           <ReadNextCardFooter>
             <Link to={`/tags/${_.kebabCase(props.tags[0])}/`}>
               {props.relatedPosts.totalCount > 1 &&
-                `See all ${props.relatedPosts.totalCount} posts`}
-              {props.relatedPosts.totalCount === 1 && '1 post'}
-              {props.relatedPosts.totalCount === 0 && 'No posts'} →
+                `Все ${props.relatedPosts.totalCount} записи`}
+              {props.relatedPosts.totalCount === 1 && '1 запись'}
+              {props.relatedPosts.totalCount === 0 && 'Нет записей'} →
             </Link>
           </ReadNextCardFooter>
         </ReadNextCardStyles>

@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Using The Ghost Editor"
+title: "Использование редактора Ghost"
 author: Сергей Монин
-tags: ["Getting Started"]
+tags: ["Разбор"]
 image: img/writing.jpg
 date: "2015-02-02T23:46:37.121Z"
 draft: false
