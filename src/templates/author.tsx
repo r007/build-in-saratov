@@ -10,14 +10,10 @@ import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import {
   AuthorProfileImage,
-  inner,
   outer,
-  PostFeed,
-  PostFeedRaise,
   SiteHeader,
   SiteHeaderContent,
   SiteTitle,
-  SiteMain,
   SocialLink,
 } from '../styles/shared';
 import { PageContext } from './post';
@@ -242,14 +238,12 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
             </AuthorMeta>
           </SiteHeaderContent>
         </header>
-        <main id="content" css={[SiteMain, outer]}>
-          <div css={inner}>
-            <div css={[PostFeed, PostFeedRaise]}>
-              {edges.map(({ node }) => {
-                return <PostCard key={node.fields.slug} post={node} />;
-              })}
-            </div>
-          </div>
+        <main id="content">
+          <section>
+            {edges.map(({ node }) => {
+              return <PostCard key={node.fields.slug} post={node} />;
+            })}
+          </section>
         </main>
         <Footer />
       </Wrapper>

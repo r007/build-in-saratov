@@ -22,7 +22,7 @@ const About: React.FunctionComponent = () => (
           </header>
         </PostFullHeader>
 
-        <PostFullContent className="post-full-content">
+        <PostFullContent>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc commodo finibus leo,
             non tempus magna vehicula ac. Maecenas mollis ante finibus pharetra imperdiet.
