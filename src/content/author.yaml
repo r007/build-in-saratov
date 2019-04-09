@@ -1,12 +1,12 @@
 - id: Сергей Монин
-  avatar: avatars/ghost.png
+  avatar: avatars/avatar.jpg
   bio: Веб-разработчик и автор этого сайта
   twitter: TryGhost
   facebook: ghost
   website: https://ghost.org/
   location: On a plane
 - id: Another Author
-  avatar: avatars/ghost.png
+  avatar: avatars/avatar.jpg
   bio: This is another test author with a profile background image
   twitter: TryGhost
   facebook: ghost
