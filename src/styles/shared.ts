@@ -5,7 +5,7 @@ import { darken, lighten } from 'polished';
 
 export const outer = css`
   position: relative;
-  padding: 0 4vw;
+  padding: 3rem 3rem 0 20rem;
 `;
 
 // Centered content container blocks

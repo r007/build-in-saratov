@@ -43,11 +43,11 @@ const HomePosts = css`
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) h2 {
-      font-size: 2.6rem;
+      font-size: 1.3rem;
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) p {
-      font-size: 1.8rem;
+      font-size: 0.9rem;
       line-height: 1.55em;
     }
 

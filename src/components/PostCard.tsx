@@ -66,7 +66,7 @@ const PostCardTags = styled.span`
   display: block;
   margin-bottom: 4px;
   color: ${colors.midgrey};
-  font-size: 1.2rem;
+  font-size: 0.6rem;
   line-height: 1.15em;
   font-weight: 500;
   letter-spacing: 0.5px;
@@ -74,11 +74,12 @@ const PostCardTags = styled.span`
 `;
 
 const PostCardTitle = styled.h2`
+  font-size: 1rem;
   margin-top: 0;
 `;
 
 const PostCardExcerpt = styled.div`
-  font-family: Georgia, serif;
+  font-size: 0.7rem;
 `;
 
 const PostCardMeta = styled.footer`
@@ -145,7 +146,7 @@ const AuthorNameTooltip = styled.div`
   display: block;
   padding: 2px 8px;
   color: white;
-  font-size: 1.2rem;
+  font-size: 0.6rem;
   letter-spacing: 0.2px;
   white-space: nowrap;
   background: ${colors.darkgrey};
@@ -185,7 +186,7 @@ const ReadingTime = styled.span`
   flex-shrink: 0;
   margin-left: 20px;
   color: ${colors.midgrey};
-  font-size: 1.2rem;
+  font-size: 0.6rem;
   line-height: 33px;
   font-weight: 500;
   letter-spacing: 0.5px;
