@@ -6,7 +6,7 @@ import styled from '@emotion/styled';
 import { colors } from '../styles/colors';
 import { AuthorProfileImage } from '../styles/shared';
 
-const AuthorCardSection = styled.section`
+const AuthorCardSection = styled.div`
   display: flex;
 `;
 
@@ -25,7 +25,7 @@ const AuthorCardName = styled.h4`
   }
 `;
 
-const AuthorCardContent = styled.section`
+const AuthorCardContent = styled.div`
   p {
     margin: 0;
     color: ${colors.midgrey};

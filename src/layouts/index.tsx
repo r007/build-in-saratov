@@ -196,7 +196,7 @@ const GlobalStyles = css`
 
   h1 {
     margin: 0 0 0.5em 0;
-    font-size: 5rem;
+    font-size: 58px;
     font-weight: 700;
   }
   @media (max-width: 500px) {

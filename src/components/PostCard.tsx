@@ -77,7 +77,7 @@ const PostCardTitle = styled.h2`
   margin-top: 0;
 `;
 
-const PostCardExcerpt = styled.section`
+const PostCardExcerpt = styled.div`
   font-family: Georgia, serif;
 `;
 

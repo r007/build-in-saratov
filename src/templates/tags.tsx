@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
@@ -122,7 +121,6 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
             </div>
           </div>
         </main>
-        <Footer />
       </Wrapper>
     </IndexLayout>
   );

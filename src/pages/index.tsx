@@ -3,7 +3,6 @@ import * as React from 'react';
 import { css } from '@emotion/core';
 import Helmet from 'react-helmet';
 
-import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
@@ -161,8 +160,6 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
           </div>
         </main>
         {props.children}
-
-        <Footer />
       </Wrapper>
     </IndexLayout>
   );

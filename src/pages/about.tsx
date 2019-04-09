@@ -5,7 +5,6 @@ import * as React from 'react';
 
 import { PostFullHeader, PostFullTitle } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
-import Footer from '../components/Footer';
 import Helmet from 'react-helmet';
 
 const About: React.FunctionComponent = () => (
@@ -59,7 +58,6 @@ const About: React.FunctionComponent = () => (
           </p>
         </PostFullContent>
       </main>
-      <Footer />
     </Wrapper>
   </IndexLayout>
 );

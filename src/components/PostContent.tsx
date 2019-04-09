@@ -354,6 +354,7 @@ export const PostFullContent = styled.section`
     color: white;
     background: none;
     font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
+    font-size: 0.7rem;
     font-feature-settings: normal;
     text-align: left;
     white-space: pre;

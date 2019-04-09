@@ -6,7 +6,6 @@ import styled from '@emotion/styled';
 import { Helmet } from 'react-helmet';
 
 import AuthorCard from '../components/AuthorCard';
-import Footer from '../components/Footer';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import PostContent from '../components/PostContent';
@@ -30,14 +29,18 @@ export const PostFullHeader = styled.section`
   header {
     width: 90%;
   }
+  
+  @media only screen and (max-width: 1560px) {
+    padding-top: 1.5rem;
+    padding-bottom: 2rem;
+  }
 `;
 
-const PostFullMeta = styled.section`
+const PostFullMeta = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
   color: ${colors.midgrey};
-  font-size: 1.4rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
 
@@ -54,6 +57,10 @@ const PostFullMetaDate = styled.time`
 export const PostFullTitle = styled.h1`
   color: #fff;
   margin: 0;
+  
+  @media only screen and (max-width: 1280px) {
+    font-size: 1.575rem;
+  }
 `;
 
 const PostFullImage = styled.figure`
@@ -284,7 +291,6 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
             </ReadNextFeed>
           </div>
         </aside>
-        <Footer />
       </Wrapper>
     </IndexLayout>
   );

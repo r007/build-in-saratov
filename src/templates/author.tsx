@@ -245,7 +245,6 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
             })}
           </section>
         </main>
-        <Footer />
       </Wrapper>
     </IndexLayout>
   );
