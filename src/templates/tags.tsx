@@ -13,7 +13,6 @@ import {
   SiteDescription,
   SiteHeader,
   SiteHeaderContent,
-  SiteMain,
   SiteTitle,
 } from '../styles/shared';
 import { PageContext } from './post';
@@ -84,6 +83,7 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
         )}
       </Helmet>
       <Wrapper>
+        <SiteNav />
         <header
           className={`${tagData && tagData.node.image ? '' : 'no-cover'}`}
           css={[outer, SiteHeader]}
@@ -95,7 +95,6 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
           }}
         >
           <div css={inner}>
-            <SiteNav isHome={false} />
             <SiteHeaderContent>
               <SiteTitle>{tag}</SiteTitle>
               <SiteDescription>
@@ -112,14 +111,14 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
             </SiteHeaderContent>
           </div>
         </header>
-        <main id="site-main" css={[SiteMain, outer]}>
-          <div css={inner}>
+        <main id="content">
+          <section>
             <div css={[PostFeed, PostFeedRaise]}>
               {edges.map(({ node }) => (
                 <PostCard key={node.fields.slug} post={node} />
               ))}
             </div>
-          </div>
+          </section>
         </main>
       </Wrapper>
     </IndexLayout>

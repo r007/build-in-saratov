@@ -9,14 +9,12 @@ import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import config from '../website-config';
 import {
-  inner,
   outer,
   PostFeed,
   PostFeedRaise,
   SiteDescription,
   SiteHeader,
   SiteHeaderContent,
-  SiteMain,
   SiteTitle,
 } from '../styles/shared';
 import { PageContext } from '../templates/post';
@@ -127,7 +125,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
             backgroundImage: `url('${props.data.header.childImageSharp.fluid.src}')`,
           }}
         >
-          <div css={inner}>
+          <section>
             <SiteHeaderContent>
               <SiteTitle>
                 {props.data.logo ? (
@@ -142,13 +140,13 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               </SiteTitle>
               <SiteDescription>{config.description}</SiteDescription>
             </SiteHeaderContent>
-          </div>
+          </section>
         </header>
-        <main id="site-main" css={[SiteMain, outer]}>
-          <div css={inner}>
+        <main id="content">
+          <section>
             <div css={[PostFeed, PostFeedRaise]}>
               {props.data.allMarkdownRemark.edges.map(post => {
-                // filter out drafts in production
+              // filter out drafts in production
                 return (
                   (post.node.frontmatter.draft !== true ||
                     process.env.NODE_ENV !== 'production') && (
@@ -157,7 +155,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
                 );
               })}
             </div>
-          </div>
+          </section>
         </main>
         {props.children}
       </Wrapper>

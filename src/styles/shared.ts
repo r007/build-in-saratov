@@ -15,11 +15,6 @@ export const inner = css`
   width: 100%;
 `;
 
-export const SiteMain = css`
-  z-index: 100;
-  flex-grow: 1;
-`;
-
 export const SiteTitle = styled.h1`
   z-index: 10;
   margin: 0;
@@ -91,48 +86,6 @@ export const SiteHeaderContent = styled.div`
   min-height: 200px;
   max-height: 450px;
   text-align: center;
-`;
-
-export const SiteHeaderStyles = css`
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: auto;
-  left: 0;
-  z-index: 10;
-  display: block;
-  height: 80px;
-  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-
-  :before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 10;
-    display: block;
-    background: rgba(0, 0, 0, 0.18);
-  }
-
-  :after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: auto;
-    left: 0;
-    z-index: 10;
-    display: block;
-    height: 80px;
-    background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0));
-  }
-  @media (max-width: 700px) {
-    padding-right: 0;
-    padding-left: 0;
-  }
 `;
 
 export const AuthorProfileImage = css`
