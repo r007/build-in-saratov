@@ -238,12 +238,6 @@ const GlobalStyles = css`
     font-weight: 500;
   }
 
-  h6 {
-    margin: 1.5em 0 0.5em 0;
-    font-size: 1.4rem;
-    font-weight: 500;
-  }
-
   body {
     background: #f4f8fb;
   }

@@ -212,10 +212,10 @@ export const PostFullContent = styled.section`
   }
 
   h1 {
-    margin: 0.5em 0 0.2em 0;
-    font-size: 4.6rem;
-    font-weight: 700;
+    margin: .67em 0;
+    font-size: 2.41rem;
   }
+
   @media (max-width: 500px) {
     h1 {
       font-size: 2.8rem;
@@ -223,10 +223,12 @@ export const PostFullContent = styled.section`
   }
 
   h2 {
-    margin: 0.5em 0 0.2em 0;
-    font-size: 3.6rem;
-    font-weight: 700;
+    display:block;
+    font-size: 1.55rem;
+    line-height: 1.2;
+    margin:1rem 0 0 0;
   }
+
   @media (max-width: 500px) {
     h2 {
       font-size: 2.6rem;
@@ -234,9 +236,10 @@ export const PostFullContent = styled.section`
   }
 
   h3 {
-    margin: 0.5em 0 0.2em 0;
-    font-size: 2.8rem;
-    font-weight: 700;
+    margin: 1.45em 0 0 0;
+    font-size: 1rem;
+    line-height: 1.45;
+    display: inline-block;
   }
   @media (max-width: 500px) {
     h3 {
@@ -245,10 +248,10 @@ export const PostFullContent = styled.section`
   }
 
   h4 {
-    margin: 0.5em 0 0.2em 0;
-    font-size: 2.8rem;
-    font-weight: 700;
+    margin-bottom: .5em;
+    font-size: .8rem
   }
+
   @media (max-width: 500px) {
     h4 {
       font-size: 2.2rem;
@@ -257,12 +260,12 @@ export const PostFullContent = styled.section`
 
   h5 {
     display: block;
-    margin: 0.5em 0;
-    padding: 1em 0 1.5em;
+    margin: 0;
+    padding: 1.45em 0 0 0;
     border: 0;
     color: ${colors.blue};
-    font-family: Georgia, serif;
-    font-size: 3.2rem;
+    font-family: Georgia,serif;
+    font-size: 1rem;
     line-height: 1.35em;
     text-align: center;
   }
@@ -275,17 +278,6 @@ export const PostFullContent = styled.section`
     h5 {
       padding: 0 0 0.5em;
       font-size: 2.2rem;
-    }
-  }
-
-  h6 {
-    margin: 0.5em 0 0.2em 0;
-    font-size: 2.3rem;
-    font-weight: 700;
-  }
-  @media (max-width: 500px) {
-    h6 {
-      font-size: 2rem;
     }
   }
 
