@@ -280,16 +280,14 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
 
         {/* Links to Previous/Next posts */}
         <aside className="read-next" css={outer}>
-          <div css={inner}>
-            <ReadNextFeed>
-              {props.data.relatedPosts && (
-                <ReadNextCard tags={post.frontmatter.tags} relatedPosts={props.data.relatedPosts} />
-              )}
+          <ReadNextFeed>
+            {props.data.relatedPosts && (
+              <ReadNextCard tags={post.frontmatter.tags} relatedPosts={props.data.relatedPosts} />
+            )}
 
-              {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
-              {props.pageContext.next && <PostCard post={props.pageContext.next} />}
-            </ReadNextFeed>
-          </div>
+            {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
+            {props.pageContext.next && <PostCard post={props.pageContext.next} />}
+          </ReadNextFeed>
         </aside>
       </Wrapper>
     </IndexLayout>

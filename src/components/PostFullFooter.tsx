@@ -6,8 +6,7 @@ const PostFullFoot = styled.footer`
   justify-content: space-between;
   align-items: center;
   margin: 0 auto;
-  padding: 3vw 0 6vw 0;
-  max-width: 840px;
+  padding: 3rem 3rem 0 20rem;
 `;
 
 const PostFullFooter: React.FunctionComponent = props => <PostFullFoot>{props.children}</PostFullFoot>;

@@ -30,10 +30,10 @@ export interface WebsiteConfig {
 
 const config: WebsiteConfig = {
   title: 'Сделано в Саратове',
-  description: 'Пишу код. Медленно, дорого, качественно.',
+  description: 'Пишу код. Медленно, качественно.',
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
-  lang: 'en',
+  lang: 'ru',
   siteUrl: 'https://gatsby-casper.netlify.com',
   facebook: 'https://www.facebook.com/ghost',
   twitter: 'https://twitter.com/tryghost',

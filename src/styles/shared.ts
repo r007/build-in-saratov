@@ -24,13 +24,10 @@ export const SiteTitle = styled.h1`
 `;
 
 export const SiteDescription = styled.h2`
-  z-index: 10;
   margin: 0;
-  padding: 5px 0;
   font-size: 2.2rem;
   font-weight: 300;
   letter-spacing: 0.5px;
-  opacity: 0.8;
 `;
 
 export const PostFeed = css`
@@ -68,7 +65,15 @@ export const SocialLink = css`
 `;
 
 export const SiteHeader = css`
-  height: 50vh;
+  background: #164194;
+  color: #ffffff;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 0;
 `;
 
 export const SiteHeaderContent = styled.div`
