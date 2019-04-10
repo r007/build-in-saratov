@@ -3,7 +3,9 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import RehypeReact from 'rehype-react';
 
+import config from '../website-config';
 import { colors } from '../styles/colors';
+import LinkImg from '../content/img/Externer_Link_XH.svg';
 
 export const PostFullContent = styled.section`
   line-height: 1.6em;
@@ -41,14 +43,29 @@ export const PostFullContent = styled.section`
   }
 
   a {
-    color: #000;
-    word-break: break-word;
-    box-shadow: ${colors.blue} 0 -1px 0 inset;
+    color: inherit;
+    word-wrap: break-word;
+    text-decoration: none;
+    padding-bottom: 0;
+    border-bottom: 2px solid #222;
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
   }
 
   a:hover {
-    color: ${colors.blue};
-    text-decoration: none;
+    background: #c4e0ff;
+    border-color: #c4e0ff;
+  }
+  
+  /* External links */
+  a[href*="//"]:not([href*="${config.domain}"]):after {
+    content: '';
+    background: url(${LinkImg});
+    background-repeat: repeat;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 1.1em;
+    height: .7em;
+    margin-left: .25em;
   }
 
   strong,

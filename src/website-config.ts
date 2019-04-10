@@ -12,6 +12,7 @@ export interface WebsiteConfig {
    * blog full path, no ending slash!
    */
   siteUrl: string;
+  domain: string;
   facebook?: string;
   twitter?: string;
   /**
@@ -34,7 +35,8 @@ const config: WebsiteConfig = {
   coverImage: 'img/blog-cover.jpg',
   logo: 'img/ghost-logo.png',
   lang: 'ru',
-  siteUrl: 'https://gatsby-casper.netlify.com',
+  siteUrl: 'http://localhost',
+  domain: 'localhost',
   facebook: 'https://www.facebook.com/ghost',
   twitter: 'https://twitter.com/tryghost',
   showSubscribe: true,
