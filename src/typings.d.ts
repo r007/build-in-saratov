@@ -2,6 +2,11 @@ interface CSSModule {
   [className: string]: string;
 }
 
+declare module '*.svg' {
+  const content: any;
+  export default content;
+}
+
 // type shims for CSS modules
 
 declare module '*.module.scss' {
@@ -21,6 +26,7 @@ declare module 'rehype-react' {
   }
   class RehypeReact {
     Compiler: any
+
     constructor(options: RehypeOptions);
   }
   export default RehypeReact;

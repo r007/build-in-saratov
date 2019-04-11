@@ -18,6 +18,7 @@ import {
   SiteTitle,
 } from '../styles/shared';
 import { PageContext } from '../templates/post';
+import Logo from '../content/img/logo.svg';
 import ScrollDownArrow from '../content/img/next-arrow.svg';
 
 const HomePosts = css`
@@ -147,15 +148,11 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         >
           <SiteHeaderContent>
             <SiteTitle>
-              {props.data.logo ? (
-                <img
-                  style={{ maxHeight: '45px' }}
-                  src={props.data.logo.childImageSharp.fixed.src}
-                  alt={config.title}
-                />
-              ) : (
-                config.title
-              )}
+              <img
+                style={{ height: '100px', width: 'auto', display: 'block', marginBottom: '1rem' }}
+                src={Logo}
+                alt={config.title}
+              />
             </SiteTitle>
             <SiteDescription>{config.description}</SiteDescription>
             <ScrollDown className="scrollDown" />
@@ -186,15 +183,6 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
-    logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fixed {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
     header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.

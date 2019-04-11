@@ -33,7 +33,7 @@ const config: WebsiteConfig = {
   title: 'Сделано в Саратове',
   description: 'Пишу код. Медленно, качественно.',
   coverImage: 'img/blog-cover.jpg',
-  logo: 'img/ghost-logo.png',
+  logo: 'img/logo.svg',
   lang: 'ru',
   siteUrl: 'http://localhost',
   domain: 'localhost',
