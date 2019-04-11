@@ -363,7 +363,6 @@ export const PostFullContent = styled.section`
     color: white;
     background: none;
     font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
-    font-size: 0.7rem;
     font-feature-settings: normal;
     text-align: left;
     white-space: pre;
@@ -516,6 +515,8 @@ export const PostFullContent = styled.section`
   .gatsby-highlight pre[class*='language-'] {
     float: left;
     min-width: 100%;
+    box-sizing: border-box;
+    font-size: 0.7rem;
   }
   /* End Syntax Highlighting */
 `;

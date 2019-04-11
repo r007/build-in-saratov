@@ -1,9 +1,10 @@
 // tslint:disable:no-http-string
 import { Link } from 'gatsby';
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 
 import SiteNavLogo from './SiteNavLogo';
+import BlueArrow from '../../content/img/blue-arrow.svg';
 
 const SiteNavWrapper = styled.nav`
   left: 0;
@@ -68,8 +69,27 @@ const NavLink = styled(Link)`
   padding: 0;
   position: relative;
 
+  &:not([aria-current~="page"])::after {
+    content: '';
+    background: url(${BlueArrow});
+    background-repeat: no-repeat;
+    width: .8em;
+    height: .8em;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: -10px;
+    opacity: 0;
+    transition: all .2s cubic-bezier(.645,.045,.355,1);
+  }
+
   :hover {
     text-decoration: none;
+    
+    &::after {
+      margin-left: 10px;
+      opacity: 1;
+    }
   }
 
   &[aria-current~="page"]::after {
