@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import * as React from 'react';
-import { css } from '@emotion/core';
+import styled, { keyframes, css } from 'styled-components';
 import Helmet from 'react-helmet';
 
 import SiteNav from '../components/header/SiteNav';
@@ -18,6 +18,7 @@ import {
   SiteTitle,
 } from '../styles/shared';
 import { PageContext } from '../templates/post';
+import ScrollDownArrow from '../content/img/next-arrow.svg';
 
 const HomePosts = css`
   @media (min-width: 795px) {
@@ -81,6 +82,28 @@ export interface IndexProps {
   };
 }
 
+const scrollDownButton = keyframes`
+  to {
+    transform:translateY(20px)
+  }
+`;
+
+const ScrollDown = styled.div`
+  position: absolute;
+  bottom: 10vh;
+  animation: ${scrollDownButton} 1.6s ease-in-out infinite alternate;
+  transform-origin: center;
+  cursor: pointer;
+
+  :before {
+    content: url(${ScrollDownArrow});
+    display: block;
+    width: 50px;
+    cursor: pointer;
+    transform: rotate(90deg);
+  }
+`;
+
 const IndexPage: React.FunctionComponent<IndexProps> = props => {
   const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
   const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
@@ -135,6 +158,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
               )}
             </SiteTitle>
             <SiteDescription>{config.description}</SiteDescription>
+            <ScrollDown className="scrollDown" />
           </SiteHeaderContent>
         </header>
         <main id="content">
