@@ -26,12 +26,14 @@ const HomePosts = css`
     .post-card:nth-of-type(6n + 1):not(.no-image) {
       flex: 1 1 100%;
       flex-direction: row;
+      background-color: #f0f0f0;
+      padding: 25px;
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image-link {
       position: relative;
       flex: 1 1 auto;
-      border-radius: 5px 0 0 5px;
+      order: 2;
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image {
@@ -41,7 +43,8 @@ const HomePosts = css`
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content {
-      flex: 0 1 357px;
+      flex: 0 1 40%;
+      order: 1;
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) h2 {
