@@ -27,7 +27,7 @@ const HomePosts = css`
       flex: 1 1 100%;
       flex-direction: row;
       background-color: #f0f0f0;
-      padding: 25px;
+      padding: 35px;
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image-link {
@@ -57,11 +57,11 @@ const HomePosts = css`
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content-link {
-      padding: 30px 40px 0;
+      padding: 0 35px 0 0;
     }
 
     .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-meta {
-      padding: 0 40px 30px;
+      padding: 0 35px 0 0;
     }
   }
 `;

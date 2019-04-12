@@ -1,8 +1,7 @@
 import { Link } from 'gatsby';
 import Img from 'gatsby-image';
 import * as React from 'react';
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import styled, { css } from 'styled-components';
 
 import { colors } from '../styles/colors';
 import { PageContext } from '../templates/post';
@@ -27,7 +26,7 @@ const PostCardImageLink = css`
 
 const PostCardImage = styled.div`
   width: auto;
-  height: 200px;
+  height: 300px;
   background: ${colors.lightgrey} no-repeat center center;
   background-size: cover;
 `;
@@ -43,7 +42,7 @@ const PostCardContentLink = css`
   position: relative;
   flex-grow: 1;
   display: block;
-  padding: 25px 25px 0;
+  padding: 25px 0 0;
   color: ${colors.darkgrey};
 
   :hover {
@@ -76,7 +75,19 @@ const PostCardMeta = styled.footer`
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0 25px 25px;
+  padding: 0 0 25px;
+`;
+
+const Button = styled(Link)`
+  display: inline-block;
+  padding: 12px 20px 12px 20px;
+  line-height: 1em;
+  font-size: 0.7rem;
+  color: #ffffff;
+  background: #164194;
+  border: none;
+  position: relative;
+  text-align: center;
 `;
 
 export interface PostCardProps {
@@ -115,9 +126,9 @@ const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
           </PostCardExcerpt>
         </Link>
         <PostCardMeta className="post-card-meta">
-          <Link to={post.fields.slug}>
+          <Button to={post.fields.slug}>
             Читать далее
-          </Link>
+          </Button>
         </PostCardMeta>
       </PostCardContent>
     </article>

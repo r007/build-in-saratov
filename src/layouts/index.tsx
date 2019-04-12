@@ -174,7 +174,7 @@ const GlobalStyles = css`
   }
 
   a {
-    color: ${darken('0.05', colors.blue)};
+    color: #164194;
     text-decoration: none;
   }
 
