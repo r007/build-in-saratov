@@ -292,7 +292,7 @@ export const PostFullContent = styled.section`
     border-collapse: collapse;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
       'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: 1.6rem;
+    font-size: 1rem;
     white-space: nowrap;
     vertical-align: top;
   }
@@ -330,7 +330,7 @@ export const PostFullContent = styled.section`
 
   table th {
     color: ${colors.darkgrey};
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     font-weight: 700;
     letter-spacing: 0.2px;
     text-align: left;
