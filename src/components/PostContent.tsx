@@ -161,7 +161,7 @@ export const PostFullContent = styled.section`
     font-size: 1.4rem;
     line-height: 1.5em;
     /* background: color(var(--darkgrey) l(-3%)); */
-    background: ${darken('0.03', colors.darkgrey)};
+    background: #1a1f3e;
     border-radius: 5px;
   }
 
@@ -360,8 +360,6 @@ export const PostFullContent = styled.section`
   /* Taken from overreacted https://github.com/gaearon/overreacted.io/blob/942b41555f5e5ccbb5f93f6c26142cd90b314236/src/utils/global.css#L68 */
   code[class*='language-'],
   pre[class*='language-'] {
-    color: white;
-    background: none;
     font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
     font-feature-settings: normal;
     text-align: left;
@@ -501,7 +499,7 @@ export const PostFullContent = styled.section`
     margin-left: -1.3125rem;
     margin-right: -1.3125rem;
     border-radius: 10px;
-    background: #011627;
+    background: #1a1f3e;
     -webkit-overflow-scrolling: touch;
     overflow: auto;
   }

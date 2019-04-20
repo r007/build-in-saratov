@@ -1,6 +1,6 @@
 import { Link, StaticQuery, graphql } from 'gatsby';
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import * as _ from 'lodash';
 
 import InfinityIcon from './icons/infinity';
