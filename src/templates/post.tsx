@@ -51,7 +51,12 @@ const PostFullMeta = styled.div`
 `;
 
 const PostFullMetaDate = styled.time`
-  color: ${colors.blue};
+  color: #ffffff;
+`;
+
+const PostCategoryLink = styled(Link)`
+  color: #ffffff;
+  border-bottom: 2px solid #fff;
 `;
 
 export const PostFullTitle = styled.h1`
@@ -250,9 +255,9 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
                     post.frontmatter.tags.length > 0 && (
                       <>
                         <DateDivider>/</DateDivider>
-                        <Link to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
+                        <PostCategoryLink to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
                           {post.frontmatter.tags[0]}
-                        </Link>
+                        </PostCategoryLink>
                       </>
               )}
             </PostFullMeta>
