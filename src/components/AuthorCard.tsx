@@ -13,7 +13,7 @@ const AuthorCardSection = styled.div`
 const AuthorCardName = styled.h4`
   margin: 8px 0 2px 0;
   padding: 0;
-  font-size: 2rem;
+  font-size: 1rem;
 
   a {
     color: ${colors.darkgrey};
@@ -27,6 +27,7 @@ const AuthorCardName = styled.h4`
 
 const AuthorCardContent = styled.div`
   p {
+    font-size: 0.7rem;
     margin: 0;
     color: ${colors.midgrey};
     line-height: 1.3em;

@@ -18,7 +18,7 @@ const AuthorCardButton = css`
   /* border: color(var(--midgrey) l(+20%)) 1px solid; */
   border: ${lighten('0.2', colors.midgrey)} 1px solid;
   color: ${colors.midgrey};
-  font-size: 1.2rem;
+  font-size: 0.7rem;
   line-height: 1;
   font-weight: 500;
   border-radius: 20px;
@@ -38,7 +38,7 @@ export interface PostFullFooterRightProps {
 const PostFullFooterRight: React.FunctionComponent<PostFullFooterRightProps> = props => (
   <PostFullFooterRightDiv>
     <Link css={AuthorCardButton} to={`/author/${_.kebabCase(props.authorId)}/`}>
-      Read More
+      Все записи автора
     </Link>
   </PostFullFooterRightDiv>
 );

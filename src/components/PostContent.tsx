@@ -156,7 +156,6 @@ export const PostFullContent = styled.section`
     padding: 20px;
     max-width: 100%;
     /* border: color(var(--darkgrey) l(-10%)) 1px solid; */
-    border: ${darken('0.01', colors.darkgrey)} 1px solid;
     color: ${colors.whitegrey};
     font-size: 1.4rem;
     line-height: 1.5em;
