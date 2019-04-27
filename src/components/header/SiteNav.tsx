@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import SiteNavLogo from './SiteNavLogo';
 import BlueArrow from '../../content/img/blue-arrow.svg';
+import DarkblueArrow from '../../content/img/darkblue-arrow.svg';
 
 const SiteNavWrapper = styled.nav`
   left: 0;
@@ -93,6 +94,7 @@ const NavLink = styled(Link)`
   }
 
   &[aria-current~="page"]::after {
+    content: url(${DarkblueArrow});
     position: absolute;
     width: .8em;
     right: .5em;
