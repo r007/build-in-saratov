@@ -15,10 +15,8 @@ import {
   SiteTitle,
   SocialLink,
 } from '../styles/shared';
-import { PageContext } from './post';
 import Facebook from '../components/icons/facebook';
 import Helmet from 'react-helmet';
-import config from '../website-config';
 import Website from '../components/icons/website';
 import Twitter from '../components/icons/twitter';
 
@@ -66,51 +64,11 @@ const AuthorProfileBioImage = css`
   box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 6px;
 `;
 
-interface AuthorTemplateProps {
-  pathContext: {
-    slug: string;
-  };
-  pageContext: {
-    author: string;
-  };
-  data: {
-    logo: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    allMarkdownRemark: {
-      totalCount: number;
-      edges: {
-        node: PageContext;
-      }[];
-    };
-    authorYaml: {
-      id: string;
-      website?: string;
-      twitter?: string;
-      facebook?: string;
-      location?: string;
-      // eslint-disable-next-line @typescript-eslint/camelcase
-      profile_image?: {
-        childImageSharp: {
-          fluid: any;
-        };
-      };
-      bio?: string;
-      avatar: {
-        childImageSharp: {
-          fluid: any;
-        };
-      };
-    };
-  };
-}
+const Author = ({ data, pathContext }) => {
+  const config = data.site.siteMetadata;
+  const author = data.authorYaml;
 
-const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
-  const author = props.data.authorYaml;
-
-  const edges = props.data.allMarkdownRemark.edges.filter(
+  const edges = data.allMarkdownRemark.edges.filter(
     edge => {
       const isDraft = (edge.node.frontmatter.draft !== true ||
         process.env.NODE_ENV === 'development');
@@ -130,12 +88,12 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
         <meta property="og:site_name" content={config.title} />
         <meta property="og:type" content="profile" />
         <meta property="og:title" content={`${author.id} - ${config.title}`} />
-        <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
+        <meta property="og:url" content={config.siteUrl + pathContext.slug} />
         <meta property="article:publisher" content="https://www.facebook.com/ghost" />
         <meta property="article:author" content="https://www.facebook.com/ghost" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${author.id} - ${config.title}`} />
-        <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
+        <meta name="twitter:url" content={config.siteUrl + pathContext.slug} />
         {config.twitter && (
           <meta
             name="twitter:site"
@@ -164,7 +122,7 @@ const Author: React.FunctionComponent<AuthorTemplateProps> = props => {
           <SiteHeaderContent>
             <img
               css={[AuthorProfileImage, AuthorProfileBioImage]}
-              src={props.data.authorYaml.avatar.childImageSharp.fluid.src}
+              src={data.authorYaml.avatar.childImageSharp.fluid.src}
               alt={author.id}
             />
             <SiteTitle>{author.id}</SiteTitle>
@@ -253,6 +211,15 @@ export default Author;
 
 export const pageQuery = graphql`
   query($author: String) {
+    site {
+      siteMetadata {
+        lang
+        title
+        siteUrl
+        facebook
+        twitter
+      }
+    }  
     authorYaml(id: { eq: $author }) {
       id
       website

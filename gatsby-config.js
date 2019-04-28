@@ -2,9 +2,18 @@ const path = require('path');
 
 module.exports = {
   siteMetadata: {
-    title: 'Ghost',
-    description: 'The professional publishing platform',
-    siteUrl: 'https://gatsby-casper.netlify.com', // full path to blog - no ending slash
+    title: 'Сделано в Саратове',
+    description: 'Пишу код. Медленно, качественно.',
+    siteUrl: 'http://localhost', // full path to blog - no ending slash
+    coverImage: 'img/blog-cover.jpg',
+    logo: 'img/logo.svg',
+    lang: 'ru',
+    domain: 'localhost',
+    facebook: 'https://www.facebook.com/ghost',
+    twitter: 'https://twitter.com/tryghost',
+    showSubscribe: true,
+    mailchimpAction: 'https://twitter.us19.list-manage.com/subscribe/post?u=a89b6987ac248c81b0b7f3a0f&amp;id=7d777b7d75',
+    mailchimpName: 'b_a89b6987ac248c81b0b7f3a0f_7d777b7d75',
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',
@@ -50,7 +59,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-emotion',
-    'gatsby-plugin-typescript',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',

@@ -9,7 +9,6 @@ import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
 import { inner, outer, PostFeed, SiteHeader } from '../styles/shared';
-import { PageContext } from '../templates/post';
 
 const SiteNavCenter = styled.nav`
   display: flex;
@@ -47,18 +46,7 @@ const ErrorLink = css`
   margin-top: 5px;
 `;
 
-interface NotFoundTemplateProps {
-  data: {
-    allMarkdownRemark: {
-      totalCount: number;
-      edges: {
-        node: PageContext;
-      }[];
-    };
-  };
-}
-
-const NotFoundPage: React.FunctionComponent<NotFoundTemplateProps> = props => {
+const NotFoundPage = ({ props }) => {
   const { edges } = props.data.allMarkdownRemark;
 
   return (

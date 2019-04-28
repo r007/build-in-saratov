@@ -31,16 +31,14 @@ const AuthorCardButton = css`
   }
 `;
 
-export interface PostFullFooterRightProps {
-  authorId: string;
-}
-
-const PostFullFooterRight: React.FunctionComponent<PostFullFooterRightProps> = props => (
-  <PostFullFooterRightDiv>
-    <Link css={AuthorCardButton} to={`/author/${_.kebabCase(props.authorId)}/`}>
-      Все записи автора
-    </Link>
-  </PostFullFooterRightDiv>
-);
+const PostFullFooterRight = ({ authorId }) => {
+  return (
+    <PostFullFooterRightDiv>
+      <Link css={AuthorCardButton} to={`/author/${_.kebabCase(authorId)}/`}>
+        Все записи автора
+      </Link>
+    </PostFullFooterRightDiv>
+  );
+};
 
 export default PostFullFooterRight;

@@ -9,6 +9,10 @@ const PostFullFoot = styled.footer`
   padding: 3rem 3rem 0 20rem;
 `;
 
-const PostFullFooter: React.FunctionComponent = props => <PostFullFoot>{props.children}</PostFullFoot>;
+const PostFullFooter = ({ children }) => {
+  return (
+    <PostFullFoot>{children}</PostFullFoot>
+  );
+};
 
 export default PostFullFooter;

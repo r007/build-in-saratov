@@ -1,9 +1,8 @@
-import { Link } from 'gatsby';
+import { graphql, StaticQuery, Link } from 'gatsby';
 import * as React from 'react';
 import { css } from '@emotion/core';
 
 import Logo from '../../content/img/logo.svg';
-import config from '../../website-config';
 
 const SiteNavLogoStyles = css`
   flex-shrink: 0;
@@ -27,10 +26,25 @@ const SiteNavLogoStyles = css`
   }
 `;
 
+const pageQuery = graphql`
+  query {
+    site {
+      siteMetadata {
+        title
+      }
+    }
+  }
+`;
+
 const SiteNavLogo = () => (
-  <Link className="site-nav-logo" css={SiteNavLogoStyles} to="/">
-    <img src={Logo} alt={config.title} />
-  </Link>
+  <StaticQuery
+    query={pageQuery}
+    render={data => (
+      <Link className="site-nav-logo" css={SiteNavLogoStyles} to="/">
+        <img src={Logo} alt={data.site.siteMetadata.title} />
+      </Link>
+    )}
+  />
 );
 
 export default SiteNavLogo;

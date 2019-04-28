@@ -4,7 +4,6 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 
 import { colors } from '../styles/colors';
-import { PageContext } from '../templates/post';
 
 const PostCardStyles = css`
   flex: 1 1 300px;
@@ -90,11 +89,7 @@ const Button = styled(Link)`
   text-align: center;
 `;
 
-export interface PostCardProps {
-  post: PageContext;
-}
-
-const PostCard: React.FunctionComponent<PostCardProps> = ({ post }) => {
+const PostCard = ({ post }) => {
   return (
     <article
       className={`post-card ${post.frontmatter.image ? '' : 'no-image'}`}

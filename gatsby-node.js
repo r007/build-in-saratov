@@ -126,7 +126,7 @@ exports.createPages = async ({ graphql, actions }) => {
       // template.
       //
       // Note that the template has to exist first, or else the build will fail.
-      component: path.resolve(`./src/templates/${layout || 'post'}.tsx`),
+      component: path.resolve(`./src/templates/${layout || 'post'}.js`),
       context: {
         // Data passed to context is available in page queries as GraphQL variables.
         slug,
@@ -138,7 +138,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Create tag pages
-  const tagTemplate = path.resolve('./src/templates/tags.tsx');
+  const tagTemplate = path.resolve('./src/templates/tags.js');
   const tags = _.uniq(
     _.flatten(
       result.data.allMarkdownRemark.edges.map(edge => {
@@ -157,7 +157,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   // Create author pages
-  const authorTemplate = path.resolve('./src/templates/author.tsx');
+  const authorTemplate = path.resolve('./src/templates/author.js');
   result.data.allAuthorYaml.edges.forEach(edge => {
     createPage({
       path: `/author/${_.kebabCase(edge.node.id)}/`,

@@ -17,7 +17,6 @@ import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
 import { outer } from '../styles/shared';
-import config from '../website-config';
 
 const PostFullMeta = styled.div`
   display: flex;
@@ -85,97 +84,9 @@ const ReadNextFeed = styled.div`
   padding: 40px 0 0 0;
 `;
 
-interface PageTemplateProps {
-  pathContext: {
-    slug: string;
-  };
-  data: {
-    logo: {
-      childImageSharp: {
-        fixed: any;
-      };
-    };
-    markdownRemark: {
-      html: string;
-      htmlAst: any;
-      excerpt: string;
-      timeToRead: string;
-      frontmatter: {
-        title: string;
-        date: string;
-        userDate: string;
-        image: {
-          childImageSharp: {
-            fluid: any;
-          };
-        };
-        tags: string[];
-        author: {
-          id: string;
-          bio: string;
-          avatar: {
-            children: {
-              fixed: {
-                src: string;
-              };
-            }[];
-          };
-        };
-      };
-    };
-    relatedPosts: {
-      totalCount: number;
-      edges: {
-        node: {
-          timeToRead: number;
-          frontmatter: {
-            title: string;
-          };
-          fields: {
-            slug: string;
-          };
-        };
-      }[];
-    };
-  };
-  pageContext: {
-    prev: PageContext;
-    next: PageContext;
-  };
-}
-
-export interface PageContext {
-  excerpt: string;
-  timeToRead: number;
-  fields: {
-    slug: string;
-  };
-  frontmatter: {
-    image: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    title: string;
-    date: string;
-    draft?: boolean;
-    tags: string[];
-    author: {
-      id: string;
-      bio: string;
-      avatar: {
-        children: {
-          fixed: {
-            src: string;
-          };
-        }[];
-      };
-    };
-  };
-}
-
-const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
-  const post = props.data.markdownRemark;
+const PageTemplate = ({ data, pageContext, pathContext }) => {
+  const config = data.site.siteMetadata;
+  const post = data.markdownRemark;
   let width = '';
   let height = '';
   if (post.frontmatter.image && post.frontmatter.image.childImageSharp) {
@@ -194,7 +105,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.excerpt} />
-        <meta property="og:url" content={config.siteUrl + props.pathContext.slug} />
+        <meta property="og:url" content={config.siteUrl + pathContext.slug} />
         {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
           <meta property="og:image" content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`} />
         )}
@@ -210,7 +121,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.frontmatter.title} />
         <meta name="twitter:description" content={post.excerpt} />
-        <meta name="twitter:url" content={config.siteUrl + props.pathContext.slug} />
+        <meta name="twitter:url" content={config.siteUrl + pathContext.slug} />
         {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
           <meta name="twitter:image" content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`} />
         )}
@@ -266,12 +177,12 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
         {/* Links to Previous/Next posts */}
         <aside className="read-next" css={outer}>
           <ReadNextFeed>
-            {props.data.relatedPosts && (
-              <ReadNextCard tags={post.frontmatter.tags} relatedPosts={props.data.relatedPosts} />
+            {data.relatedPosts && (
+              <ReadNextCard tags={post.frontmatter.tags} relatedPosts={data.relatedPosts} />
             )}
 
-            {props.pageContext.prev && <PostCard post={props.pageContext.prev} />}
-            {props.pageContext.next && <PostCard post={props.pageContext.next} />}
+            {pageContext.prev && <PostCard post={pageContext.prev} />}
+            {pageContext.next && <PostCard post={pageContext.next} />}
           </ReadNextFeed>
         </aside>
       </Wrapper>
@@ -283,6 +194,16 @@ export default PageTemplate;
 
 export const query = graphql`
   query($slug: String, $primaryTag: String) {
+    site {
+      siteMetadata {
+        lang
+        title
+        description
+        siteUrl
+        facebook
+        twitter
+      }
+    }
     logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
       childImageSharp {
         fixed {

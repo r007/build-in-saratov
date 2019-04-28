@@ -123,25 +123,7 @@ const ReadNextCardFooter = styled.footer`
   }
 `;
 
-export interface ReadNextProps {
-  tags: string[];
-  relatedPosts: {
-    totalCount: number;
-    edges: {
-      node: {
-        timeToRead: number;
-        frontmatter: {
-          title: string;
-        };
-        fields: {
-          slug: string;
-        };
-      };
-    }[];
-  };
-}
-
-const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
+const ReadNextCard = ({ tags, relatedPosts }) => {
   return (
     <StaticQuery
       query={graphql`
@@ -165,7 +147,7 @@ const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
               Категория
             </ReadNextCardHeaderSitetitle>
             <ReadNextCardHeaderTitle>
-              <Link to={`/tags/${_.kebabCase(props.tags[0])}/`}>{props.tags[0]}</Link>
+              <Link to={`/tags/${_.kebabCase(tags[0])}/`}>{tags[0]}</Link>
             </ReadNextCardHeaderTitle>
           </ReadNextCardHeader>
           <ReadNextDivider>
@@ -173,7 +155,7 @@ const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
           </ReadNextDivider>
           <ReadNextCardContent>
             <ul>
-              {props.relatedPosts.edges.map(n => {
+              {relatedPosts.edges.map(n => {
                 return (
                   <li key={n.node.frontmatter.title}>
                     <Link to={n.node.fields.slug}>{n.node.frontmatter.title}</Link>
@@ -183,11 +165,11 @@ const ReadNextCard: React.FunctionComponent<ReadNextProps> = props => {
             </ul>
           </ReadNextCardContent>
           <ReadNextCardFooter>
-            <Link to={`/tags/${_.kebabCase(props.tags[0])}/`}>
-              {props.relatedPosts.totalCount > 1 &&
-                `Все ${props.relatedPosts.totalCount} записи`}
-              {props.relatedPosts.totalCount === 1 && '1 запись'}
-              {props.relatedPosts.totalCount === 0 && 'Нет записей'} →
+            <Link to={`/tags/${_.kebabCase(tags[0])}/`}>
+              {relatedPosts.totalCount > 1 &&
+                `Все ${relatedPosts.totalCount} записи`}
+              {relatedPosts.totalCount === 1 && '1 запись'}
+              {relatedPosts.totalCount === 0 && 'Нет записей'} →
             </Link>
           </ReadNextCardFooter>
         </ReadNextCardStyles>

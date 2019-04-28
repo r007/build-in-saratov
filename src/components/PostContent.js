@@ -3,7 +3,6 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import RehypeReact from 'rehype-react';
 
-import config from '../website-config';
 import { colors } from '../styles/colors';
 import LinkImg from '../content/img/Externer_Link_XH.svg';
 
@@ -57,7 +56,7 @@ export const PostFullContent = styled.section`
   }
   
   /* External links */
-  a[href*="//"]:not([href*="${config.domain}"]):after {
+  a[href*="//"]:not([href*="http://localhost"]):after {
     content: '';
     background: url(${LinkImg});
     background-repeat: repeat;
@@ -524,16 +523,12 @@ const renderAst = new RehypeReact({
   components: {},
 }).Compiler;
 
-const Ast = ({ ast, ...props }: any) => {
+const Ast = ({ ast, ...props }) => {
   ast.properties = props;
   return renderAst(ast);
 };
 
-export interface PostContentProps {
-  htmlAst: any;
-}
-
-const PostContent: React.FunctionComponent<PostContentProps> = ({ htmlAst }) => {
+const PostContent = ({ htmlAst }) => {
   return (
     <PostFullContent className="post-full-content">
       {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}

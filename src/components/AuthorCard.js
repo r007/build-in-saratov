@@ -34,11 +34,7 @@ const AuthorCardContent = styled.div`
   }
 `;
 
-export interface AuthorCardProps {
-  author: any;
-}
-
-const AuthorCard: React.FunctionComponent<AuthorCardProps> = ({ author }) => {
+const AuthorCard = ({ author }) => {
   return (
     <AuthorCardSection>
       {/* TODO: default avatar */}

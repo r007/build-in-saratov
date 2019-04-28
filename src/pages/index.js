@@ -7,7 +7,6 @@ import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
-import config from '../website-config';
 import {
   outer,
   PostFeed,
@@ -17,7 +16,6 @@ import {
   SiteHeaderContent,
   SiteTitle,
 } from '../styles/shared';
-import { PageContext } from '../templates/post';
 import Logo from '../content/img/logo.svg';
 import ScrollDownArrow from '../content/img/next-arrow.svg';
 
@@ -66,26 +64,6 @@ const HomePosts = css`
   }
 `;
 
-export interface IndexProps {
-  data: {
-    logo: {
-      childImageSharp: {
-        fixed: any;
-      };
-    };
-    header: {
-      childImageSharp: {
-        fluid: any;
-      };
-    };
-    allMarkdownRemark: {
-      edges: {
-        node: PageContext;
-      }[];
-    };
-  };
-}
-
 const scrollDownButton = keyframes`
   to {
     transform:translateY(20px)
@@ -108,9 +86,10 @@ const ScrollDown = styled.div`
   }
 `;
 
-const IndexPage: React.FunctionComponent<IndexProps> = props => {
-  const width = props.data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
-  const height = String(Number(width) / props.data.header.childImageSharp.fluid.aspectRatio);
+const IndexPage = ({ data, children }) => {
+  const config = data.site.siteMetadata;
+  const width = data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
+  const height = String(Number(width) / data.header.childImageSharp.fluid.aspectRatio);
   return (
     <IndexLayout css={HomePosts}>
       <Helmet>
@@ -124,7 +103,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta property="og:url" content={config.siteUrl} />
         <meta
           property="og:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.fluid.src}`}
+          content={`${config.siteUrl}${data.header.childImageSharp.fluid.src}`}
         />
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
@@ -133,7 +112,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <meta name="twitter:url" content={config.siteUrl} />
         <meta
           name="twitter:image"
-          content={`${config.siteUrl}${props.data.header.childImageSharp.fluid.src}`}
+          content={`${config.siteUrl}${data.header.childImageSharp.fluid.src}`}
         />
         {config.twitter && (
           <meta
@@ -164,7 +143,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
         <main id="content">
           <section>
             <div css={[PostFeed, PostFeedRaise]}>
-              {props.data.allMarkdownRemark.edges.map(post => {
+              {data.allMarkdownRemark.edges.map(post => {
               // filter out drafts in production
                 return (
                   (post.node.frontmatter.draft !== true ||
@@ -176,7 +155,7 @@ const IndexPage: React.FunctionComponent<IndexProps> = props => {
             </div>
           </section>
         </main>
-        {props.children}
+        {children}
       </Wrapper>
     </IndexLayout>
   );
@@ -186,6 +165,16 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query {
+    site {
+      siteMetadata {
+        lang
+        title
+        description
+        siteUrl
+        facebook
+        twitter
+      }
+    }
     header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.
