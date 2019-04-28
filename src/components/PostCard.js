@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components';
 
 import { colors } from '../styles/colors';
 
-const PostCardStyles = css`
+const PostCardWrapper = styled.article`
   flex: 1 1 300px;
   display: flex;
   flex-direction: column;
@@ -91,9 +91,8 @@ const Button = styled(Link)`
 
 const PostCard = ({ post }) => {
   return (
-    <article
+    <PostCardWrapper
       className={`post-card ${post.frontmatter.image ? '' : 'no-image'}`}
-      css={PostCardStyles}
     >
       {post.frontmatter.image && (
         <Link className="post-card-image-link" css={PostCardImageLink} to={post.fields.slug}>
@@ -126,7 +125,7 @@ const PostCard = ({ post }) => {
           </Button>
         </PostCardMeta>
       </PostCardContent>
-    </article>
+    </PostCardWrapper>
   );
 };
 

@@ -7,11 +7,9 @@ import Wrapper from '../components/Wrapper';
 import { PostHeader } from '../components/PostHeader';
 import IndexLayout from '../layouts';
 import {
-  inner,
   PostFeed,
   PostFeedRaise,
   SiteDescription,
-  SiteHeaderContent,
   SiteTitle,
 } from '../styles/shared';
 import Helmet from 'react-helmet';
@@ -61,22 +59,18 @@ const Tags = ({ data, pageContext, pathContext }) => {
                 '',
           }}
         >
-          <div css={inner}>
-            <SiteHeaderContent>
-              <SiteTitle>{tag}</SiteTitle>
-              <SiteDescription>
-                {tagData && tagData.node.description ? (
-                  tagData.node.description
-                ) : (
-                  <>
+          <SiteTitle>{tag}</SiteTitle>
+          <SiteDescription>
+            {tagData && tagData.node.description ? (
+              tagData.node.description
+            ) : (
+              <>
                     A collection of {totalCount > 1 && `${totalCount} posts`}
-                    {totalCount === 1 && '1 запись'}
-                    {totalCount === 0 && 'No posts'}
-                  </>
-                )}
-              </SiteDescription>
-            </SiteHeaderContent>
-          </div>
+                {totalCount === 1 && '1 запись'}
+                {totalCount === 0 && 'No posts'}
+              </>
+            )}
+          </SiteDescription>
         </PostHeader>
         <main id="content">
           <section>
