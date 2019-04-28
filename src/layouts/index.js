@@ -29,7 +29,7 @@ const GlobalStyles = css`
   }
     
   body, html {
-    font: normal 29px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    font: normal 29px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
   }
 
   ::selection {

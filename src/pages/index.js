@@ -10,7 +10,6 @@ import IndexLayout from '../layouts';
 import {
   outer,
   PostFeed,
-  PostFeedRaise,
   SiteDescription,
   SiteHeader,
   SiteHeaderContent,
@@ -142,7 +141,7 @@ const IndexPage = ({ data, children }) => {
         </header>
         <main id="content">
           <section>
-            <div css={[PostFeed, PostFeedRaise]}>
+            <div css={[PostFeed]}>
               {data.allMarkdownRemark.edges.map(post => {
               // filter out drafts in production
                 return (
