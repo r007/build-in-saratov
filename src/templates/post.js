@@ -38,7 +38,16 @@ const PostFullMetaDate = styled.time`
 
 const PostCategoryLink = styled(Link)`
   color: #ffffff;
+  word-wrap: break-word;
+  text-decoration: none;
+  padding-bottom: 0;
   border-bottom: 2px solid #fff;
+  transition: all .3s cubic-bezier(.645,.045,.355,1);
+    
+  &:hover {
+    background: #1a1f3e;
+    border-color: #1a1f3e;
+  }
 `;
 
 export const PostFullTitle = styled.h1`

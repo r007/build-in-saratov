@@ -173,10 +173,6 @@ const GlobalStyles = css`
     text-decoration: none;
   }
 
-  a:hover {
-    text-decoration: underline;
-  }
-
   h1,
   h2,
   h3,
