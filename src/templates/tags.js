@@ -1,5 +1,6 @@
 import { graphql } from 'gatsby';
 import React from 'react';
+import styled from 'styled-components';
 
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
@@ -9,10 +10,21 @@ import IndexLayout from '../layouts';
 import {
   PostFeed,
   PostFeedRaise,
-  SiteDescription,
-  SiteTitle,
 } from '../styles/shared';
 import Helmet from 'react-helmet';
+
+const PostTitle = styled.h2`
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0;
+`;
+
+const PostDescription = styled.h1`
+  color: #fff;
+  margin: 0;
+`;
 
 const Tags = ({ data, pageContext, pathContext }) => {
   const config = data.site.siteMetadata;
@@ -59,18 +71,18 @@ const Tags = ({ data, pageContext, pathContext }) => {
                 '',
           }}
         >
-          <SiteTitle>{tag}</SiteTitle>
-          <SiteDescription>
+          <PostTitle>{tag}</PostTitle>
+          <PostDescription>
             {tagData && tagData.node.description ? (
               tagData.node.description
             ) : (
               <>
-                    A collection of {totalCount > 1 && `${totalCount} posts`}
-                {totalCount === 1 && '1 запись'}
+                    Коллекция из {totalCount > 1 && `${totalCount} записей`}
+                {totalCount === 1 && '1 записи'}
                 {totalCount === 0 && 'No posts'}
               </>
             )}
-          </SiteDescription>
+          </PostDescription>
         </PostHeader>
         <main id="content">
           <section>

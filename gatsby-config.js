@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
   siteMetadata: {
     title: 'Сделано в Саратове',
-    description: 'Пишу код. Медленно, качественно.',
+    description: 'Специалист по веб-разработке.',
     siteUrl: 'http://localhost', // full path to blog - no ending slash
     coverImage: 'img/blog-cover.jpg',
     logo: 'img/logo.svg',

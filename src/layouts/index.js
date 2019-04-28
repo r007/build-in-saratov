@@ -52,7 +52,6 @@ const GlobalStyles = css`
   section ul {
     max-width: 30em;
     position: relative;
-    font-family: Georgia, serif;
   }
 
   hr {

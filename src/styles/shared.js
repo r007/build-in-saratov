@@ -16,7 +16,6 @@ export const inner = css`
 `;
 
 export const SiteTitle = styled.h1`
-  z-index: 10;
   margin: 0;
   padding: 0;
   font-size: 3.8rem;
