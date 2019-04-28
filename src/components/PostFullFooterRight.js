@@ -1,8 +1,7 @@
 import { Link } from 'gatsby';
 import * as _ from 'lodash';
 import * as React from 'react';
-import styled from '@emotion/styled';
-import { css } from '@emotion/core';
+import styled from 'styled-components';
 import { lighten } from 'polished';
 
 import { colors } from '../styles/colors';
@@ -12,7 +11,7 @@ const PostFullFooterRightDiv = styled.div`
   margin-left: 20px;
 `;
 
-const AuthorCardButton = css`
+const AuthorCardButton = styled(Link)`
   display: block;
   padding: 9px 16px;
   /* border: color(var(--midgrey) l(+20%)) 1px solid; */
@@ -34,9 +33,9 @@ const AuthorCardButton = css`
 const PostFullFooterRight = ({ authorId }) => {
   return (
     <PostFullFooterRightDiv>
-      <Link css={AuthorCardButton} to={`/author/${_.kebabCase(authorId)}/`}>
+      <AuthorCardButton to={`/author/${_.kebabCase(authorId)}/`}>
         Все записи автора
-      </Link>
+      </AuthorCardButton>
     </PostFullFooterRightDiv>
   );
 };

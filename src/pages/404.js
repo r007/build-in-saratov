@@ -46,8 +46,8 @@ const ErrorLink = css`
   margin-top: 5px;
 `;
 
-const NotFoundPage = ({ props }) => {
-  const { edges } = props.data.allMarkdownRemark;
+const NotFoundPage = ({ data }) => {
+  const { edges } = data.allMarkdownRemark;
 
   return (
     <IndexLayout>

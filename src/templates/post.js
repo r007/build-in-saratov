@@ -2,7 +2,7 @@ import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import * as _ from 'lodash';
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 
 import AuthorCard from '../components/AuthorCard';

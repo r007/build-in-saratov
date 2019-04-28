@@ -1,10 +1,10 @@
 import { graphql, StaticQuery, Link } from 'gatsby';
 import * as React from 'react';
-import { css } from '@emotion/core';
+import styled from 'styled-components';
 
 import Logo from '../../content/img/logo.svg';
 
-const SiteNavLogoStyles = css`
+const SiteNavLogoStyled = styled(Link)`
   flex-shrink: 0;
   display: block;
   margin-right: 24px;
@@ -40,9 +40,9 @@ const SiteNavLogo = () => (
   <StaticQuery
     query={pageQuery}
     render={data => (
-      <Link className="site-nav-logo" css={SiteNavLogoStyles} to="/">
+      <SiteNavLogoStyled className="site-nav-logo" to="/">
         <img src={Logo} alt={data.site.siteMetadata.title} />
-      </Link>
+      </SiteNavLogoStyled>
     )}
   />
 );
