@@ -3,8 +3,9 @@ import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
 import * as React from 'react';
 
-import { PostFullHeader, PostFullTitle } from '../templates/post';
+import { PostFullTitle } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
+import { PostHeader } from '../components/PostHeader';
 import Helmet from 'react-helmet';
 
 const About: React.FunctionComponent = () => (
@@ -15,11 +16,11 @@ const About: React.FunctionComponent = () => (
     <SiteNav />
     <Wrapper>
       <main id="content">
-        <PostFullHeader>
+        <PostHeader>
           <header>
             <PostFullTitle>Сделано в Саратове</PostFullTitle>
           </header>
-        </PostFullHeader>
+        </PostHeader>
 
         <PostFullContent>
           <p>

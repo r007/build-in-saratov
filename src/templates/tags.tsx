@@ -4,14 +4,13 @@ import React from 'react';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
+import { PostHeader } from '../components/PostHeader';
 import IndexLayout from '../layouts';
 import {
   inner,
-  outer,
   PostFeed,
   PostFeedRaise,
   SiteDescription,
-  SiteHeader,
   SiteHeaderContent,
   SiteTitle,
 } from '../styles/shared';
@@ -84,9 +83,8 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
       </Helmet>
       <Wrapper>
         <SiteNav />
-        <header
+        <PostHeader
           className={`${tagData && tagData.node.image ? '' : 'no-cover'}`}
-          css={[outer, SiteHeader]}
           style={{
             backgroundImage:
               tagData && tagData.node.image ?
@@ -103,14 +101,14 @@ const Tags: React.FunctionComponent<TagTemplateProps> = props => {
                 ) : (
                   <>
                     A collection of {totalCount > 1 && `${totalCount} posts`}
-                    {totalCount === 1 && '1 post'}
+                    {totalCount === 1 && '1 запись'}
                     {totalCount === 0 && 'No posts'}
                   </>
                 )}
               </SiteDescription>
             </SiteHeaderContent>
           </div>
-        </header>
+        </PostHeader>
         <main id="content">
           <section>
             <div css={[PostFeed, PostFeedRaise]}>

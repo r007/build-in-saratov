@@ -12,29 +12,12 @@ import PostContent from '../components/PostContent';
 import PostFullFooter from '../components/PostFullFooter';
 import PostFullFooterRight from '../components/PostFullFooterRight';
 import ReadNextCard from '../components/ReadNextCard';
-import Subscribe from '../components/subscribe/Subscribe';
+import { PostHeader } from '../components/PostHeader';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
-import { inner, outer } from '../styles/shared';
+import { outer } from '../styles/shared';
 import config from '../website-config';
-
-export const PostFullHeader = styled.section`
-  padding-top: 2.5rem;
-  padding-bottom: 3rem;
-  box-sizing: border-box;
-  background: #164194;
-  width: 100vw;
-  
-  header {
-    width: 90%;
-  }
-  
-  @media only screen and (max-width: 1560px) {
-    padding-top: 1.5rem;
-    padding-bottom: 2rem;
-  }
-`;
 
 const PostFullMeta = styled.div`
   display: flex;
@@ -246,7 +229,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
       <Wrapper>
         <SiteNav />
         <main id="content">
-          <PostFullHeader>
+          <PostHeader>
             <PostFullMeta>
               <PostFullMetaDate dateTime={post.frontmatter.date}>
                 {post.frontmatter.userDate}
@@ -262,7 +245,7 @@ const PageTemplate: React.FunctionComponent<PageTemplateProps> = props => {
               )}
             </PostFullMeta>
             <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
-          </PostFullHeader>
+          </PostHeader>
 
           {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
             <PostFullImage>
