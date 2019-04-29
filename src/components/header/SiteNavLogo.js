@@ -19,6 +19,21 @@ const SiteNavLogoStyled = styled(Link)`
     text-decoration: none;
   }
 
+  :focus {
+    outline: 0;
+  }
+  
+  :focus::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    background: rgba(255, 255, 255, 0.8);
+    height: 5px;
+  }
+
   img {
     display: block;
     width: auto;
