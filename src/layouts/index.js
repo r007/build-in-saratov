@@ -75,6 +75,21 @@ const GlobalStyles = css`
     position: relative;
   }
 
+  figure {
+    margin: 0;
+    padding: 1em 0;
+  }
+
+  figcaption {
+    color: #ad005f;
+    font-size: .827rem;
+    padding: 1rem 30% 0 0;
+
+    @media only screen and (max-width: 800px) {
+      padding-right: 0;
+    }
+  }
+
   hr {
     position: relative;
     display: block;
