@@ -119,7 +119,7 @@ class SiteNav extends React.Component {
             <SiteNavLogo />
             <NavLink to="/">Главная</NavLink>
             <NavLink to="/about">О сайте</NavLink>
-            <NavLink to="/tags/getting-started/">Getting Started</NavLink>
+            <NavLink to="/contact">Обратная связь</NavLink>
           </NavWrapper>
         </Wrapper>
       </SiteNavWrapper>
