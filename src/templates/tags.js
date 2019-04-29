@@ -7,10 +7,6 @@ import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import { PostHeader } from '../components/PostHeader';
 import IndexLayout from '../layouts';
-import {
-  PostFeed,
-  PostFeedRaise,
-} from '../styles/shared';
 import Helmet from 'react-helmet';
 
 const PostTitle = styled.h2`
@@ -86,11 +82,9 @@ const Tags = ({ data, pageContext, pathContext }) => {
         </PostHeader>
         <main id="content">
           <section>
-            <div css={[PostFeed, PostFeedRaise]}>
-              {edges.map(({ node }) => (
-                <PostCard key={node.fields.slug} post={node} />
-              ))}
-            </div>
+            {edges.map(({ node }) => (
+              <PostCard key={node.fields.slug} post={node} />
+            ))}
           </section>
         </main>
       </Wrapper>

@@ -7,6 +7,23 @@ import { colors } from '../styles/colors';
 import LinkImg from '../content/img/Externer_Link_XH.svg';
 
 export const PostFullContent = styled.section`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  ul,
+  ol,
+  dl,
+  pre,
+  blockquote,
+  .post-full-comments,
+  .footnotes {
+    min-width: 100%;
+  }
+
   li {
     word-break: break-word;
   }
