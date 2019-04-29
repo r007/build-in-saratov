@@ -30,6 +30,15 @@ const GlobalStyles = css`
     
   body, html {
     font: normal 29px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+    @media only screen and (max-width: 800px) {
+      font-size: 23px;
+      line-height: 1.4;
+    }
+
+    @media only screen and (max-width: 600px) {
+      font-size: 18px;
+    }
   }
 
   ::selection {
