@@ -6,6 +6,8 @@ import Helmet from 'react-helmet';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
+import IconCalloutGroup from '../components/IconCalloutGroup';
+import IconCallout from '../components/IconCallout';
 import IndexLayout from '../layouts';
 import {
   outer,
@@ -140,6 +142,37 @@ const IndexPage = ({ data, children }) => {
           </SiteHeaderContent>
         </header>
         <main id="content">
+          <section>
+            <IconCalloutGroup>
+              <IconCallout
+                iconName="Deploy"
+                title="Ускорение сайта"
+                copy="Повышение конверсии и уменьшение показателя отказов за счет быстрой загрузки"
+                url="/contact"
+              />
+
+              <IconCallout
+                iconName="Inspect"
+                title="Консультации"
+                copy="По выбору хостинга, технологий, способу реализации"
+                url="/contact"
+              />
+
+              <IconCallout
+                iconName="Configure"
+                title="Доработки"
+                copy="Изменения в готовом сайте, исправление ошибок, написание плагинов"
+                url="/contact"
+              />
+
+              <IconCallout
+                iconName="Send"
+                title="Создание"
+                copy="Проектирование сайта с нуля специально под заказчика"
+                url="/contact"
+              />
+            </IconCalloutGroup>
+          </section>
           <section>
             <div css={[PostFeed]}>
               {data.allMarkdownRemark.edges.map(post => {
