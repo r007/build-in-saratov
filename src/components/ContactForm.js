@@ -111,7 +111,7 @@ class ContactForm extends React.Component {
   static validateFullName(value) {
     let error;
     if (!value) {
-      error = 'Please enter your name';
+      error = 'Пожалуйста, введите имя, чтобы я знал как к вам обращаться';
     }
 
     return error;
@@ -129,9 +129,9 @@ class ContactForm extends React.Component {
   static validateEmail(value) {
     let error;
     if (!value) {
-      error = 'Please enter your email';
+      error = 'Пожалуйста, введите ваш почтовый адрес';
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-      error = 'Please provide a valid email';
+      error = 'Пожалуйста, введите верный e-mail, чтобы я мог с вами связаться';
     }
 
     return error;
@@ -168,10 +168,8 @@ class ContactForm extends React.Component {
       <Formik
         initialValues={{
           fullName: '',
-          position: '',
           company: '',
           email: '',
-          phone: '',
           interest: '',
         }}
         render={({ errors, touched, handleSubmit, isSubmitting }) => (
@@ -180,36 +178,31 @@ class ContactForm extends React.Component {
               <Alert success={this.state.submitSuccess}>{this.state.formMessage}</Alert>
             )}
             <FieldWrapper>
+              <label htmlFor="email">Имя (обязательно)</label>
               <FormField
                 type="text"
                 name="fullName"
                 className={`form-control ${errors.fullName && touched.fullName && 'is-invalid'}`}
                 validate={ContactForm.validateFullName}
-                placeholder="Full Name (required)"
               />
               <ErrorMessage name="fullName">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
             </FieldWrapper>
 
             <FieldWrapper>
-              <FormField type="text" name="position" placeholder="Position" />
-            </FieldWrapper>
-            <FieldWrapper>
               <FormField type="text" name="company" placeholder="Company or Company Website" />
             </FieldWrapper>
+
             <FieldWrapper>
+              <label htmlFor="email">Контактный e-mail (обязательно)</label>
               <FormField
                 type="email"
                 name="email"
                 className={`form-control ${errors.email && touched.email && 'is-invalid'}`}
                 validate={ContactForm.validateEmail}
-                placeholder="Email (required)"
               />
               <ErrorMessage name="email">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
             </FieldWrapper>
 
-            <FieldWrapper>
-              <FormField type="tel" name="phone" placeholder="Phone" />
-            </FieldWrapper>
             <FieldWrapper>
               <TextareaField
                 name="interest"
@@ -228,17 +221,15 @@ class ContactForm extends React.Component {
             </SubmitButton>
           </form>
         )}
-        onSubmit={({ fullName, position, company, email, phone, interest }, actions) => {
+        onSubmit={({ fullName, company, email, interest }, actions) => {
           const endPoint = 'https://c2fpksv8c0.execute-api.us-east-1.amazonaws.com/dev';
 
           axios
             .post(`${endPoint}/contact`, {
               // HACK: Endpoint expects name property
               fullName,
-              position,
               company,
               email,
-              phone,
               interest,
             })
             .then(response => {
