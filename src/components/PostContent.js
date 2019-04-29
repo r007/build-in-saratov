@@ -206,53 +206,6 @@ export const PostFullContent = styled.section`
       'Open Sans', 'Helvetica Neue', sans-serif;
   }
 
-  h1 {
-    margin: .67em 0;
-    font-size: 2.41rem;
-  }
-
-  @media (max-width: 500px) {
-    h1 {
-      font-size: 2.8rem;
-    }
-  }
-
-  h2 {
-    display:block;
-    font-size: 1.55rem;
-    line-height: 1.2;
-    margin:1rem 0 0 0;
-  }
-
-  @media (max-width: 500px) {
-    h2 {
-      font-size: 2.6rem;
-    }
-  }
-
-  h3 {
-    margin: 1.45em 0 0 0;
-    font-size: 1rem;
-    line-height: 1.45;
-    display: inline-block;
-  }
-  @media (max-width: 500px) {
-    h3 {
-      font-size: 2.2rem;
-    }
-  }
-
-  h4 {
-    margin-bottom: .5em;
-    font-size: .8rem
-  }
-
-  @media (max-width: 500px) {
-    h4 {
-      font-size: 2.2rem;
-    }
-  }
-
   h5 {
     display: block;
     margin: 0;
@@ -267,12 +220,6 @@ export const PostFullContent = styled.section`
   @media (min-width: 1180px) {
     h5 {
       max-width: 1060px;
-    }
-  }
-  @media (max-width: 500px) {
-    h5 {
-      padding: 0 0 0.5em;
-      font-size: 2.2rem;
     }
   }
 

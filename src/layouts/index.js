@@ -207,41 +207,32 @@ const GlobalStyles = css`
   }
 
   h1 {
-    margin: 0 0 0.5em 0;
-    font-size: 58px;
-    font-weight: 700;
-  }
-  @media (max-width: 500px) {
-    h1 {
-      font-size: 2.2rem;
+    margin: .67em 0;
+    font-size: 2.41rem;
+    font-weight: normal;
+    line-height: 1.1;
+    
+    @media only screen and (max-width: 1280px) {
+      font-size: 58px;
     }
   }
 
   h2 {
-    margin: 1.5em 0 0.5em 0;
-    font-size: 2rem;
-  }
-  @media (max-width: 500px) {
-    h2 {
-      font-size: 1.8rem;
-    }
+    margin: 1rem 0 0 0;
+    font-size: 1.55rem;
+    line-height: 1.2;
+    display: block;
   }
 
   h3 {
-    margin: 1.5em 0 0.5em 0;
-    font-size: 1.8rem;
-    font-weight: 500;
-  }
-  @media (max-width: 500px) {
-    h3 {
-      font-size: 1.7rem;
-    }
+    margin: 1.45em 0 0 0;
+    font-size: 1rem;
+    line-height: 1.45; 
   }
 
   h4 {
     margin: 1.5em 0 0.5em 0;
-    font-size: 1.6rem;
-    font-weight: 500;
+    font-size: .8rem;
   }
 
   h5 {
