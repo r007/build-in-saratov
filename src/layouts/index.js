@@ -33,7 +33,7 @@ const GlobalStyles = css`
 
     @media only screen and (max-width: 800px) {
       font-size: 23px;
-      line-height: 1.4;
+      line-height: 1.6em;
     }
 
     @media only screen and (max-width: 600px) {

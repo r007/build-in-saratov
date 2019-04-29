@@ -7,29 +7,6 @@ import { colors } from '../styles/colors';
 import LinkImg from '../content/img/Externer_Link_XH.svg';
 
 export const PostFullContent = styled.section`
-  line-height: 1.6em;
-
-  @media (max-width: 1170px) {
-    padding: 5vw 7vw 0;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  p,
-  ul,
-  ol,
-  dl,
-  pre,
-  blockquote,
-  .post-full-comments,
-  .footnotes {
-    min-width: 100%;
-  }
-
   li {
     word-break: break-word;
   }
@@ -286,16 +263,6 @@ export const PostFullContent = styled.section`
     padding: 6px 12px;
     /* border: color(var(--whitegrey) l(-1%) s(-5%)) 1px solid; */
     border: ${setSaturation('0.05', darken('0.01', colors.whitegrey))} 1px solid;
-  }
-
-  @media (max-width: 500px) {
-    padding: 0;
-    :before {
-      display: none;
-    }
-    :after {
-      display: none;
-    }
   }
 
   /* Start Syntax Highlighting */
