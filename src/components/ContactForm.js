@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 
+import FormRequirement from '../components/FormRequirement';
 import FormItem from '../components/FormItem';
 import Input from '../components/Input';
 import Textarea from '../components/Textarea';
@@ -75,14 +76,6 @@ const Alert = styled.span`
   )};
 `;
 
-const Feedback = styled.div`
-  display: block;
-  width: 100%;
-  margin-bottom: 0.25rem;
-  font-size: 80%;
-  color: #dc3545;
-`;
-
 class ContactForm extends React.Component {
   static validateMessage(value) {
     let error;
@@ -152,7 +145,7 @@ class ContactForm extends React.Component {
                 className={`form-control ${errors.fullName && touched.fullName && 'is-invalid'}`}
                 placeholder="Например: Акакий Акакиевич"
               />
-              <ErrorMessage name="fullName">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
+              <ErrorMessage name="fullName">{msg => <FormRequirement>{msg}</FormRequirement>}</ErrorMessage>
             </FormItem>
 
             <FormItem>
@@ -165,7 +158,7 @@ class ContactForm extends React.Component {
                 placeholder="Например: ceo@supercompany.ru"
                 validate={ContactForm.validateEmail}
               />
-              <ErrorMessage name="email">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
+              <ErrorMessage name="email">{msg => <FormRequirement>{msg}</FormRequirement>}</ErrorMessage>
             </FormItem>
 
             <FormItem>
@@ -180,7 +173,7 @@ class ContactForm extends React.Component {
                 rows={10}
                 placeholder="Краткое описание того, что необходимо сделать"
               />
-              <ErrorMessage name="message">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
+              <ErrorMessage name="message">{msg => <FormRequirement>{msg}</FormRequirement>}</ErrorMessage>
             </FormItem>
 
             <SubmitButton type="submit" disabled={isSubmitting}>
