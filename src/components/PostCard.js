@@ -11,11 +11,14 @@ const PostCardWrapper = styled.article`
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  margin: 0 20px 40px;
   min-height: 300px;
   background: #fff center center;
   background-size: cover;
   transition: all 0.5s ease;
+
+  @media only screen and (min-width: 601px) {
+    margin: 0 20px 40px;
+  }
 `;
 
 const PostCardImageLink = css`
@@ -54,21 +57,29 @@ const PostCardTags = styled.span`
   display: block;
   margin-bottom: 4px;
   color: ${colors.midgrey};
-  font-size: 0.6rem;
   line-height: 1.15em;
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+  
+  @media only screen and (min-width: 601px) {
+    font-size: 0.6rem;
+  }
 `;
 
 const PostCardTitle = styled.h2`
-  font-size: 1rem;
   margin: 0 0 0.75em 0;
   color: #164194;
+
+  @media only screen and (min-width: 601px) {
+    font-size: 1rem;
+  }
 `;
 
 const PostCardExcerpt = styled.div`
-  font-size: 0.7rem;
+  @media only screen and (min-width: 601px) {
+    font-size: 0.7rem;
+  }
 `;
 
 const PostCardMeta = styled.footer`

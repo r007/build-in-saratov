@@ -173,7 +173,10 @@ const ButtonLink = styled(GatsbyLink)`
     `,
 
     medium: css`
-      font-size: 0.6rem;
+      font-size: 0.8rem;
+      @media only screen and (min-width: 601px) {
+        font-size: 0.6rem;
+      }
       padding-bottom: ${13 / 11}em;
       padding-top: ${13 / 11}em;
     `,
