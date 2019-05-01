@@ -1,8 +1,12 @@
 import React from 'react';
-import { Formik, Field, ErrorMessage } from 'formik';
+import { Formik, ErrorMessage } from 'formik';
 import axios from 'axios';
 import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
+
+import Input from '../components/Input';
+import Textarea from '../components/Textarea';
+import Label from '../components/Label';
 
 const SubmitButton = styled.button`
   appearance: none;
@@ -76,31 +80,6 @@ const Feedback = styled.div`
   margin-bottom: 0.25rem;
   font-size: 80%;
   color: #dc3545;
-`;
-
-const FormField = styled(Field)`
-  &.is-invalid,
-  &:invalid {
-    border-color: #dc3545;
-    padding-right: calc(1.5em + 0.75rem);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center right calc(0.375em + 0.1875rem);
-    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-
-    &:focus {
-      border-color: #dc3545;
-      box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-    }
-  }
-`;
-
-const TextareaField = styled(FormField)`
-  &.is-invalid,
-  &:invalid {
-    padding-right: calc(1.5em + 0.75rem);
-    background-position: top calc(0.375em + 0.1875rem) right calc(0.375em + 0.1875rem);
-  }
 `;
 
 const FieldWrapper = styled.div`
@@ -178,23 +157,24 @@ class ContactForm extends React.Component {
               <Alert success={this.state.submitSuccess}>{this.state.formMessage}</Alert>
             )}
             <FieldWrapper>
-              <label htmlFor="email">Имя (обязательно)</label>
-              <FormField
+              <Label htmlFor="email">Имя (обязательно)</Label>
+              <Input
                 type="text"
                 name="fullName"
                 className={`form-control ${errors.fullName && touched.fullName && 'is-invalid'}`}
+                placeholder="Например: Акакий Акакиевич"
                 validate={ContactForm.validateFullName}
               />
               <ErrorMessage name="fullName">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
             </FieldWrapper>
 
             <FieldWrapper>
-              <FormField type="text" name="company" placeholder="Company or Company Website" />
+              <Input type="text" name="company" placeholder="Company or Company Website" />
             </FieldWrapper>
 
             <FieldWrapper>
-              <label htmlFor="email">Контактный e-mail (обязательно)</label>
-              <FormField
+              <Label htmlFor="email">Контактный e-mail (обязательно)</Label>
+              <Input
                 type="email"
                 name="email"
                 className={`form-control ${errors.email && touched.email && 'is-invalid'}`}
@@ -204,7 +184,7 @@ class ContactForm extends React.Component {
             </FieldWrapper>
 
             <FieldWrapper>
-              <TextareaField
+              <Textarea
                 name="interest"
                 component="textarea"
                 className={`form-control ${errors.interest && touched.interest && 'is-invalid'}`}
