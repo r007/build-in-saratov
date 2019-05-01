@@ -20,12 +20,21 @@ const Paragraph = styled.p`
   margin-left: auto;
   margin-right: auto;
   margin-top: 11px;
+  
+  @media (max-width: 480px) {
+    display: none;
+  }
 `;
 
 const Title = styled.h3`
   font-size: 1rem;
   margin-top: 33px;
   transition: color 250ms ease-in-out;
+  
+  @media (max-width: 480px) {
+    font-size: 14px;
+    margin-top: 13px;
+  }
 `;
 
 const Container = styled.div`
@@ -36,6 +45,30 @@ const Container = styled.div`
   
   &:hover .IconCallout-icon {
     transform: translateY(-5px);
+  }
+  
+  @media (max-width: 480px) {
+    .IconCallout-icon {
+      font-size: 71px !important;
+    }
+  }
+  
+  @media (min-width: 480px) and (max-width: 960px) {
+    .IconCallout-icon {
+      font-size: 80px !important;
+    }
+  }
+  
+  @media (max-width: 960px) {
+    flex: 1 1 calc(100% / 2);
+
+    :last-child {
+      margin-top: 60px;
+    }
+
+    :nth-last-child(2) {
+      margin-top: 60px;
+    }
   }
 `;
 
