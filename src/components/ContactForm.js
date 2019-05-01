@@ -4,6 +4,7 @@ import axios from 'axios';
 import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 
+import FormItem from '../components/FormItem';
 import Input from '../components/Input';
 import Textarea from '../components/Textarea';
 import Label from '../components/Label';
@@ -82,24 +83,11 @@ const Feedback = styled.div`
   color: #dc3545;
 `;
 
-const FieldWrapper = styled.div`
-  margin: 0 0 0.625em;
-`;
-
 class ContactForm extends React.Component {
-  static validateFullName(value) {
+  static validateMessage(value) {
     let error;
     if (!value) {
-      error = 'Пожалуйста, введите имя, чтобы я знал как к вам обращаться';
-    }
-
-    return error;
-  }
-
-  static validateInterest(value) {
-    let error;
-    if (!value) {
-      error = 'Please enter reason for interest';
+      error = 'Пожалуйста, введите ваше сообщение';
     }
 
     return error;
@@ -147,7 +135,6 @@ class ContactForm extends React.Component {
       <Formik
         initialValues={{
           fullName: '',
-          company: '',
           email: '',
           interest: '',
         }}
@@ -156,61 +143,60 @@ class ContactForm extends React.Component {
             {this.state.formMessage && (
               <Alert success={this.state.submitSuccess}>{this.state.formMessage}</Alert>
             )}
-            <FieldWrapper>
-              <Label htmlFor="email">Имя (обязательно)</Label>
+            <FormItem>
+              <Label htmlFor="fullName">Как мне к вам обращаться?</Label>
               <Input
                 type="text"
                 name="fullName"
+                id="fullName"
                 className={`form-control ${errors.fullName && touched.fullName && 'is-invalid'}`}
                 placeholder="Например: Акакий Акакиевич"
-                validate={ContactForm.validateFullName}
               />
               <ErrorMessage name="fullName">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
-            </FieldWrapper>
+            </FormItem>
 
-            <FieldWrapper>
-              <Input type="text" name="company" placeholder="Company or Company Website" />
-            </FieldWrapper>
-
-            <FieldWrapper>
+            <FormItem>
               <Label htmlFor="email">Контактный e-mail (обязательно)</Label>
               <Input
                 type="email"
                 name="email"
+                id="email"
                 className={`form-control ${errors.email && touched.email && 'is-invalid'}`}
+                placeholder="Например: ceo@supercompany.ru"
                 validate={ContactForm.validateEmail}
               />
               <ErrorMessage name="email">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
-            </FieldWrapper>
+            </FormItem>
 
-            <FieldWrapper>
+            <FormItem>
+              <Label htmlFor="message">Ваше сообщение</Label>
               <Textarea
-                name="interest"
+                name="message"
+                id="message"
                 component="textarea"
-                className={`form-control ${errors.interest && touched.interest && 'is-invalid'}`}
-                validate={ContactForm.validateInterest}
+                className={`form-control ${errors.message && touched.message && 'is-invalid'}`}
+                validate={ContactForm.validateMessage}
                 cols={40}
                 rows={10}
-                placeholder="Reason for interest (required)"
+                placeholder="Краткое описание того, что необходимо сделать"
               />
-              <ErrorMessage name="interest">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
-            </FieldWrapper>
+              <ErrorMessage name="message">{msg => <Feedback>{msg}</Feedback>}</ErrorMessage>
+            </FormItem>
 
             <SubmitButton type="submit" disabled={isSubmitting}>
                 Submit
             </SubmitButton>
           </form>
         )}
-        onSubmit={({ fullName, company, email, interest }, actions) => {
+        onSubmit={({ fullName, email, message }, actions) => {
           const endPoint = 'https://c2fpksv8c0.execute-api.us-east-1.amazonaws.com/dev';
 
           axios
             .post(`${endPoint}/contact`, {
               // HACK: Endpoint expects name property
               fullName,
-              company,
               email,
-              interest,
+              message,
             })
             .then(response => {
               if (response.status === 200) {
