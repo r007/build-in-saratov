@@ -61,12 +61,20 @@ export const PostFullTitle = styled.h1`
 
 const PostFullImage = styled.figure`
   margin: 0 -10vw -165px;
-  padding: 0;
+  padding: 0 0 0 20rem;
   height: 800px;
   background: ${colors.lightgrey} center center;
   background-size: cover;
   border-radius: 5px;
 
+  @media only screen and (max-width: 1560px) {
+    padding: 0 0 0 15rem;
+  }
+
+  @media only screen and (max-width: 1280px) {
+    padding: 0;
+  }
+  
   @media (max-width: 1170px) {
     margin: 0 -4vw -100px;
     height: 600px;
