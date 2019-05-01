@@ -3,6 +3,7 @@ import Img from 'gatsby-image';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 
+import Button from '../components/Button';
 import { colors } from '../styles/colors';
 
 const PostCardWrapper = styled.article`
@@ -62,7 +63,7 @@ const PostCardTags = styled.span`
 
 const PostCardTitle = styled.h2`
   font-size: 1rem;
-  margin-top: 0;
+  margin: 0 0 0.75em 0;
   color: #164194;
 `;
 
@@ -75,18 +76,6 @@ const PostCardMeta = styled.footer`
   justify-content: space-between;
   align-items: flex-end;
   padding: 0 0 25px;
-`;
-
-const Button = styled(Link)`
-  display: inline-block;
-  padding: 12px 20px 12px 20px;
-  line-height: 1em;
-  font-size: 0.7rem;
-  color: #ffffff;
-  background: #164194;
-  border: none;
-  position: relative;
-  text-align: center;
 `;
 
 const PostCard = ({ post }) => {
@@ -120,7 +109,7 @@ const PostCard = ({ post }) => {
           </PostCardExcerpt>
         </Link>
         <PostCardMeta className="post-card-meta">
-          <Button to={post.fields.slug}>
+          <Button href={post.fields.slug}>
             Читать далее
           </Button>
         </PostCardMeta>
