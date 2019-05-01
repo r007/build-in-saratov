@@ -11,40 +11,40 @@ const colors = {
   bgPrimary: '#164194',
   textPrimary: '#ffffff',
   borderPrimary: '#000000',
-  bgSecondary: '#efefef',
+  bgSecondary: '#738a94',
   textSecondary: '#bfddff',
   accent: '#1a1f3e',
   bgAccent: 'rgba(126, 130, 126, 0.1)',
 };
 
-const borderStyle = css`
-  box-shadow: none;
-`;
-
 const roundedStyle = css`
   border-radius: 100px;
   padding-left: ${21 / 9}em;
   padding-right: ${21 / 9}em;
-  padding-top: ${12 / 9}em;
 
   ${switchProp('size', {
     tiny: css`
+      padding-top: ${9 / 9}em;
       padding-bottom: ${9 / 9}em;
     `,
 
     small: css`
+      padding-top: ${10 / 9}em;
       padding-bottom: ${10 / 9}em;
     `,
 
     medium: css`
-      padding-bottom: ${9 / 9}em;
+      padding-top: ${12 / 9}em;
+      padding-bottom: ${12 / 9}em;
     `,
 
     large: css`
+      padding-top: ${10 / 9}em;
       padding-bottom: ${10 / 9}em;
     `,
 
     huge: css`
+      padding-top: ${9 / 9}em;
       padding-bottom: ${9 / 9}em;
     `,
   })}
@@ -146,14 +146,13 @@ const ButtonLink = styled(GatsbyLink)`
 
     transparent: css`
       background-color: transparent;
-      color: ${colors.textOverlay};
-      box-shadow: 0 0 0 2px ${colors.bgPrimary} inset;
+      color: ${colors.bgSecondary};
+      box-shadow: 0 0 0 2px ${colors.bgSecondary} inset;
 
       :focus,
       :hover,
       :active {
-        background-color: transparent;
-        color: ${colors.textPrimary};
+        color: ${colors.bgPrimary};
       }
     `,
   })}
@@ -194,7 +193,6 @@ const ButtonLink = styled(GatsbyLink)`
     
   ${props => props.rounded && roundedStyle}
   ${props => props.full && fullStyle}
-  ${props => !props.border && borderStyle}
 `;
 
 ButtonLink.defaultProps = {};
