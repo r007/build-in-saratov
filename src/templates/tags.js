@@ -22,7 +22,7 @@ const PostDescription = styled.h1`
   margin: 0;
 `;
 
-const Tags = ({ data, pageContext, pathContext }) => {
+const Tags = ({ data, pageContext }) => {
   const config = data.site.siteMetadata;
   const tag = (pageContext.tag) ? pageContext.tag : '';
   const { edges, totalCount } = data.allMarkdownRemark;
@@ -44,11 +44,9 @@ const Tags = ({ data, pageContext, pathContext }) => {
         <meta property="og:site_name" content={config.title} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={`${tag} - ${config.title}`} />
-        <meta property="og:url" content={config.siteUrl + pathContext.slug} />
         {config.facebook && <meta property="article:publisher" content={config.facebook} />}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${tag} - ${config.title}`} />
-        <meta name="twitter:url" content={config.siteUrl + pathContext.slug} />
         {config.twitter && (
           <meta
             name="twitter:site"

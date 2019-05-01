@@ -64,7 +64,7 @@ const AuthorProfileBioImage = css`
   box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 6px;
 `;
 
-const Author = ({ data, pathContext }) => {
+const Author = ({ data, pageContext }) => {
   const config = data.site.siteMetadata;
   const author = data.authorYaml;
 
@@ -88,12 +88,12 @@ const Author = ({ data, pathContext }) => {
         <meta property="og:site_name" content={config.title} />
         <meta property="og:type" content="profile" />
         <meta property="og:title" content={`${author.id} - ${config.title}`} />
-        <meta property="og:url" content={config.siteUrl + pathContext.slug} />
+        <meta property="og:url" content={config.siteUrl + pageContext.slug} />
         <meta property="article:publisher" content="https://www.facebook.com/ghost" />
         <meta property="article:author" content="https://www.facebook.com/ghost" />
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${author.id} - ${config.title}`} />
-        <meta name="twitter:url" content={config.siteUrl + pathContext.slug} />
+        <meta name="twitter:url" content={config.siteUrl + pageContext.slug} />
         {config.twitter && (
           <meta
             name="twitter:site"

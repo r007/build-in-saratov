@@ -94,7 +94,7 @@ const ReadNextFeed = styled.div`
   padding: 40px 0 0 0;
 `;
 
-const PageTemplate = ({ data, pageContext, pathContext }) => {
+const PageTemplate = ({ data, pageContext }) => {
   const config = data.site.siteMetadata;
   const post = data.markdownRemark;
   let width = '';
@@ -115,7 +115,6 @@ const PageTemplate = ({ data, pageContext, pathContext }) => {
         <meta property="og:type" content="article" />
         <meta property="og:title" content={post.frontmatter.title} />
         <meta property="og:description" content={post.excerpt} />
-        <meta property="og:url" content={config.siteUrl + pathContext.slug} />
         {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
           <meta property="og:image" content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`} />
         )}
@@ -131,7 +130,6 @@ const PageTemplate = ({ data, pageContext, pathContext }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={post.frontmatter.title} />
         <meta name="twitter:description" content={post.excerpt} />
-        <meta name="twitter:url" content={config.siteUrl + pathContext.slug} />
         {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
           <meta name="twitter:image" content={`${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`} />
         )}
