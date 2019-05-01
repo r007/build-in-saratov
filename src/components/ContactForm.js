@@ -162,7 +162,7 @@ class ContactForm extends React.Component {
             </FormItem>
 
             <FormItem>
-              <Label htmlFor="message">Ваше сообщение</Label>
+              <Label htmlFor="message">Ваше сообщение (Обязательно)</Label>
               <Textarea
                 name="message"
                 id="message"
