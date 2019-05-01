@@ -21,7 +21,26 @@ import Logo from '../content/img/logo.svg';
 import ScrollDownArrow from '../content/img/next-arrow.svg';
 
 const HomePosts = css`
-  @media (min-width: 795px) {
+  @media (min-width: 795px) and (max-width: 1280px) {
+    .post-card:nth-of-type(6n + 1):not(.no-image) {
+      flex: 1 1 100%;
+      flex-direction: column;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+
+    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image-link {
+      position: relative;
+      flex: 1 1 auto;
+      order: 1;
+    }
+    
+    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content {
+      order: 2;
+    }
+  }
+  
+  @media (min-width: 1281px) {
     .post-card:nth-of-type(6n + 1):not(.no-image) {
       flex: 1 1 100%;
       flex-direction: row;
@@ -55,10 +74,7 @@ const HomePosts = css`
       line-height: 1.55em;
     }
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content-link {
-      padding: 0 35px 0 0;
-    }
-
+    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content-link,
     .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-meta {
       padding: 0 35px 0 0;
     }
