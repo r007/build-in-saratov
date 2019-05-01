@@ -15,11 +15,14 @@ const PostTitle = styled.h2`
   font-weight: 600;
   text-transform: uppercase;
   margin: 0;
+  z-index: 1;
 `;
 
 const PostDescription = styled.h1`
   color: #fff;
   margin: 0;
+  position: relative;
+  z-index: 1;
 `;
 
 const Tags = ({ data, pageContext }) => {
@@ -58,12 +61,7 @@ const Tags = ({ data, pageContext }) => {
         <SiteNav />
         <PostHeader
           className={`${tagData && tagData.node.image ? '' : 'no-cover'}`}
-          style={{
-            backgroundImage:
-              tagData && tagData.node.image ?
-                `url('${tagData.node.image.childImageSharp.fluid.src}')` :
-                '',
-          }}
+          bgImage={`${tagData && tagData.node.image ? tagData.node.image.childImageSharp.fluid.src : ''}`}
         >
           <PostTitle>{tag}</PostTitle>
           <PostDescription>
