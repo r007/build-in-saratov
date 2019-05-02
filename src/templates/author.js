@@ -16,7 +16,6 @@ import {
   SocialLink,
 } from '../styles/shared';
 import Helmet from 'react-helmet';
-import Website from '../components/icons/website';
 import Icon from '../components/Icon';
 
 const HiddenMobile = css`
@@ -147,27 +146,17 @@ const Author = ({ data, pageContext }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Website />
+                    <Icon.Globe
+                      fill="none"
+                      style={{
+                        height: '1.8rem',
+                        width: 'auto',
+                        stroke: '#fff',
+                        strokeWidth: '2',
+                      }}
+                    />
                   </a>
                 </div>
-              )}
-              {author.vk && (
-                <a
-                  className="social-link-vk"
-                  css={SocialLink}
-                  href={`https://vk.com/${author.vk}`}
-                  title="VK"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon.Vk
-                    fill="#ffffff"
-                    style={{
-                      height: '1.8rem',
-                      width: 'auto',
-                    }}
-                  />
-                </a>
               )}
               {author.facebook && (
                 <a
@@ -179,6 +168,24 @@ const Author = ({ data, pageContext }) => {
                   rel="noopener noreferrer"
                 >
                   <Icon.Facebook
+                    fill="#ffffff"
+                    style={{
+                      height: '1.8rem',
+                      width: 'auto',
+                    }}
+                  />
+                </a>
+              )}
+              {author.vk && (
+                <a
+                  className="social-link-vk"
+                  css={SocialLink}
+                  href={`https://vk.com/${author.vk}`}
+                  title="VK"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon.Vk
                     fill="#ffffff"
                     style={{
                       height: '1.8rem',
