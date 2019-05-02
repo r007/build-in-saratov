@@ -14,9 +14,7 @@ const Container = styled.div`
 `;
 
 const IconCalloutGroup = ({ children }) => {
-  return (
-    <Container>{children}</Container>
-  );
+  return <Container>{children}</Container>;
 };
 
 IconCalloutGroup.propTypes = {

@@ -25,7 +25,7 @@ const Textarea = styled(Field)`
   :active {
     outline: 2px solid #164194;
     outline-offset: -2px;
-  }  
+  }
 
   &.is-invalid,
   &:invalid {

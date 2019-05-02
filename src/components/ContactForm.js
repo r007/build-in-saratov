@@ -4,11 +4,11 @@ import axios from 'axios';
 import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
 
-import FormRequirement from '../components/FormRequirement';
-import FormItem from '../components/FormItem';
-import Input from '../components/Input';
-import Textarea from '../components/Textarea';
-import Label from '../components/Label';
+import FormRequirement from './FormRequirement';
+import FormItem from './FormItem';
+import Input from './Input';
+import Textarea from './Textarea';
+import Label from './Label';
 
 const SubmitButton = styled.button`
   appearance: none;
@@ -72,7 +72,7 @@ const Alert = styled.span`
       color: #721c24;
       background-color: #f8d7da;
       border-color: #f5c6cb;
-    `
+    `,
   )};
 `;
 
@@ -145,7 +145,9 @@ class ContactForm extends React.Component {
                 className={`form-control ${errors.fullName && touched.fullName && 'is-invalid'}`}
                 placeholder="Например: Акакий Акакиевич"
               />
-              <ErrorMessage name="fullName">{msg => <FormRequirement>{msg}</FormRequirement>}</ErrorMessage>
+              <ErrorMessage name="fullName">
+                {msg => <FormRequirement>{msg}</FormRequirement>}
+              </ErrorMessage>
             </FormItem>
 
             <FormItem>
@@ -158,7 +160,9 @@ class ContactForm extends React.Component {
                 placeholder="Например: ceo@supercompany.ru"
                 validate={ContactForm.validateEmail}
               />
-              <ErrorMessage name="email">{msg => <FormRequirement>{msg}</FormRequirement>}</ErrorMessage>
+              <ErrorMessage name="email">
+                {msg => <FormRequirement>{msg}</FormRequirement>}
+              </ErrorMessage>
             </FormItem>
 
             <FormItem>
@@ -173,11 +177,13 @@ class ContactForm extends React.Component {
                 rows={10}
                 placeholder="Краткое описание того, что необходимо сделать"
               />
-              <ErrorMessage name="message">{msg => <FormRequirement>{msg}</FormRequirement>}</ErrorMessage>
+              <ErrorMessage name="message">
+                {msg => <FormRequirement>{msg}</FormRequirement>}
+              </ErrorMessage>
             </FormItem>
 
             <SubmitButton type="submit" disabled={isSubmitting}>
-                Submit
+              Submit
             </SubmitButton>
           </form>
         )}

@@ -26,11 +26,9 @@ const PostDescription = styled.h1`
 `;
 
 const Tags = ({ data, pageContext }) => {
-  const tag = (pageContext.tag) ? pageContext.tag : '';
+  const tag = pageContext.tag ? pageContext.tag : '';
   const { edges, totalCount } = data.allMarkdownRemark;
-  const tagData = data.allTagYaml.edges.find(
-    n => n.node.id.toLowerCase() === tag.toLowerCase(),
-  );
+  const tagData = data.allTagYaml.edges.find(n => n.node.id.toLowerCase() === tag.toLowerCase());
 
   return (
     <IndexLayout>
@@ -43,7 +41,9 @@ const Tags = ({ data, pageContext }) => {
         <SiteNav />
         <PostHeader
           className={`${tagData && tagData.node.image ? '' : 'no-cover'}`}
-          bgImage={`${tagData && tagData.node.image ? tagData.node.image.childImageSharp.fluid.src : ''}`}
+          bgImage={`${
+            tagData && tagData.node.image ? tagData.node.image.childImageSharp.fluid.src : ''
+          }`}
         >
           <PostTitle>{tag}</PostTitle>
           <PostDescription>
@@ -51,7 +51,7 @@ const Tags = ({ data, pageContext }) => {
               tagData.node.description
             ) : (
               <>
-                    Коллекция из {totalCount > 1 && `${totalCount} записей`}
+                Коллекция из {totalCount > 1 && `${totalCount} записей`}
                 {totalCount === 1 && '1 записи'}
                 {totalCount === 0 && 'No posts'}
               </>

@@ -120,11 +120,11 @@ const ButtonLink = styled(GatsbyLink)`
         color: ${colors.textSecondary};
         background-color: ${colors.accent};
       }
-  
+
       :focus::before {
         border-color: #ffffff;
       }
-  
+
       :focus::after {
         border-color: ${colors.accent};
       }

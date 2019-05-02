@@ -22,9 +22,9 @@ const SiteNavWrapper = styled.nav`
   overflow-y: auto;
   color: #bfddff;
   -webkit-overflow-scrolling: touch;
-  -webkit-transform: translate3d(0,0,0);
-  transition: all .3s cubic-bezier(.645,.045,.355,1);
- 
+  -webkit-transform: translate3d(0, 0, 0);
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
   @media only screen and (max-width: 1560px) {
     width: 12rem;
   }
@@ -65,47 +65,47 @@ const NavLink = styled(Link)`
   display: block;
   float: none;
   font-size: 20px;
-  letter-spacing: .05em;
+  letter-spacing: 0.05em;
   margin: 1em 1em 1em 0;
   padding: 0;
   position: relative;
 
-  &:not([aria-current~="page"])::after {
+  &:not([aria-current~='page'])::after {
     content: '';
     background: url(${BlueArrow});
     background-repeat: no-repeat;
-    width: .8em;
-    height: .8em;
+    width: 0.8em;
+    height: 0.8em;
     position: relative;
     display: inline-block;
     vertical-align: middle;
     margin-left: -10px;
     opacity: 0;
-    transition: all .2s cubic-bezier(.645,.045,.355,1);
+    transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   :hover {
     text-decoration: none;
-    
+
     &::after {
       margin-left: 10px;
       opacity: 1;
     }
   }
 
-  &[aria-current~="page"]::after {
+  &[aria-current~='page']::after {
     content: url(${DarkblueArrow});
     position: absolute;
-    width: .8em;
-    right: .5em;
+    width: 0.8em;
+    right: 0.5em;
   }
 
-  &[aria-current~="page"] {
+  &[aria-current~='page'] {
     background: #aad2ff;
     box-sizing: border-box;
     color: #1a1f3e;
-    letter-spacing: .03em;
-    padding: .3em 0 .4em .6em;
+    letter-spacing: 0.03em;
+    padding: 0.3em 0 0.4em 0.6em;
     width: 100%;
   }
 `;

@@ -38,14 +38,14 @@ export const PostFullContent = styled.section`
     text-decoration: none;
     padding-bottom: 0;
     border-bottom: 2px solid #222;
-    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   a:hover {
     background: #c4e0ff;
     border-color: #c4e0ff;
   }
-  
+
   /* External links */
   a[href*="//"]:not([href*="http://localhost"]):after {
     content: '';
@@ -54,8 +54,8 @@ export const PostFullContent = styled.section`
     background-repeat: no-repeat;
     display: inline-block;
     width: 1.1em;
-    height: .7em;
-    margin-left: .25em;
+    height: 0.7em;
+    margin-left: 0.25em;
   }
 
   strong,
@@ -205,7 +205,7 @@ export const PostFullContent = styled.section`
     padding: 1.45em 0 0 0;
     border: 0;
     color: ${colors.blue};
-    font-family: Georgia,serif;
+    font-family: Georgia, serif;
     font-size: 1rem;
     line-height: 1.35em;
     text-align: center;

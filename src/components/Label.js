@@ -15,11 +15,7 @@ const StyledLabel = styled.label`
 `;
 
 const Label = ({ children, ...rest }) => {
-  return (
-    <StyledLabel {...rest}>
-      {children}
-    </StyledLabel>
-  );
+  return <StyledLabel {...rest}>{children}</StyledLabel>;
 };
 
 export default Label;

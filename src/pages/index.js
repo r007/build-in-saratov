@@ -34,12 +34,12 @@ const HomePosts = css`
       flex: 1 1 auto;
       order: 1;
     }
-    
+
     .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content {
       order: 2;
     }
   }
-  
+
   @media (min-width: 1281px) {
     .post-card:nth-of-type(6n + 1):not(.no-image) {
       flex: 1 1 100%;
@@ -111,9 +111,7 @@ const IndexPage = ({ data, children }) => {
       <SEO title="Домашняя страница" />
       <Wrapper>
         <SiteNav />
-        <header
-          css={[outer, SiteHeader]}
-        >
+        <header css={[outer, SiteHeader]}>
           <SiteHeaderContent>
             <SiteTitle>
               <img
@@ -161,7 +159,7 @@ const IndexPage = ({ data, children }) => {
           <section>
             <div css={[PostFeed]}>
               {data.allMarkdownRemark.edges.map(post => {
-              // filter out drafts in production
+                // filter out drafts in production
                 return (
                   (post.node.frontmatter.draft !== true ||
                     process.env.NODE_ENV !== 'production') && (
@@ -198,9 +196,9 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC },
-      filter: { frontmatter: { draft: { ne: true } } },
-      limit: 1000,
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { draft: { ne: true } } }
+      limit: 1000
     ) {
       edges {
         node {

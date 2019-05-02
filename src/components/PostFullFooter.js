@@ -10,9 +10,7 @@ const PostFullFoot = styled.footer`
 `;
 
 const PostFullFooter = ({ children }) => {
-  return (
-    <PostFullFoot>{children}</PostFullFoot>
-  );
+  return <PostFullFoot>{children}</PostFullFoot>;
 };
 
 export default PostFullFooter;

@@ -77,12 +77,12 @@ const SEO = ({ lang, description, type, meta, keywords, title, image }) => (
             },
           ]
             .concat(
-              keywords.length > 0 ?
-                {
-                  name: 'keywords',
-                  content: keywords.join(', '),
-                } :
-                []
+              keywords.length > 0
+                ? {
+                    name: 'keywords',
+                    content: keywords.join(', '),
+                  }
+                : [],
             )
             .concat(meta)}
         />

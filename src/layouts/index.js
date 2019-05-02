@@ -5,7 +5,7 @@ import Helmet from 'react-helmet';
 
 import { colors } from '../styles/colors';
 // @ts-ignore
-import favicon from '../../src/favicon.ico';
+import favicon from '../favicon.ico';
 
 const GlobalStyles = css`
   body {
@@ -17,7 +17,7 @@ const GlobalStyles = css`
     -moz-osx-font-smoothing: grayscale;
     -moz-font-feature-settings: 'liga' on;
   }
-    
+
   html {
     overflow-x: hidden;
     overflow-y: scroll;
@@ -27,9 +27,11 @@ const GlobalStyles = css`
     font-size: 1em;
     line-height: 1.4;
   }
-    
-  body, html {
-    font: normal 29px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+  body,
+  html {
+    font: normal 29px/1.45 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Ubuntu, Cantarell,
+      'Helvetica Neue', sans-serif;
 
     @media only screen and (max-width: 800px) {
       font-size: 23px;
@@ -51,9 +53,9 @@ const GlobalStyles = css`
     position: relative;
     padding: 3rem 3rem 0 20rem;
     overflow: hidden;
-    
+
     @media only screen and (max-width: 1560px) {
-      padding: 1rem 2rem 0 15rem
+      padding: 1rem 2rem 0 15rem;
     }
 
     @media only screen and (max-width: 1280px) {
@@ -82,7 +84,7 @@ const GlobalStyles = css`
 
   figcaption {
     color: #ad005f;
-    font-size: .827rem;
+    font-size: 0.827rem;
     padding: 1rem 30% 0 0;
 
     @media only screen and (max-width: 800px) {
@@ -222,11 +224,11 @@ const GlobalStyles = css`
   }
 
   h1 {
-    margin: .67em 0;
+    margin: 0.67em 0;
     font-size: 2.41rem;
     font-weight: normal;
     line-height: 1.1;
-    
+
     @media only screen and (max-width: 1280px) {
       font-size: 58px;
     }
@@ -242,12 +244,12 @@ const GlobalStyles = css`
   h3 {
     margin: 1.45em 0 0 0;
     font-size: 1rem;
-    line-height: 1.45; 
+    line-height: 1.45;
   }
 
   h4 {
     margin: 1.5em 0 0.5em 0;
-    font-size: .8rem;
+    font-size: 0.8rem;
   }
 
   h5 {

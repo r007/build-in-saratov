@@ -8,9 +8,7 @@ const StyledWrapper = styled.div`
 `;
 
 const Wrapper = ({ children, className }) => {
-  return (
-    <StyledWrapper className={className}>{children}</StyledWrapper>
-  );
+  return <StyledWrapper className={className}>{children}</StyledWrapper>;
 };
 
 export default Wrapper;

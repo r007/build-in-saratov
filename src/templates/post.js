@@ -42,8 +42,8 @@ const PostCategoryLink = styled(Link)`
   text-decoration: none;
   padding-bottom: 0;
   border-bottom: 2px solid #fff;
-  transition: all .3s cubic-bezier(.645,.045,.355,1);
-    
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
   &:hover {
     background: #1a1f3e;
     border-color: #1a1f3e;
@@ -53,7 +53,7 @@ const PostCategoryLink = styled(Link)`
 export const PostFullTitle = styled.h1`
   color: #fff;
   margin: 0;
-  
+
   @media only screen and (max-width: 1280px) {
     font-size: 1.575rem;
   }
@@ -74,7 +74,7 @@ const PostFullImage = styled.figure`
   @media only screen and (max-width: 1280px) {
     padding: 0;
   }
-  
+
   @media (max-width: 1170px) {
     margin: 0 -4vw -100px;
     height: 600px;
@@ -111,7 +111,11 @@ const PageTemplate = ({ data, pageContext }) => {
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
-        image={(post.frontmatter.image && post.frontmatter.image.childImageSharp) ? `${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}` : ''}
+        image={
+          post.frontmatter.image && post.frontmatter.image.childImageSharp
+            ? `${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`
+            : ''
+        }
         type="article"
       />
       <Wrapper>
@@ -122,20 +126,19 @@ const PageTemplate = ({ data, pageContext }) => {
               <PostFullMetaDate dateTime={post.frontmatter.date}>
                 {post.frontmatter.userDate}
               </PostFullMetaDate>
-              {post.frontmatter.tags &&
-                    post.frontmatter.tags.length > 0 && (
-                      <>
-                        <DateDivider>/</DateDivider>
-                        <PostCategoryLink to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
-                          {post.frontmatter.tags[0]}
-                        </PostCategoryLink>
-                      </>
+              {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+                <>
+                  <DateDivider>/</DateDivider>
+                  <PostCategoryLink to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
+                    {post.frontmatter.tags[0]}
+                  </PostCategoryLink>
+                </>
               )}
             </PostFullMeta>
             <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
           </PostHeader>
 
-          {(post.frontmatter.image && post.frontmatter.image.childImageSharp) && (
+          {post.frontmatter.image && post.frontmatter.image.childImageSharp && (
             <PostFullImage>
               <Img
                 style={{ height: '100%' }}

@@ -22,7 +22,7 @@ const SiteNavLogoStyled = styled(Link)`
   :focus {
     outline: 0;
   }
-  
+
   :focus::after {
     content: '';
     display: block;

@@ -65,13 +65,10 @@ const AuthorProfileBioImage = css`
 const Author = ({ data }) => {
   const author = data.authorYaml;
 
-  const edges = data.allMarkdownRemark.edges.filter(
-    edge => {
-      const isDraft = (edge.node.frontmatter.draft !== true ||
-        process.env.NODE_ENV === 'development');
-      return isDraft && edge.node.frontmatter.author && edge.node.frontmatter.author.id === author.id;
-    }
-  );
+  const edges = data.allMarkdownRemark.edges.filter(edge => {
+    const isDraft = edge.node.frontmatter.draft !== true || process.env.NODE_ENV === 'development';
+    return isDraft && edge.node.frontmatter.author && edge.node.frontmatter.author.id === author.id;
+  });
   const totalCount = edges.length;
 
   return (
@@ -89,9 +86,9 @@ const Author = ({ data }) => {
           css={[outer, SiteHeader]}
           style={{
             // eslint-disable-next-line @typescript-eslint/camelcase
-            backgroundImage: author.profile_image ?
-              `url(${author.profile_image.childImageSharp.fluid.src})` :
-              '',
+            backgroundImage: author.profile_image
+              ? `url(${author.profile_image.childImageSharp.fluid.src})`
+              : '',
           }}
         >
           <SiteHeaderContent>
@@ -189,7 +186,7 @@ const Author = ({ data }) => {
 export default Author;
 
 export const pageQuery = graphql`
-  query($author: String) {  
+  query($author: String) {
     authorYaml(id: { eq: $author }) {
       id
       website
@@ -214,9 +211,9 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      filter: { frontmatter: { draft: { ne: true } } },
-      sort: { fields: [frontmatter___date], order: DESC },
-      limit: 2000,
+      filter: { frontmatter: { draft: { ne: true } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 2000
     ) {
       edges {
         node {

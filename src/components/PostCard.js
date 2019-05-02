@@ -3,7 +3,7 @@ import Img from 'gatsby-image';
 import * as React from 'react';
 import styled, { css } from 'styled-components';
 
-import Button from '../components/Button';
+import Button from './Button';
 import { colors } from '../styles/colors';
 
 const PostCardWrapper = styled.article`
@@ -61,7 +61,7 @@ const PostCardTags = styled.span`
   font-weight: 500;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-  
+
   @media only screen and (min-width: 601px) {
     font-size: 0.6rem;
   }
@@ -91,21 +91,19 @@ const PostCardMeta = styled.footer`
 
 const PostCard = ({ post }) => {
   return (
-    <PostCardWrapper
-      className={`post-card ${post.frontmatter.image ? '' : 'no-image'}`}
-    >
+    <PostCardWrapper className={`post-card ${post.frontmatter.image ? '' : 'no-image'}`}>
       {post.frontmatter.image && (
         <Link className="post-card-image-link" css={PostCardImageLink} to={post.fields.slug}>
           <PostCardImage className="post-card-image">
             {post.frontmatter.image &&
               post.frontmatter.image.childImageSharp &&
               post.frontmatter.image.childImageSharp.fluid && (
-              <Img
-                alt={`${post.frontmatter.title} cover image`}
-                style={{ height: '100%' }}
-                fluid={post.frontmatter.image.childImageSharp.fluid}
-              />
-            )}
+                <Img
+                  alt={`${post.frontmatter.title} cover image`}
+                  style={{ height: '100%' }}
+                  fluid={post.frontmatter.image.childImageSharp.fluid}
+                />
+              )}
           </PostCardImage>
         </Link>
       )}
@@ -120,9 +118,7 @@ const PostCard = ({ post }) => {
           </PostCardExcerpt>
         </Link>
         <PostCardMeta className="post-card-meta">
-          <Button href={post.fields.slug}>
-            Читать далее
-          </Button>
+          <Button href={post.fields.slug}>Читать далее</Button>
         </PostCardMeta>
       </PostCardContent>
     </PostCardWrapper>

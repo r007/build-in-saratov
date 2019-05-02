@@ -1,14 +1,14 @@
 import { css } from '@emotion/core';
 import styled from 'styled-components';
-import { colors } from './colors';
 import { lighten } from 'polished';
+import { colors } from './colors';
 
 export const outer = css`
   position: relative;
   padding: 3rem 3rem 0 20rem;
 
   @media only screen and (max-width: 1560px) {
-    padding: 1rem 2rem 0 15rem
+    padding: 1rem 2rem 0 15rem;
   }
 
   @media only screen and (max-width: 1280px) {
