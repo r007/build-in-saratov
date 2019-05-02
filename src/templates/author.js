@@ -15,7 +15,6 @@ import {
   SiteTitle,
   SocialLink,
 } from '../styles/shared';
-import Facebook from '../components/icons/facebook';
 import Helmet from 'react-helmet';
 import Website from '../components/icons/website';
 import Icon from '../components/Icon';
@@ -179,7 +178,13 @@ const Author = ({ data, pageContext }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Facebook />
+                  <Icon.Facebook
+                    fill="#ffffff"
+                    style={{
+                      height: '1.8rem',
+                      width: 'auto',
+                    }}
+                  />
                 </a>
               )}
               {/* TODO: RSS for author */}
