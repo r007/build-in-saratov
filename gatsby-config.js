@@ -10,7 +10,7 @@ module.exports = {
     lang: 'ru',
     domain: 'localhost',
     facebook: 'https://www.facebook.com/ghost',
-    twitter: 'https://twitter.com/act_as_samurai',
+    twitter: 'act_as_samurai',
     vk: 'id242988580',
     showSubscribe: true,
     mailchimpAction: 'https://twitter.us19.list-manage.com/subscribe/post?u=a89b6987ac248c81b0b7f3a0f&amp;id=7d777b7d75',

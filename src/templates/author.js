@@ -6,6 +6,7 @@ import { css } from '@emotion/core';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
+import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
 import {
   AuthorProfileImage,
@@ -15,7 +16,6 @@ import {
   SiteTitle,
   SocialLink,
 } from '../styles/shared';
-import Helmet from 'react-helmet';
 import Icon from '../components/Icon';
 
 const HiddenMobile = css`
@@ -62,8 +62,7 @@ const AuthorProfileBioImage = css`
   box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 6px;
 `;
 
-const Author = ({ data, pageContext }) => {
-  const config = data.site.siteMetadata;
+const Author = ({ data }) => {
   const author = data.authorYaml;
 
   const edges = data.allMarkdownRemark.edges.filter(
@@ -77,34 +76,12 @@ const Author = ({ data, pageContext }) => {
 
   return (
     <IndexLayout>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>
-          {author.id} - {config.title}
-        </title>
-        <meta name="description" content={author.bio} />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="profile" />
-        <meta property="og:title" content={`${author.id} - ${config.title}`} />
-        <meta property="og:url" content={config.siteUrl + pageContext.slug} />
-        <meta property="article:publisher" content="https://www.facebook.com/ghost" />
-        <meta property="article:author" content="https://www.facebook.com/ghost" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content={`${author.id} - ${config.title}`} />
-        <meta name="twitter:url" content={config.siteUrl + pageContext.slug} />
-        {config.twitter && (
-          <meta
-            name="twitter:site"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-        {config.twitter && (
-          <meta
-            name="twitter:creator"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-      </Helmet>
+      <SEO
+        title={author.id ? author.id : ''}
+        description={author.bio ? author.bio : ''}
+        image={author.profile_image ? author.profile_image.childImageSharp.fluid.src : ''}
+        type="profile"
+      />
       <Wrapper>
         <SiteNav />
         <header
@@ -194,22 +171,6 @@ const Author = ({ data, pageContext }) => {
                   />
                 </a>
               )}
-              {/* TODO: RSS for author */}
-              {/* <a
-                  css={SocialLink} className="social-link-rss"
-                  href="https://feedly.com/i/subscription/feed/https://demo.ghost.io/author/ghost/rss/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    style={{ height: '1.9rem' }}
-                  >
-                    <circle cx="6.18" cy="17.82" r="2.18" />
-                    <path d="M4 4.44v2.83c7.03 0 12.73 5.7 12.73 12.73h2.83c0-8.59-6.97-15.56-15.56-15.56zm0 5.66v2.83c3.9 0 7.07 3.17 7.07 7.07h2.83c0-5.47-4.43-9.9-9.9-9.9z" />
-                  </svg>
-                </a> */}
             </AuthorMeta>
           </SiteHeaderContent>
         </header>
@@ -228,17 +189,7 @@ const Author = ({ data, pageContext }) => {
 export default Author;
 
 export const pageQuery = graphql`
-  query($author: String) {
-    site {
-      siteMetadata {
-        lang
-        title
-        siteUrl
-        facebook
-        twitter
-        vk
-      }
-    }  
+  query($author: String) {  
     authorYaml(id: { eq: $author }) {
       id
       website
