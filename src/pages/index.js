@@ -1,13 +1,13 @@
 import { graphql } from 'gatsby';
 import * as React from 'react';
 import styled, { keyframes, css } from 'styled-components';
-import Helmet from 'react-helmet';
 
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import IconCalloutGroup from '../components/IconCalloutGroup';
 import IconCallout from '../components/IconCallout';
+import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
 import {
   outer,
@@ -105,41 +105,10 @@ const ScrollDown = styled.div`
 
 const IndexPage = ({ data, children }) => {
   const config = data.site.siteMetadata;
-  const width = data.header.childImageSharp.fluid.sizes.split(', ')[1].split('px')[0];
-  const height = String(Number(width) / data.header.childImageSharp.fluid.aspectRatio);
+
   return (
     <IndexLayout css={HomePosts}>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>{config.title}</title>
-        <meta name="description" content={config.description} />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={config.title} />
-        <meta property="og:description" content={config.description} />
-        <meta property="og:url" content={config.siteUrl} />
-        <meta
-          property="og:image"
-          content={`${config.siteUrl}${data.header.childImageSharp.fluid.src}`}
-        />
-        {config.facebook && <meta property="article:publisher" content={config.facebook} />}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={config.title} />
-        <meta name="twitter:description" content={config.description} />
-        <meta name="twitter:url" content={config.siteUrl} />
-        <meta
-          name="twitter:image"
-          content={`${config.siteUrl}${data.header.childImageSharp.fluid.src}`}
-        />
-        {config.twitter && (
-          <meta
-            name="twitter:site"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-        <meta property="og:image:width" content={width} />
-        <meta property="og:image:height" content={height} />
-      </Helmet>
+      <SEO title="Домашняя страница" />
       <Wrapper>
         <SiteNav />
         <header
@@ -215,12 +184,8 @@ export const pageQuery = graphql`
   query {
     site {
       siteMetadata {
-        lang
         title
         description
-        siteUrl
-        facebook
-        twitter
       }
     }
     header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
