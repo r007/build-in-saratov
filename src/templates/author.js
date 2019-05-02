@@ -18,7 +18,7 @@ import {
 import Facebook from '../components/icons/facebook';
 import Helmet from 'react-helmet';
 import Website from '../components/icons/website';
-import Twitter from '../components/icons/twitter';
+import Icon from '../components/Icon';
 
 const HiddenMobile = css`
   @media (max-width: 500px) {
@@ -152,16 +152,22 @@ const Author = ({ data, pageContext }) => {
                   </a>
                 </div>
               )}
-              {author.twitter && (
+              {author.vk && (
                 <a
-                  className="social-link-tw"
+                  className="social-link-vk"
                   css={SocialLink}
-                  href={`https://twitter.com/${author.twitter}`}
-                  title="Twitter"
+                  href={`https://vk.com/${author.vk}`}
+                  title="VK"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Twitter />
+                  <Icon.Vk
+                    fill="#ffffff"
+                    style={{
+                      height: '1.8rem',
+                      width: 'auto',
+                    }}
+                  />
                 </a>
               )}
               {author.facebook && (
@@ -218,12 +224,14 @@ export const pageQuery = graphql`
         siteUrl
         facebook
         twitter
+        vk
       }
     }  
     authorYaml(id: { eq: $author }) {
       id
       website
       twitter
+      vk
       bio
       facebook
       location

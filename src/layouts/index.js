@@ -43,7 +43,7 @@ const GlobalStyles = css`
 
   ::selection {
     text-shadow: none;
-    background: ${lighten('0.3', colors.blue)};
+    background: #b3d4fc;
   }
 
   section {

@@ -1,7 +1,8 @@
 - id: Сергей Монин
   avatar: avatars/avatar.jpg
   bio: Веб-разработчик и автор этого сайта
-  twitter: TryGhost
+  twitter: act_as_samurai
+  vk: id242988580
   facebook: ghost
   website: https://ghost.org/
   location: On a plane
@@ -9,6 +10,7 @@
   avatar: avatars/avatar.jpg
   bio: This is another test author with a profile background image
   twitter: TryGhost
+  vk: id242988580
   facebook: ghost
   website: https://ghost.org/
   location: On a plane
