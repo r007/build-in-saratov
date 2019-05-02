@@ -93,7 +93,7 @@ const SEO = ({ lang, description, type, meta, keywords, title, image }) => (
 
 SEO.propTypes = {
   description: PropTypes.string,
-  type: PropTypes.oneOf(['website', 'profile']),
+  type: PropTypes.oneOf(['website', 'profile', 'article']),
   lang: PropTypes.string,
   meta: PropTypes.arrayOf(PropTypes.string),
   keywords: PropTypes.arrayOf(PropTypes.string),

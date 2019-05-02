@@ -1,8 +1,8 @@
 ---
-title: "Gettysburg Address"
+title: "Как открыть интернет-магазин в США? (5 Способов)"
 author: Another Author
 tags: []
-image: img/demo1.jpg
+image: img/ecommerce-usa.png
 date: "1863-11-19T10:00:00.000Z"
 draft: false
 ---
