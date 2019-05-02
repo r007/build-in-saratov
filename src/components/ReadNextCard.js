@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import * as _ from 'lodash';
 
-import InfinityIcon from './icons/infinity';
+import Icon from './Icon';
 
 const ReadNextCardStyles = styled.article`
   position: relative;
@@ -57,15 +57,6 @@ const ReadNextDivider = styled.div`
   display: flex;
   justify-content: center;
   height: 80px;
-
-  svg {
-    width: 40px;
-    fill: transparent;
-    stroke: #fff;
-
-    stroke-width: 0.5px;
-    stroke-opacity: 0.65;
-  }
 `;
 
 const ReadNextCardContent = styled.div`
@@ -151,7 +142,17 @@ const ReadNextCard = ({ tags, relatedPosts }) => {
             </ReadNextCardHeaderTitle>
           </ReadNextCardHeader>
           <ReadNextDivider>
-            <InfinityIcon />
+            <Icon.Inf
+              fill="#ffffff"
+              style={{
+                width: '40px',
+                height: 'auto',
+                fill: 'transparent',
+                stroke: '#fff',
+                strokeWidth: '0.5px',
+                strokeOpacity: 0.65,
+              }}
+            />
           </ReadNextDivider>
           <ReadNextCardContent>
             <ul>
