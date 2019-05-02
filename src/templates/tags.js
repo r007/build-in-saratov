@@ -7,7 +7,7 @@ import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import { PostHeader } from '../components/PostHeader';
 import IndexLayout from '../layouts';
-import Helmet from 'react-helmet';
+import SEO from '../components/SEO';
 
 const PostTitle = styled.h2`
   color: #ffffff;
@@ -26,7 +26,6 @@ const PostDescription = styled.h1`
 `;
 
 const Tags = ({ data, pageContext }) => {
-  const config = data.site.siteMetadata;
   const tag = (pageContext.tag) ? pageContext.tag : '';
   const { edges, totalCount } = data.allMarkdownRemark;
   const tagData = data.allTagYaml.edges.find(
@@ -35,28 +34,11 @@ const Tags = ({ data, pageContext }) => {
 
   return (
     <IndexLayout>
-      <Helmet>
-        <html lang={config.lang} />
-        <title>
-          {tag} - {config.title}
-        </title>
-        <meta
-          name="description"
-          content={tagData && tagData.node ? tagData.node.description : ''}
-        />
-        <meta property="og:site_name" content={config.title} />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content={`${tag} - ${config.title}`} />
-        {config.facebook && <meta property="article:publisher" content={config.facebook} />}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${tag} - ${config.title}`} />
-        {config.twitter && (
-          <meta
-            name="twitter:site"
-            content={`@${config.twitter.split('https://twitter.com/')[1]}`}
-          />
-        )}
-      </Helmet>
+      <SEO
+        title={tag}
+        description={tagData && tagData.node ? tagData.node.description : ''}
+        image={tagData && tagData.node.image ? tagData.node.image.childImageSharp.fluid.src : ''}
+      />
       <Wrapper>
         <SiteNav />
         <PostHeader
@@ -92,16 +74,6 @@ export default Tags;
 
 export const pageQuery = graphql`
   query($tag: String) {
-    site {
-      siteMetadata {
-        lang
-        title
-        description
-        siteUrl
-        facebook
-        twitter
-      }
-    }
     allTagYaml {
       edges {
         node {
