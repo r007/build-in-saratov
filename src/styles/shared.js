@@ -18,13 +18,6 @@ export const outer = css`
   }
 `;
 
-// Centered content container blocks
-export const inner = css`
-  margin: 0 auto;
-  max-width: 1040px;
-  width: 100%;
-`;
-
 export const SiteTitle = styled.h1`
   margin: 0;
   padding: 0;

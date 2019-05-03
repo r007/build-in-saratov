@@ -8,7 +8,7 @@ import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
-import { inner, outer, PostFeed, SiteHeader } from '../styles/shared';
+import { outer, PostFeed, SiteHeader } from '../styles/shared';
 
 const SiteNavCenter = styled.nav`
   display: flex;
@@ -53,32 +53,26 @@ const NotFoundPage = ({ data }) => {
     <IndexLayout>
       <Wrapper>
         <header css={[SiteHeader, outer]}>
-          <div className="inner">
-            <SiteNavCenter>
-              <SiteNavLogo />
-            </SiteNavCenter>
-          </div>
+          <SiteNavCenter>
+            <SiteNavLogo />
+          </SiteNavCenter>
         </header>
-        <main id="site-main" css={[ErrorTemplate, outer]}>
-          <div css={inner}>
-            <section style={{ textAlign: 'center' }}>
-              <ErrorCode>404</ErrorCode>
-              <ErrorDescription>Page not found</ErrorDescription>
-              <Link css={ErrorLink} to="">
-                Go to the front page →
-              </Link>
-            </section>
-          </div>
+        <main id="content" css={[ErrorTemplate, outer]}>
+          <section style={{ textAlign: 'center' }}>
+            <ErrorCode>404</ErrorCode>
+            <ErrorDescription>Page not found</ErrorDescription>
+            <Link css={ErrorLink} to="">
+              Go to the front page →
+            </Link>
+          </section>
         </main>
-        <aside css={outer}>
-          <div css={inner}>
-            <div css={PostFeed}>
-              {edges.map(({ node }) => (
-                <PostCard key={node.fields.slug} post={node} />
-              ))}
-            </div>
+        <section>
+          <div css={PostFeed}>
+            {edges.map(({ node }) => (
+              <PostCard key={node.fields.slug} post={node} />
+            ))}
           </div>
-        </aside>
+        </section>
       </Wrapper>
     </IndexLayout>
   );
