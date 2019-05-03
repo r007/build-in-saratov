@@ -1,13 +1,18 @@
 import { Link } from 'gatsby';
 import * as _ from 'lodash';
 import * as React from 'react';
+import Img from 'gatsby-image';
 import styled from 'styled-components';
 
 import { colors } from '../styles/colors';
-import { AuthorProfileImage } from '../styles/shared';
 
 const AuthorCardSection = styled.div`
   display: flex;
+`;
+
+const Avatar = styled(Img)`
+  border-radius: 100%;
+  margin-right: 15px;
 `;
 
 const AuthorCardName = styled.h4`
@@ -39,7 +44,12 @@ const AuthorCard = ({ author }) => {
     <AuthorCardSection>
       {/* TODO: default avatar */}
       {/* TODO: author page url */}
-      <img css={AuthorProfileImage} src={author.avatar.children[0].fixed.src} alt={author.id} />
+      <Avatar
+        fixed={author.avatar.children[0].fixed}
+        objectFit="cover"
+        objectPosition="50% 50%"
+        alt={author.id}
+      />
       <AuthorCardContent>
         <AuthorCardName>
           <Link to={`/author/${_.kebabCase(author.id)}/`}>{author.id}</Link>

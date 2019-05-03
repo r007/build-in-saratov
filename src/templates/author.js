@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
+import Img from 'gatsby-image';
 import { css } from '@emotion/core';
 
 import SiteNav from '../components/header/SiteNav';
@@ -9,13 +10,7 @@ import Wrapper from '../components/Wrapper';
 import SocialLink from '../components/SocialLink';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
-import {
-  AuthorProfileImage,
-  outer,
-  SiteHeader,
-  SiteHeaderContent,
-  SiteTitle,
-} from '../styles/shared';
+import { outer, SiteHeader, SiteHeaderContent, SiteTitle } from '../styles/shared';
 import Icon from '../components/Icon';
 
 const HiddenMobile = css`
@@ -53,12 +48,9 @@ const Bull = styled.span`
   opacity: 0.5;
 `;
 
-const AuthorProfileBioImage = css`
-  z-index: 10;
-  flex-shrink: 0;
-  margin: 0 0 20px 0;
-  width: 100px;
-  height: 100px;
+const Avatar = styled(Img)`
+  border-radius: 100%;
+  margin-right: 15px;
   box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 6px;
 `;
 
@@ -92,9 +84,10 @@ const Author = ({ data }) => {
           }}
         >
           <SiteHeaderContent>
-            <img
-              css={[AuthorProfileImage, AuthorProfileBioImage]}
-              src={data.authorYaml.avatar.childImageSharp.fluid.src}
+            <Avatar
+              fixed={data.authorYaml.avatar.childImageSharp.fixed}
+              objectFit="cover"
+              objectPosition="50% 50%"
               alt={author.id}
             />
             <SiteTitle>{author.id}</SiteTitle>
@@ -201,8 +194,8 @@ export const pageQuery = graphql`
       }
       avatar {
         childImageSharp {
-          fluid(maxWidth: 200) {
-            ...GatsbyImageSharpFluid
+          fixed(width: 80, height: 80, quality: 100) {
+            ...GatsbyImageSharpFixed
           }
         }
       }

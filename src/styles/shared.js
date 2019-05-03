@@ -1,7 +1,5 @@
 import { css } from '@emotion/core';
 import styled from 'styled-components';
-import { lighten } from 'polished';
-import { colors } from './colors';
 
 export const outer = css`
   position: relative;
@@ -65,15 +63,4 @@ export const SiteHeaderContent = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-`;
-
-export const AuthorProfileImage = css`
-  display: block;
-  /* background: color(var(--lightgrey) l(+10%)); */
-  background: ${lighten('0.1', colors.lightgrey)};
-  border-radius: 100%;
-  object-fit: cover;
-  margin-right: 15px;
-  width: 60px;
-  height: 60px;
 `;

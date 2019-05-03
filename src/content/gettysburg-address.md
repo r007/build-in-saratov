@@ -1,5 +1,5 @@
 ---
-title: "Как открыть интернет-магазин в США? (5 Способов)"
+title: "Как открыть интернет-магазин в США? (5 способов)"
 author: Another Author
 tags: []
 image: img/ecommerce-usa.png
