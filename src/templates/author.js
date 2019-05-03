@@ -6,6 +6,7 @@ import { css } from '@emotion/core';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
+import SocialLink from '../components/SocialLink';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
 import {
@@ -14,7 +15,6 @@ import {
   SiteHeader,
   SiteHeaderContent,
   SiteTitle,
-  SocialLink,
 } from '../styles/shared';
 import Icon from '../components/Icon';
 
@@ -112,9 +112,8 @@ const Author = ({ data }) => {
               </div>
               {author.website && (
                 <div>
-                  <a
+                  <SocialLink
                     className="social-link-wb"
-                    css={SocialLink}
                     href={author.website}
                     title="Website"
                     target="_blank"
@@ -129,13 +128,12 @@ const Author = ({ data }) => {
                         strokeWidth: '2',
                       }}
                     />
-                  </a>
+                  </SocialLink>
                 </div>
               )}
               {author.facebook && (
-                <a
+                <SocialLink
                   className="social-link-fb"
-                  css={SocialLink}
                   href={`https://www.facebook.com/${author.facebook}`}
                   title="Facebook"
                   target="_blank"
@@ -148,12 +146,11 @@ const Author = ({ data }) => {
                       width: 'auto',
                     }}
                   />
-                </a>
+                </SocialLink>
               )}
               {author.vk && (
-                <a
+                <SocialLink
                   className="social-link-vk"
-                  css={SocialLink}
                   href={`https://vk.com/${author.vk}`}
                   title="VK"
                   target="_blank"
@@ -166,7 +163,7 @@ const Author = ({ data }) => {
                       width: 'auto',
                     }}
                   />
-                </a>
+                </SocialLink>
               )}
             </AuthorMeta>
           </SiteHeaderContent>
