@@ -9,8 +9,7 @@ import PostHeader from '../components/PostHeader';
 import Wrapper from '../components/Wrapper';
 import SocialLink from '../components/SocialLink';
 import SEO from '../components/SEO';
-import IndexLayout from '../layouts';
-import { PageTitle, PageDescription } from '../styles/shared';
+import { PostsGrid, PageTitle, PageDescription } from '../styles/shared';
 import Icon from '../components/Icon';
 
 const AuthorCardSection = styled.div`
@@ -47,7 +46,7 @@ const Author = ({ data }) => {
   const totalCount = edges.length;
 
   return (
-    <IndexLayout>
+    <PostsGrid>
       <SEO
         title={author.id ? author.id : ''}
         description={author.bio ? author.bio : ''}
@@ -152,7 +151,7 @@ const Author = ({ data }) => {
           </section>
         </main>
       </Wrapper>
-    </IndexLayout>
+    </PostsGrid>
   );
 };
 

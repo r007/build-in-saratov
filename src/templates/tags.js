@@ -5,8 +5,7 @@ import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import PostHeader from '../components/PostHeader';
-import { PageTitle, PageDescription } from '../styles/shared';
-import IndexLayout from '../layouts';
+import { PostsGrid, PageTitle, PageDescription } from '../styles/shared';
 import SEO from '../components/SEO';
 
 const Tags = ({ data, pageContext }) => {
@@ -15,7 +14,7 @@ const Tags = ({ data, pageContext }) => {
   const tagData = data.allTagYaml.edges.find(n => n.node.id.toLowerCase() === tag.toLowerCase());
 
   return (
-    <IndexLayout>
+    <PostsGrid>
       <SEO
         title={tag}
         description={tagData && tagData.node ? tagData.node.description : ''}
@@ -50,7 +49,7 @@ const Tags = ({ data, pageContext }) => {
           </section>
         </main>
       </Wrapper>
-    </IndexLayout>
+    </PostsGrid>
   );
 };
 

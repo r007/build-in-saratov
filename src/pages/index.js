@@ -1,6 +1,6 @@
 import { graphql } from 'gatsby';
 import * as React from 'react';
-import styled, { keyframes, css } from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
@@ -8,72 +8,10 @@ import Wrapper from '../components/Wrapper';
 import IconCalloutGroup from '../components/IconCalloutGroup';
 import IconCallout from '../components/IconCallout';
 import SEO from '../components/SEO';
-import IndexLayout from '../layouts';
-import { PostFeed, SiteHeaderContent, PageTitle } from '../styles/shared';
+import { PostsGrid, PostFeed, SiteHeaderContent, PageTitle } from '../styles/shared';
 import PostHeader from '../components/PostHeader';
 import Logo from '../content/img/logo.svg';
 import ScrollDownArrow from '../content/img/next-arrow.svg';
-
-const HomePosts = css`
-  @media (min-width: 795px) and (max-width: 1280px) {
-    .post-card:nth-of-type(6n + 1):not(.no-image) {
-      flex: 1 1 100%;
-      flex-direction: column;
-      background-color: #f0f0f0;
-      padding: 20px;
-    }
-
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image-link {
-      position: relative;
-      flex: 1 1 auto;
-      order: 1;
-    }
-
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content {
-      order: 2;
-    }
-  }
-
-  @media (min-width: 1281px) {
-    .post-card:nth-of-type(6n + 1):not(.no-image) {
-      flex: 1 1 100%;
-      flex-direction: row;
-      background-color: #f0f0f0;
-      padding: 35px;
-    }
-
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image-link {
-      position: relative;
-      flex: 1 1 auto;
-      order: 2;
-    }
-
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content {
-      flex: 0 1 40%;
-      order: 1;
-    }
-
-    .post-card:nth-of-type(6n + 1):not(.no-image) h2 {
-      font-size: 1.3rem;
-    }
-
-    .post-card:nth-of-type(6n + 1):not(.no-image) p {
-      font-size: 0.9rem;
-      line-height: 1.55em;
-    }
-
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content-link,
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-meta {
-      padding: 0 35px 0 0;
-    }
-  }
-`;
 
 const scrollDownButton = keyframes`
   to {
@@ -101,7 +39,7 @@ const IndexPage = ({ data, children }) => {
   const config = data.site.siteMetadata;
 
   return (
-    <IndexLayout css={HomePosts}>
+    <PostsGrid>
       <SEO title="Домашняя страница" />
       <Wrapper>
         <SiteNav />
@@ -164,7 +102,7 @@ const IndexPage = ({ data, children }) => {
         </main>
         {children}
       </Wrapper>
-    </IndexLayout>
+    </PostsGrid>
   );
 };
 
