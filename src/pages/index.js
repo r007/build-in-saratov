@@ -9,14 +9,8 @@ import IconCalloutGroup from '../components/IconCalloutGroup';
 import IconCallout from '../components/IconCallout';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
-import {
-  outer,
-  PostFeed,
-  SiteDescription,
-  SiteHeader,
-  SiteHeaderContent,
-  SiteTitle,
-} from '../styles/shared';
+import { PostFeed, SiteDescription, SiteHeaderContent, SiteTitle } from '../styles/shared';
+import PostHeader from '../components/PostHeader';
 import Logo from '../content/img/logo.svg';
 import ScrollDownArrow from '../content/img/next-arrow.svg';
 
@@ -111,7 +105,7 @@ const IndexPage = ({ data, children }) => {
       <SEO title="Домашняя страница" />
       <Wrapper>
         <SiteNav />
-        <header css={[outer, SiteHeader]}>
+        <PostHeader fullHeight>
           <SiteHeaderContent>
             <SiteTitle>
               <img
@@ -123,7 +117,7 @@ const IndexPage = ({ data, children }) => {
             <SiteDescription>{config.description}</SiteDescription>
             <ScrollDown className="scrollDown" />
           </SiteHeaderContent>
-        </header>
+        </PostHeader>
         <main id="content">
           <section>
             <IconCalloutGroup>

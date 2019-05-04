@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
-import { PostHeader } from '../components/PostHeader';
+import PostHeader from '../components/PostHeader';
 import IndexLayout from '../layouts';
 import SEO from '../components/SEO';
 

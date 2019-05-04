@@ -1,14 +1,15 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
-import styled from '@emotion/styled';
+import styled from 'styled-components';
 import { css } from '@emotion/core';
 
 import SiteNavLogo from '../components/header/SiteNavLogo';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
+import PostHeader from '../components/PostHeader';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
-import { outer, PostFeed, SiteHeader } from '../styles/shared';
+import { outer, PostFeed } from '../styles/shared';
 
 const SiteNavCenter = styled.nav`
   display: flex;
@@ -21,8 +22,9 @@ const SiteNavCenter = styled.nav`
   }
 `;
 
-const ErrorTemplate = css`
+const ErrorTemplate = styled.main`
   padding: 7vw 4vw;
+  ${outer}
 `;
 
 const ErrorCode = styled.h1`
@@ -52,12 +54,12 @@ const NotFoundPage = ({ data }) => {
   return (
     <IndexLayout>
       <Wrapper>
-        <header css={[SiteHeader, outer]}>
+        <PostHeader fullHeight>
           <SiteNavCenter>
             <SiteNavLogo />
           </SiteNavCenter>
-        </header>
-        <main id="content" css={[ErrorTemplate, outer]}>
+        </PostHeader>
+        <ErrorTemplate id="content">
           <section style={{ textAlign: 'center' }}>
             <ErrorCode>404</ErrorCode>
             <ErrorDescription>Page not found</ErrorDescription>
@@ -65,7 +67,7 @@ const NotFoundPage = ({ data }) => {
               Go to the front page →
             </Link>
           </section>
-        </main>
+        </ErrorTemplate>
         <section>
           <div css={PostFeed}>
             {edges.map(({ node }) => (

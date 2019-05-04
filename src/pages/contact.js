@@ -1,13 +1,13 @@
+import * as React from 'react';
+import Helmet from 'react-helmet';
 import IndexLayout from '../layouts';
 import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
 import ContactForm from '../components/ContactForm';
-import * as React from 'react';
 
 import { PostFullTitle } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
-import { PostHeader } from '../components/PostHeader';
-import Helmet from 'react-helmet';
+import PostHeader from '../components/PostHeader';
 
 const Contact = () => {
   return (
@@ -15,7 +15,7 @@ const Contact = () => {
       <Helmet>
         <title>Обратная связь</title>
       </Helmet>
-      <SiteNav/>
+      <SiteNav />
       <Wrapper>
         <main id="content">
           <PostHeader>

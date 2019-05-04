@@ -1,10 +1,11 @@
 import styled, { css } from 'styled-components';
 
-export const PostHeader = styled.section`
+const PostHeader = styled.section`
   padding-top: 2.5rem;
   padding-bottom: 3rem;
   box-sizing: border-box;
   background: #164194;
+  color: #ffffff;
   width: 100vw;
 
   header {
@@ -15,6 +16,18 @@ export const PostHeader = styled.section`
     padding-top: 1.5rem;
     padding-bottom: 2rem;
   }
+
+  ${props =>
+    props.fullHeight &&
+    css`
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding-top: 0;
+    `}
 
   ${props =>
     props.bgImage &&
@@ -35,3 +48,5 @@ export const PostHeader = styled.section`
       }
     `}
 `;
+
+export default PostHeader;

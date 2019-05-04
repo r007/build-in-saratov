@@ -8,7 +8,7 @@ import SiteNav from '../components/header/SiteNav';
 
 import { PostFullTitle } from '../templates/post';
 import { PostFullContent } from '../components/PostContent';
-import { PostHeader } from '../components/PostHeader';
+import PostHeader from '../components/PostHeader';
 
 const About = ({ data }) => {
   return (
@@ -64,7 +64,7 @@ const About = ({ data }) => {
               раз, поневоле хочется написать статью и давать всем ссылки на неё.
             </p>
 
-            <p>Сказано – сделано. И вот, где-то за неделю родился этот сайт.</p>
+            <p>Сказано – сделано. И вот, где-то за пару недель родился этот сайт.</p>
           </PostFullContent>
         </main>
       </Wrapper>

@@ -11,7 +11,7 @@ import PostContent from '../components/PostContent';
 import PostFullFooter from '../components/PostFullFooter';
 import PostFullFooterRight from '../components/PostFullFooterRight';
 import ReadNextCard from '../components/ReadNextCard';
-import { PostHeader } from '../components/PostHeader';
+import PostHeader from '../components/PostHeader';
 import Wrapper from '../components/Wrapper';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
@@ -102,6 +102,10 @@ const ReadNextFeed = styled.div`
   padding: 40px 0 0 0;
 `;
 
+const ReadNext = styled.aside`
+  ${outer}
+`;
+
 const PageTemplate = ({ data, pageContext }) => {
   const config = data.site.siteMetadata;
   const post = data.markdownRemark;
@@ -155,7 +159,7 @@ const PageTemplate = ({ data, pageContext }) => {
         </main>
 
         {/* Links to Previous/Next posts */}
-        <aside className="read-next" css={outer}>
+        <ReadNext className="read-next">
           <ReadNextFeed>
             {data.relatedPosts && (
               <ReadNextCard tags={post.frontmatter.tags} relatedPosts={data.relatedPosts} />
@@ -164,7 +168,7 @@ const PageTemplate = ({ data, pageContext }) => {
             {pageContext.prev && <PostCard post={pageContext.prev} />}
             {pageContext.next && <PostCard post={pageContext.next} />}
           </ReadNextFeed>
-        </aside>
+        </ReadNext>
       </Wrapper>
     </IndexLayout>
   );

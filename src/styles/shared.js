@@ -1,7 +1,7 @@
 import { css } from '@emotion/core';
-import styled from 'styled-components';
+import styled, { css as styledCss } from 'styled-components';
 
-export const outer = css`
+export const outer = styledCss`
   position: relative;
   padding: 3rem 3rem 0 20rem;
 
@@ -36,18 +36,6 @@ export const PostFeed = css`
   position: relative;
   display: flex;
   flex-wrap: wrap;
-`;
-
-export const SiteHeader = css`
-  background: #164194;
-  color: #ffffff;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding-top: 0;
 `;
 
 export const SiteHeaderContent = styled.div`

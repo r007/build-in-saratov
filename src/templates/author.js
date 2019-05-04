@@ -6,11 +6,12 @@ import { css } from '@emotion/core';
 
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
+import PostHeader from '../components/PostHeader';
 import Wrapper from '../components/Wrapper';
 import SocialLink from '../components/SocialLink';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
-import { outer, SiteHeader, SiteHeaderContent, SiteTitle } from '../styles/shared';
+import { SiteHeaderContent, SiteTitle } from '../styles/shared';
 import Icon from '../components/Icon';
 
 const HiddenMobile = css`
@@ -73,11 +74,9 @@ const Author = ({ data }) => {
       />
       <Wrapper>
         <SiteNav />
-        <header
+        <PostHeader
           className="no-cover"
-          css={[outer, SiteHeader]}
           style={{
-            // eslint-disable-next-line @typescript-eslint/camelcase
             backgroundImage: author.profile_image
               ? `url(${author.profile_image.childImageSharp.fluid.src})`
               : '',
@@ -160,7 +159,7 @@ const Author = ({ data }) => {
               )}
             </AuthorMeta>
           </SiteHeaderContent>
-        </header>
+        </PostHeader>
         <main id="content">
           <section>
             {edges.map(({ node }) => {
