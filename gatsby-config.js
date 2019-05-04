@@ -59,7 +59,7 @@ module.exports = {
         siteUrl: 'https://gatsby-casper.netlify.com',
       },
     },
-    'gatsby-plugin-emotion',
+    'gatsby-plugin-styled-components',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
