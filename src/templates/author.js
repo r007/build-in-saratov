@@ -2,7 +2,6 @@ import { graphql } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
-import { css } from '@emotion/core';
 
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
@@ -11,36 +10,19 @@ import Wrapper from '../components/Wrapper';
 import SocialLink from '../components/SocialLink';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
-import { SiteHeaderContent, PageTitle } from '../styles/shared';
+import { PageTitle, PageDescription } from '../styles/shared';
 import Icon from '../components/Icon';
 
-const HiddenMobile = css`
-  @media (max-width: 500px) {
-    display: none;
-  }
+const AuthorCardSection = styled.div`
+  display: flex;
 `;
 
 const AuthorMeta = styled.div`
-  z-index: 10;
   flex-shrink: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin: 0 0 10px 0;
   font-family: Georgia, serif;
   font-style: italic;
-`;
-
-const AuthorBio = styled.h2`
-  z-index: 10;
-  flex-shrink: 0;
-  margin: 5px 0 10px 0;
-  max-width: 600px;
-  font-size: 2rem;
-  line-height: 1.3em;
-  font-weight: 300;
-  letter-spacing: 0.5px;
-  opacity: 0.8;
 `;
 
 const Bull = styled.span`
@@ -82,83 +64,85 @@ const Author = ({ data }) => {
               : '',
           }}
         >
-          <SiteHeaderContent>
+          <AuthorCardSection>
             <Avatar
               fixed={data.authorYaml.avatar.childImageSharp.fixed}
               objectFit="cover"
               objectPosition="50% 50%"
               alt={author.id}
             />
-            <PageTitle>{author.id}</PageTitle>
-            {author.bio && <AuthorBio>{author.bio}</AuthorBio>}
-            <AuthorMeta>
-              {author.location && (
-                <div css={HiddenMobile}>
-                  {author.location} <Bull>&bull;</Bull>
+            <div className="author-header">
+              {author.bio && <PageDescription>{author.bio}</PageDescription>}
+              <PageTitle>{author.id}</PageTitle>
+              <AuthorMeta>
+                {author.location && (
+                  <div className="hidden-mobile">
+                    {author.location} <Bull>&bull;</Bull>
+                  </div>
+                )}
+                <div className="hidden-mobile">
+                  {totalCount > 1 && `${totalCount} posts`}
+                  {totalCount === 1 && '1 post'}
+                  {totalCount === 0 && 'No posts'} <Bull>•</Bull>
                 </div>
-              )}
-              <div css={HiddenMobile}>
-                {totalCount > 1 && `${totalCount} posts`}
-                {totalCount === 1 && '1 post'}
-                {totalCount === 0 && 'No posts'} <Bull>•</Bull>
-              </div>
-              {author.website && (
-                <div>
+                {author.website && (
+                  <div>
+                    <SocialLink
+                      className="social-link-wb"
+                      href={author.website}
+                      title="Website"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Icon.Globe
+                        fill="none"
+                        style={{
+                          height: '1rem',
+                          width: 'auto',
+                          stroke: '#fff',
+                          strokeWidth: '2',
+                        }}
+                      />
+                    </SocialLink>
+                  </div>
+                )}
+                {author.facebook && (
                   <SocialLink
-                    className="social-link-wb"
-                    href={author.website}
-                    title="Website"
+                    className="social-link-fb"
+                    href={`https://www.facebook.com/${author.facebook}`}
+                    title="Facebook"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Icon.Globe
-                      fill="none"
+                    <Icon.Facebook
+                      fill="#ffffff"
                       style={{
-                        height: '1.8rem',
+                        height: '1rem',
                         width: 'auto',
-                        stroke: '#fff',
-                        strokeWidth: '2',
                       }}
                     />
                   </SocialLink>
-                </div>
-              )}
-              {author.facebook && (
-                <SocialLink
-                  className="social-link-fb"
-                  href={`https://www.facebook.com/${author.facebook}`}
-                  title="Facebook"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon.Facebook
-                    fill="#ffffff"
-                    style={{
-                      height: '1.8rem',
-                      width: 'auto',
-                    }}
-                  />
-                </SocialLink>
-              )}
-              {author.vk && (
-                <SocialLink
-                  className="social-link-vk"
-                  href={`https://vk.com/${author.vk}`}
-                  title="VK"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Icon.Vk
-                    fill="#ffffff"
-                    style={{
-                      height: '1.8rem',
-                      width: 'auto',
-                    }}
-                  />
-                </SocialLink>
-              )}
-            </AuthorMeta>
-          </SiteHeaderContent>
+                )}
+                {author.vk && (
+                  <SocialLink
+                    className="social-link-vk"
+                    href={`https://vk.com/${author.vk}`}
+                    title="VK"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon.Vk
+                      fill="#ffffff"
+                      style={{
+                        height: '1rem',
+                        width: 'auto',
+                      }}
+                    />
+                  </SocialLink>
+                )}
+              </AuthorMeta>
+            </div>
+          </AuthorCardSection>
         </PostHeader>
         <main id="content">
           <section>

@@ -9,7 +9,7 @@ import IconCalloutGroup from '../components/IconCalloutGroup';
 import IconCallout from '../components/IconCallout';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
-import { PostFeed, SiteDescription, SiteHeaderContent, PageTitle } from '../styles/shared';
+import { PostFeed, SiteHeaderContent, PageTitle } from '../styles/shared';
 import PostHeader from '../components/PostHeader';
 import Logo from '../content/img/logo.svg';
 import ScrollDownArrow from '../content/img/next-arrow.svg';

@@ -21,17 +21,25 @@ export const outer = styledCss`
 export const PageTitle = styled.h1`
   color: #fff;
   margin: 0;
+  z-index: 1;
 
   @media only screen and (max-width: 1280px) {
     font-size: 1.575rem;
   }
 `;
 
-export const SiteDescription = styled.h2`
+export const PageDescription = styled.h2`
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
   margin: 0;
-  font-size: 2.2rem;
-  font-weight: 300;
-  letter-spacing: 0.5px;
+  z-index: 1;
+
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+    line-height: 1.3em;
+  }
 `;
 
 export const PostFeed = css`

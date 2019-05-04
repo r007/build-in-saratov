@@ -16,25 +16,7 @@ import Wrapper from '../components/Wrapper';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
-import { outer, PageTitle } from '../styles/shared';
-
-const PostFullMeta = styled.div`
-  display: flex;
-  align-items: center;
-  color: ${colors.midgrey};
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-
-  @media (max-width: 500px) {
-    font-size: 1.2rem;
-    line-height: 1.3em;
-  }
-`;
-
-const PostFullMetaDate = styled.time`
-  color: #ffffff;
-`;
+import { outer, PageTitle, PageDescription } from '../styles/shared';
 
 const PostCategoryLink = styled(Link)`
   color: #ffffff;
@@ -117,10 +99,8 @@ const PageTemplate = ({ data, pageContext }) => {
         <SiteNav />
         <main id="content">
           <PostHeader>
-            <PostFullMeta>
-              <PostFullMetaDate dateTime={post.frontmatter.date}>
-                {post.frontmatter.userDate}
-              </PostFullMetaDate>
+            <PageDescription>
+              <time dateTime={post.frontmatter.date}>{post.frontmatter.userDate}</time>
               {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
                 <>
                   <DateDivider>/</DateDivider>
@@ -129,7 +109,7 @@ const PageTemplate = ({ data, pageContext }) => {
                   </PostCategoryLink>
                 </>
               )}
-            </PostFullMeta>
+            </PageDescription>
             <PageTitle>{post.frontmatter.title}</PageTitle>
           </PostHeader>
 

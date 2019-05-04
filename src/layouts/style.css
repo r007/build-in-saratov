@@ -267,3 +267,9 @@ h5 {
 body {
   background: #f4f8fb;
 }
+
+@media (max-width: 500px) {
+  .hidden-mobile {
+    display: none;
+  }
+}

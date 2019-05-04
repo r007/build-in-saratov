@@ -1,29 +1,13 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-import styled from 'styled-components';
 
 import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import PostHeader from '../components/PostHeader';
+import { PageTitle, PageDescription } from '../styles/shared';
 import IndexLayout from '../layouts';
 import SEO from '../components/SEO';
-
-const PostTitle = styled.h2`
-  color: #ffffff;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin: 0;
-  z-index: 1;
-`;
-
-const PostDescription = styled.h1`
-  color: #fff;
-  margin: 0;
-  position: relative;
-  z-index: 1;
-`;
 
 const Tags = ({ data, pageContext }) => {
   const tag = pageContext.tag ? pageContext.tag : '';
@@ -45,8 +29,8 @@ const Tags = ({ data, pageContext }) => {
             tagData && tagData.node.image ? tagData.node.image.childImageSharp.fluid.src : ''
           }`}
         >
-          <PostTitle>{tag}</PostTitle>
-          <PostDescription>
+          <PageDescription>{tag}</PageDescription>
+          <PageTitle>
             {tagData && tagData.node.description ? (
               tagData.node.description
             ) : (
@@ -56,7 +40,7 @@ const Tags = ({ data, pageContext }) => {
                 {totalCount === 0 && 'No posts'}
               </>
             )}
-          </PostDescription>
+          </PageTitle>
         </PostHeader>
         <main id="content">
           <section>
