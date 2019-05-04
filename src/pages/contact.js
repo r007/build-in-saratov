@@ -5,7 +5,7 @@ import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
 import ContactForm from '../components/ContactForm';
 
-import { PostFullTitle } from '../templates/post';
+import { PageTitle } from '../styles/shared';
 import { PostFullContent } from '../components/PostContent';
 import PostHeader from '../components/PostHeader';
 
@@ -20,7 +20,7 @@ const Contact = () => {
         <main id="content">
           <PostHeader>
             <header>
-              <PostFullTitle>Обратная связь</PostFullTitle>
+              <PageTitle>Обратная связь</PageTitle>
             </header>
           </PostHeader>
 

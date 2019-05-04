@@ -9,7 +9,7 @@ import IconCalloutGroup from '../components/IconCalloutGroup';
 import IconCallout from '../components/IconCallout';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
-import { PostFeed, SiteDescription, SiteHeaderContent, SiteTitle } from '../styles/shared';
+import { PostFeed, SiteDescription, SiteHeaderContent, PageTitle } from '../styles/shared';
 import PostHeader from '../components/PostHeader';
 import Logo from '../content/img/logo.svg';
 import ScrollDownArrow from '../content/img/next-arrow.svg';
@@ -107,14 +107,12 @@ const IndexPage = ({ data, children }) => {
         <SiteNav />
         <PostHeader fullHeight>
           <SiteHeaderContent>
-            <SiteTitle>
-              <img
-                style={{ height: '100px', width: 'auto', display: 'block', marginBottom: '1rem' }}
-                src={Logo}
-                alt={config.title}
-              />
-            </SiteTitle>
-            <SiteDescription>{config.description}</SiteDescription>
+            <img
+              style={{ height: '100px', width: 'auto', display: 'block', marginBottom: '1rem' }}
+              src={Logo}
+              alt={config.title}
+            />
+            <PageTitle>{config.description}</PageTitle>
             <ScrollDown className="scrollDown" />
           </SiteHeaderContent>
         </PostHeader>

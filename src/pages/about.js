@@ -6,7 +6,7 @@ import IndexLayout from '../layouts';
 import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
 
-import { PostFullTitle } from '../templates/post';
+import { PageTitle } from '../styles/shared';
 import { PostFullContent } from '../components/PostContent';
 import PostHeader from '../components/PostHeader';
 
@@ -21,7 +21,7 @@ const About = ({ data }) => {
         <main id="content">
           <PostHeader>
             <header>
-              <PostFullTitle>Сделано в Саратове</PostFullTitle>
+              <PageTitle>Сделано в Саратове</PageTitle>
             </header>
           </PostHeader>
 

@@ -18,11 +18,13 @@ export const outer = styledCss`
   }
 `;
 
-export const SiteTitle = styled.h1`
+export const PageTitle = styled.h1`
+  color: #fff;
   margin: 0;
-  padding: 0;
-  font-size: 3.8rem;
-  font-weight: 700;
+
+  @media only screen and (max-width: 1280px) {
+    font-size: 1.575rem;
+  }
 `;
 
 export const SiteDescription = styled.h2`

@@ -16,7 +16,7 @@ import Wrapper from '../components/Wrapper';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
 import { colors } from '../styles/colors';
-import { outer } from '../styles/shared';
+import { outer, PageTitle } from '../styles/shared';
 
 const PostFullMeta = styled.div`
   display: flex;
@@ -47,15 +47,6 @@ const PostCategoryLink = styled(Link)`
   &:hover {
     background: #1a1f3e;
     border-color: #1a1f3e;
-  }
-`;
-
-export const PostFullTitle = styled.h1`
-  color: #fff;
-  margin: 0;
-
-  @media only screen and (max-width: 1280px) {
-    font-size: 1.575rem;
   }
 `;
 
@@ -139,7 +130,7 @@ const PageTemplate = ({ data, pageContext }) => {
                 </>
               )}
             </PostFullMeta>
-            <PostFullTitle>{post.frontmatter.title}</PostFullTitle>
+            <PageTitle>{post.frontmatter.title}</PageTitle>
           </PostHeader>
 
           {post.frontmatter.image && post.frontmatter.image.childImageSharp && (

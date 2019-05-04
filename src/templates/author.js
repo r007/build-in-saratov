@@ -11,7 +11,7 @@ import Wrapper from '../components/Wrapper';
 import SocialLink from '../components/SocialLink';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
-import { SiteHeaderContent, SiteTitle } from '../styles/shared';
+import { SiteHeaderContent, PageTitle } from '../styles/shared';
 import Icon from '../components/Icon';
 
 const HiddenMobile = css`
@@ -89,7 +89,7 @@ const Author = ({ data }) => {
               objectPosition="50% 50%"
               alt={author.id}
             />
-            <SiteTitle>{author.id}</SiteTitle>
+            <PageTitle>{author.id}</PageTitle>
             {author.bio && <AuthorBio>{author.bio}</AuthorBio>}
             <AuthorMeta>
               {author.location && (
