@@ -69,11 +69,11 @@ const NotFoundPage = ({ data }) => {
           </section>
         </ErrorTemplate>
         <section>
-          <div css={PostFeed}>
+          <PostFeed>
             {edges.map(({ node }) => (
               <PostCard key={node.fields.slug} post={node} />
             ))}
-          </div>
+          </PostFeed>
         </section>
       </Wrapper>
     </IndexLayout>

@@ -149,7 +149,7 @@ const IndexPage = ({ data, children }) => {
             </IconCalloutGroup>
           </section>
           <section>
-            <div css={[PostFeed]}>
+            <PostFeed>
               {data.allMarkdownRemark.edges.map(post => {
                 // filter out drafts in production
                 return (
@@ -159,7 +159,7 @@ const IndexPage = ({ data, children }) => {
                   )
                 );
               })}
-            </div>
+            </PostFeed>
           </section>
         </main>
         {children}

@@ -1,7 +1,6 @@
-import { css } from '@emotion/core';
-import styled, { css as styledCss } from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const outer = styledCss`
+export const outer = css`
   position: relative;
   padding: 3rem 3rem 0 20rem;
 
@@ -42,7 +41,7 @@ export const PageDescription = styled.h2`
   }
 `;
 
-export const PostFeed = css`
+export const PostFeed = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
