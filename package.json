@@ -30,7 +30,7 @@
     "gatsby-plugin-emotion": "4.0.6",
     "gatsby-plugin-feed": "2.1.2",
     "gatsby-plugin-google-analytics": "2.0.19",
-    "gatsby-plugin-postcss": "2.0.7",
+    "gatsby-plugin-postcss": "^2.0.7",
     "gatsby-plugin-react-helmet": "3.0.12",
     "gatsby-plugin-sharp": "2.0.35",
     "gatsby-remark-abbr": "1.0.0",
@@ -60,8 +60,8 @@
     "styled-tools": "^1.7.1"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "1.10.0",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-styled-components": "1.10.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^4.2.0",
