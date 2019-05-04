@@ -134,9 +134,7 @@ const ReadNextCard = ({ tags, relatedPosts }) => {
       render={() => (
         <ReadNextCardStyles>
           <ReadNextCardHeader>
-            <ReadNextCardHeaderSitetitle>
-              Категория
-            </ReadNextCardHeaderSitetitle>
+            <ReadNextCardHeaderSitetitle>Категория</ReadNextCardHeaderSitetitle>
             <ReadNextCardHeaderTitle>
               <Link to={`/tags/${_.kebabCase(tags[0])}/`}>{tags[0]}</Link>
             </ReadNextCardHeaderTitle>
@@ -167,8 +165,7 @@ const ReadNextCard = ({ tags, relatedPosts }) => {
           </ReadNextCardContent>
           <ReadNextCardFooter>
             <Link to={`/tags/${_.kebabCase(tags[0])}/`}>
-              {relatedPosts.totalCount > 1 &&
-                `Все ${relatedPosts.totalCount} записи`}
+              {relatedPosts.totalCount > 1 && `Все ${relatedPosts.totalCount} записи`}
               {relatedPosts.totalCount === 1 && '1 запись'}
               {relatedPosts.totalCount === 0 && 'Нет записей'} →
             </Link>
