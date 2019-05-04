@@ -1,49 +1,23 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 import styled from 'styled-components';
-import { css } from '@emotion/core';
 
-import SiteNavLogo from '../components/header/SiteNavLogo';
+import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import PostHeader from '../components/PostHeader';
 import IndexLayout from '../layouts';
-import { colors } from '../styles/colors';
-import { outer, PostFeed } from '../styles/shared';
-
-const SiteNavCenter = styled.nav`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  .site-nav-logo {
-    margin-right: 0;
-  }
-`;
-
-const ErrorTemplate = styled.main`
-  padding: 7vw 4vw;
-  ${outer}
-`;
+import { PostFeed, PageTitle } from '../styles/shared';
 
 const ErrorCode = styled.h1`
   margin: 0;
   font-size: 12vw;
   line-height: 1em;
   letter-spacing: -5px;
-  opacity: 0.3;
 `;
 
-const ErrorDescription = styled.p`
-  margin: 0;
-  color: ${colors.midgrey};
-  font-size: 3rem;
-  line-height: 1.3em;
-  font-weight: 400;
-`;
-
-const ErrorLink = css`
+const ErrorLink = styled(Link)`
+  color: #fff;
   display: inline-block;
   margin-top: 5px;
 `;
@@ -53,21 +27,13 @@ const NotFoundPage = ({ data }) => {
 
   return (
     <IndexLayout>
+      <SiteNav />
       <Wrapper>
         <PostHeader fullHeight>
-          <SiteNavCenter>
-            <SiteNavLogo />
-          </SiteNavCenter>
+          <ErrorCode>404</ErrorCode>
+          <PageTitle>Страница не найдена</PageTitle>
+          <ErrorLink to="">Перейти на главную страницу →</ErrorLink>
         </PostHeader>
-        <ErrorTemplate id="content">
-          <section style={{ textAlign: 'center' }}>
-            <ErrorCode>404</ErrorCode>
-            <ErrorDescription>Page not found</ErrorDescription>
-            <Link css={ErrorLink} to="">
-              Go to the front page →
-            </Link>
-          </section>
-        </ErrorTemplate>
         <section>
           <PostFeed>
             {edges.map(({ node }) => (

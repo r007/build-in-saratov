@@ -36,8 +36,8 @@ const Tags = ({ data, pageContext }) => {
             ) : (
               <>
                 Коллекция из {totalCount > 1 && `${totalCount} записей`}
-                {totalCount === 1 && '1 записи'}
-                {totalCount === 0 && 'No posts'}
+                {totalCount === 1 && 'одной записи'}
+                {totalCount === 0 && 'нет записей'}
               </>
             )}
           </PageTitle>
