@@ -5,7 +5,7 @@ import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import Wrapper from '../components/Wrapper';
 import PostHeader from '../components/PostHeader';
-import { PostsGrid, PageTitle, PageDescription } from '../styles/shared';
+import { PostsGrid, PostFeed, PageTitle, PageDescription } from '../styles/shared';
 import SEO from '../components/SEO';
 
 const Tags = ({ data, pageContext }) => {
@@ -43,9 +43,11 @@ const Tags = ({ data, pageContext }) => {
         </PostHeader>
         <main id="content">
           <section>
-            {edges.map(({ node }) => (
-              <PostCard key={node.fields.slug} post={node} />
-            ))}
+            <PostFeed>
+              {edges.map(({ node }) => (
+                <PostCard key={node.fields.slug} post={node} />
+              ))}
+            </PostFeed>
           </section>
         </main>
       </Wrapper>
