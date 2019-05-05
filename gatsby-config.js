@@ -47,6 +47,10 @@ module.exports = {
             options: {
               maxWidth: 1170,
               quality: 90,
+              // Add captions to images
+              showCaptions: true,
+              // Add webp version
+              withWebp: true,
             },
           },
         ],
