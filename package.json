@@ -6,13 +6,11 @@
   "author": "Sergey Monin <moninsergei@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "develop": "gatsby develop",
+    "start": "npm run develop",
     "build": "gatsby build",
-    "clean": "rimraf public",
-    "dev": "gatsby develop",
-    "lint": "eslint src/**/*.tsx src/**/*.ts",
-    "lint:fix": "eslint --fix src/**/*.tsx src/**/*.ts",
-    "start": "npm run dev",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve": "gatsby serve",
+    "lint": "eslint src"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -66,8 +64,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "husky": "^2.2.0",
-    "prettier": "^1.17.0",
-    "rimraf": "2.6.3"
+    "prettier": "^1.17.0"
   },
   "husky": {
     "hooks": {

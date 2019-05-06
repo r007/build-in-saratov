@@ -5,7 +5,7 @@ author: Сергей Монин
 tags: ["Speeches"]
 image: img/demo4.jpg
 date: "2012-08-20T15:11:55.000Z"
-draft: false
+draft: true
 ---
 
 
