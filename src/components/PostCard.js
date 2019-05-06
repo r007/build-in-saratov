@@ -4,7 +4,7 @@ import * as React from 'react';
 import styled, { css } from 'styled-components';
 
 import Button from './Button';
-import { colors } from '../styles/colors';
+import colors from '../styles/colors';
 
 const PostCardWrapper = styled.article`
   flex: 1 1 300px;

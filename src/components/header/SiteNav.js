@@ -110,21 +110,17 @@ const NavLink = styled(Link)`
   }
 `;
 
-class SiteNav extends React.Component {
-  render() {
-    return (
-      <SiteNavWrapper>
-        <Wrapper>
-          <NavWrapper>
-            <SiteNavLogo />
-            <NavLink to="/">Главная</NavLink>
-            <NavLink to="/about">О сайте</NavLink>
-            <NavLink to="/contact">Обратная связь</NavLink>
-          </NavWrapper>
-        </Wrapper>
-      </SiteNavWrapper>
-    );
-  }
-}
+const SiteNav = () => (
+  <SiteNavWrapper>
+    <Wrapper>
+      <NavWrapper>
+        <SiteNavLogo />
+        <NavLink to="/">Главная</NavLink>
+        <NavLink to="/about">О сайте</NavLink>
+        <NavLink to="/contact">Обратная связь</NavLink>
+      </NavWrapper>
+    </Wrapper>
+  </SiteNavWrapper>
+);
 
 export default SiteNav;

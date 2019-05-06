@@ -15,7 +15,7 @@ import PostHeader from '../components/PostHeader';
 import Wrapper from '../components/Wrapper';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
-import { colors } from '../styles/colors';
+import colors from '../styles/colors';
 import { outer, PageTitle, PageDescription } from '../styles/shared';
 
 const PostCategoryLink = styled(Link)`

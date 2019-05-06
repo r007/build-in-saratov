@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 
-import { colors } from '../../styles/colors';
+import colors from '../../styles/colors';
 import config from '../../website-config';
 import SubscribeForm from './SubscribeForm';
 import SubscribeLogo from './SubscribeLogo';

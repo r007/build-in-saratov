@@ -3,7 +3,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import RehypeReact from 'rehype-react';
 
-import { colors } from '../styles/colors';
+import colors from '../styles/colors';
 import LinkImg from '../content/img/Externer_Link_XH.svg';
 
 export const PostFullContent = styled.section`
@@ -451,8 +451,9 @@ const renderAst = new RehypeReact({
 }).Compiler;
 
 const Ast = ({ ast, ...props }) => {
-  ast.properties = props;
-  return renderAst(ast);
+  const abstractTree = ast;
+  abstractTree.properties = props;
+  return renderAst(abstractTree);
 };
 
 const PostContent = ({ htmlAst }) => {

@@ -4,7 +4,7 @@ import * as React from 'react';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
 
-import { colors } from '../styles/colors';
+import colors from '../styles/colors';
 
 const AuthorCardSection = styled.div`
   display: flex;
