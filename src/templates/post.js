@@ -75,6 +75,10 @@ const ReadNextFeed = styled.div`
   padding: 40px 0 0 0;
 `;
 
+const Card = styled(PostCard)`
+  padding: 1rem;
+`;
+
 const ReadNext = styled.aside`
   ${outer}
 `;
@@ -136,8 +140,8 @@ const PageTemplate = ({ data, pageContext }) => {
               <ReadNextCard tags={post.frontmatter.tags} relatedPosts={data.relatedPosts} />
             )}
 
-            {pageContext.prev && <PostCard post={pageContext.prev} />}
-            {pageContext.next && <PostCard post={pageContext.next} />}
+            {pageContext.prev && <Card post={pageContext.prev} />}
+            {pageContext.next && <Card post={pageContext.next} />}
           </ReadNextFeed>
         </ReadNext>
       </Wrapper>

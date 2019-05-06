@@ -89,9 +89,11 @@ const PostCardMeta = styled.footer`
   padding: 0 0 25px;
 `;
 
-const PostCard = ({ post }) => {
+const PostCard = ({ className = '', post }) => {
   return (
-    <PostCardWrapper className={`post-card ${post.frontmatter.image ? '' : 'no-image'}`}>
+    <PostCardWrapper
+      className={`post-card ${post.frontmatter.image ? '' : 'no-image'} ${className}`}
+    >
       {post.frontmatter.image && (
         <Link className="post-card-image-link" css={PostCardImageLink} to={post.fields.slug}>
           <PostCardImage className="post-card-image">
