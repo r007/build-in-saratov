@@ -48,6 +48,10 @@ export const PostFeed = styled.div`
   position: relative;
   display: flex;
   flex-wrap: wrap;
+
+  @media (min-width: 795px) {
+    margin: 0 -20px;
+  }
 `;
 
 export const SiteHeaderContent = styled.div`
