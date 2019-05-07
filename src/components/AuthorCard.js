@@ -5,9 +5,15 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 
 import colors from '../styles/colors';
+import Button from './Button';
 
 const AuthorCardSection = styled.div`
   display: flex;
+
+  @media only screen and (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const Avatar = styled(Img)`
@@ -32,12 +38,25 @@ const AuthorCardName = styled.h4`
 `;
 
 const AuthorCardContent = styled.div`
+  @media only screen and (max-width: 600px) {
+    margin: 1rem;
+    text-align: center;
+  }
+
   p {
-    font-size: 0.7rem;
     margin: 0;
     color: ${colors.midgrey};
     line-height: 1.3em;
+
+    @media only screen and (min-width: 601px) {
+      font-size: 0.7rem;
+    }
   }
+`;
+
+const AllPosts = styled.div`
+  flex-shrink: 0;
+  margin-left: 20px;
 `;
 
 const AuthorCard = ({ author }) => {
@@ -63,6 +82,12 @@ const AuthorCard = ({ author }) => {
           </p>
         )}
       </AuthorCardContent>
+
+      <AllPosts>
+        <Button rounded color="transparent" href={`/author/${_.kebabCase(author.id)}/`}>
+          Все записи автора
+        </Button>
+      </AllPosts>
     </AuthorCardSection>
   );
 };

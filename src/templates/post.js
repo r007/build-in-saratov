@@ -9,7 +9,6 @@ import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import PostContent from '../components/PostContent';
 import PostFullFooter from '../components/PostFullFooter';
-import PostFullFooterRight from '../components/PostFullFooterRight';
 import ReadNextCard from '../components/ReadNextCard';
 import PostHeader from '../components/PostHeader';
 import Wrapper from '../components/Wrapper';
@@ -129,7 +128,6 @@ const PageTemplate = ({ data, pageContext }) => {
 
           <PostFullFooter>
             <AuthorCard author={post.frontmatter.author} />
-            <PostFullFooterRight authorId={post.frontmatter.author.id} />
           </PostFullFooter>
         </main>
 
