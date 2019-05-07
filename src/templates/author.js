@@ -9,7 +9,7 @@ import PostHeader from '../components/PostHeader';
 import Wrapper from '../components/Wrapper';
 import SocialLink from '../components/SocialLink';
 import SEO from '../components/SEO';
-import { PostsGrid, PostFeed, PageTitle, PageDescription } from '../styles/shared';
+import { PostsGrid, PostFeed, PageTitle } from '../styles/shared';
 import Icon from '../components/Icon';
 
 const AuthorCardSection = styled.div`
