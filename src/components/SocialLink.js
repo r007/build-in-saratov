@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
-const SocialLink = styled.a`
+const SocialLink = styled(OutboundLink)`
   display: flex;
   justify-content: center;
   align-items: center;
