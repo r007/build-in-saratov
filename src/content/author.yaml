@@ -1,17 +1,9 @@
 - id: Сергей Монин
   avatar: avatars/avatar.jpg
-  bio: Веб-разработчик и автор этого сайта
+  bio: Я веб-разработчик фрилансер, живу сейчас в Саратове. Провожу дни выполняя заказы на дому. Хорошо разбираюсь в PHP. Интересуюсь аналитикой, языком программирования R, web accessibility и другими вещами.
   twitter: act_as_samurai
   vk: id242988580
-  facebook: ghost
-  website: https://ghost.org/
-  location: On a plane
-- id: Another Author
-  avatar: avatars/avatar.jpg
-  bio: This is another test author with a profile background image
-  twitter: TryGhost
-  vk: id242988580
-  facebook: ghost
-  website: https://ghost.org/
-  location: On a plane
-  profile_image: img/alex-knight-326705-unsplash.jpg
+  quora: Sergey-Monin
+  website: https://build-in-saratov.com/
+  location: Дорабатываю веб-сайт
+  profile_image: ''

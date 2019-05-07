@@ -31,6 +31,7 @@ const Bull = styled.span`
 `;
 
 const Avatar = styled(Img)`
+  flex-shrink: 0;
   border-radius: 100%;
   margin-right: 15px;
   box-shadow: rgba(255, 255, 255, 0.1) 0 0 0 6px;
@@ -71,7 +72,6 @@ const Author = ({ data }) => {
               alt={author.id}
             />
             <div className="author-header">
-              {author.bio && <PageDescription>{author.bio}</PageDescription>}
               <PageTitle>{author.id}</PageTitle>
               <AuthorMeta>
                 {author.location && (
@@ -80,9 +80,9 @@ const Author = ({ data }) => {
                   </div>
                 )}
                 <div className="hidden-mobile">
-                  {totalCount > 1 && `${totalCount} posts`}
-                  {totalCount === 1 && '1 post'}
-                  {totalCount === 0 && 'No posts'} <Bull>•</Bull>
+                  {totalCount > 1 && `${totalCount} записей`}
+                  {totalCount === 1 && 'Одна запись'}
+                  {totalCount === 0 && 'Нет записей'} <Bull>•</Bull>
                 </div>
                 {author.website && (
                   <div>
@@ -105,23 +105,6 @@ const Author = ({ data }) => {
                     </SocialLink>
                   </div>
                 )}
-                {author.facebook && (
-                  <SocialLink
-                    className="social-link-fb"
-                    href={`https://www.facebook.com/${author.facebook}`}
-                    title="Facebook"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Icon.Facebook
-                      fill="#ffffff"
-                      style={{
-                        height: '1rem',
-                        width: 'auto',
-                      }}
-                    />
-                  </SocialLink>
-                )}
                 {author.vk && (
                   <SocialLink
                     className="social-link-vk"
@@ -131,6 +114,23 @@ const Author = ({ data }) => {
                     rel="noopener noreferrer"
                   >
                     <Icon.Vk
+                      fill="#ffffff"
+                      style={{
+                        height: '1rem',
+                        width: 'auto',
+                      }}
+                    />
+                  </SocialLink>
+                )}
+                {author.quora && (
+                  <SocialLink
+                    className="social-link-quora"
+                    href={`https://www.quora.com/profile/${author.quora}`}
+                    title="Quora"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Icon.Quora
                       fill="#ffffff"
                       style={{
                         height: '1rem',
@@ -167,7 +167,7 @@ export const pageQuery = graphql`
       twitter
       vk
       bio
-      facebook
+      quora
       location
       profile_image {
         childImageSharp {

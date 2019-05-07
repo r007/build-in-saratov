@@ -11,6 +11,7 @@ const AuthorCardSection = styled.div`
 `;
 
 const Avatar = styled(Img)`
+  flex-shrink: 0;
   border-radius: 100%;
   margin-right: 15px;
 `;

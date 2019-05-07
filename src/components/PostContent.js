@@ -47,7 +47,7 @@ export const PostFullContent = styled.section`
   }
 
   /* External links */
-  a[href*="//"]:not([href*="http://localhost"]):after {
+  a[href*="//"]:not([href*="https://build-in-saratov.com"]):after {
     content: '';
     background: url(${LinkImg});
     background-repeat: repeat;
