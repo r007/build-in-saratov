@@ -7,7 +7,7 @@ import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import PostHeader from '../components/PostHeader';
 import Wrapper from '../components/Wrapper';
-import SocialLink from '../components/SocialLink';
+import ProfileLink from '../components/ProfileLink';
 import SEO from '../components/SEO';
 import { PostsGrid, PostFeed, PageTitle } from '../styles/shared';
 import Icon from '../components/Icon';
@@ -86,7 +86,7 @@ const Author = ({ data }) => {
                 </div>
                 {author.website && (
                   <div>
-                    <SocialLink
+                    <ProfileLink
                       className="social-link-wb"
                       href={author.website}
                       title="Website"
@@ -102,11 +102,11 @@ const Author = ({ data }) => {
                           strokeWidth: '2',
                         }}
                       />
-                    </SocialLink>
+                    </ProfileLink>
                   </div>
                 )}
                 {author.vk && (
-                  <SocialLink
+                  <ProfileLink
                     className="social-link-vk"
                     href={`https://vk.com/${author.vk}`}
                     title="VK"
@@ -120,10 +120,10 @@ const Author = ({ data }) => {
                         width: 'auto',
                       }}
                     />
-                  </SocialLink>
+                  </ProfileLink>
                 )}
                 {author.quora && (
-                  <SocialLink
+                  <ProfileLink
                     className="social-link-quora"
                     href={`https://www.quora.com/profile/${author.quora}`}
                     title="Quora"
@@ -137,7 +137,7 @@ const Author = ({ data }) => {
                         width: 'auto',
                       }}
                     />
-                  </SocialLink>
+                  </ProfileLink>
                 )}
               </AuthorMeta>
             </div>
