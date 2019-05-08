@@ -112,14 +112,14 @@ class ContactForm extends React.Component {
   handleFormSubmitSuccess() {
     this.setState({
       submitSuccess: true,
-      formMessage: 'Your message was sent successfully. You will receive a reply within 24 hours.',
+      formMessage: 'Ваше сообщение было успешно отправлено. Вы получите ответ в течении 24 часов.',
     });
   }
 
   handleFormSubmitError(error) {
     this.setState({
       submitSuccess: false,
-      formMessage: `Unable to submit form. ${error}. Please try again.`,
+      formMessage: `Невозможно отправить форму. ${error}. Пожалуйста, попробуйте снова.`,
     });
   }
 
