@@ -129,7 +129,7 @@ class ContactForm extends React.Component {
         initialValues={{
           fullName: '',
           email: '',
-          interest: '',
+          message: '',
         }}
         render={({ errors, touched, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit}>

@@ -1,66 +1,70 @@
-var CONTACT_ADDRESS = 'moninsergei@gmail.com';
-const AJV = require('ajv');
+console.log('Loading function');
 const AWS = require('aws-sdk');
+
 const sesClient = new AWS.SES();
+const sesConfirmedAddress = 'moninsergei@gmail.com';
 
-module.exports.contact = (event, context, callback) => {
+function getEmailMessage(emailObj) {
+  // Email Template
+  const output = `
+    You have a message
 
-  const ajv = new AJV();
+    Contact Details
+    Full name: ${emailObj.fullName}
+    Email: ${emailObj.email}
 
-  const validate = ajv.compile({
-    "$async": true,
-    "properties": {
-      "fullName": {"type":"string"},
-      "email": {"type":"string", "format": "email"},
-      "message": {"type":"string"},
+    Message
+    ${emailObj.message}
+    `;
+
+  const emailRequestParams = {
+    Destination: {
+      ToAddresses: [sesConfirmedAddress],
     },
-    "additionalProperties": false,
-    "required": ["email", "message"]
-  });
-
-  console.log(JSON.stringify(event));
-  const body = JSON.parse(event.body);
-  const { fullName, email, message } = body;
-
-  const headers = {
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
+    Message: {
+      Body: {
+        Text: {
+          Data: output,
+        },
+      },
+      Subject: {
+        Data: '[Build in Saratov Contact Form]',
+      },
+    },
+    Source: sesConfirmedAddress,
+    ReplyToAddresses: [emailObj.email],
   };
 
-  validate(JSON.stringify(event))
-    .then(valid => {
-      // Email Template
-      const output = `
-        <p>You have a message</p>
-        <h3>Contact Details</h3>
-        <p>Full name: ${fullName}</p>
-        <p>Email: ${email}</p>
-        <h3>Message</h3>
-        <p>${message}</p>
-        `;
+  return emailRequestParams;
+}
 
-      sesClient.sendMail({
-        from: `${fullName} <${email}>`,
-        to: [CONTACT_ADDRESS],
-        subject: '[Build in Saratov Contact Form]',
-        html: output,
-      }, function(err, info) {
-        if (err) return callback(err);
-        callback(null, {
-          statusCode: 200,
-          body: "Success!",
-          headers
-        });
-      });
+/**
+ * Lambda to process HTTP POST for contact form with the following body
+ * {
+      "fullName": <contact-fullName>,
+      "email": <contact-email>,
+      "message": <contact-message>
+    }
+ *
+ */
+exports.contact = (event, context, callback) => {
+  console.log('Received event:', JSON.stringify(event, null, 2));
+  const emailObj = JSON.parse(event.body);
+  const params = getEmailMessage(emailObj);
+  const sendEmailPromise = sesClient.sendEmail(params).promise();
+
+  const response = {
+    statusCode: 200,
+  };
+
+  sendEmailPromise
+    .then(function(result) {
+      console.log(result);
+      callback(null, response);
     })
-    .catch(error => {
-      if (error) {
-        console.log(error.errors);
-        callback(null, {
-          statusCode: 502,
-          body: error.errors[0].message,
-          headers
-        })
-      }
+    .catch(function(err) {
+      console.log(err);
+      response.statusCode = 500;
+      callback(null, response);
     });
 };
