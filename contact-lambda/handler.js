@@ -2,7 +2,7 @@ const aws = require('aws-sdk');
 
 const ses = new aws.SES();
 const myEmail = 'moninsergei@gmail.com';
-const myDomain = 'https://build-in-saratov.com/';
+const myDomain = 'https://build-in-saratov.com';
 
 function generateResponse(code, payload) {
   return {
