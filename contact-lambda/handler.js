@@ -1,41 +1,60 @@
-console.log('Loading function');
-const AWS = require('aws-sdk');
+const aws = require('aws-sdk');
 
-const sesClient = new AWS.SES();
-const sesConfirmedAddress = 'moninsergei@gmail.com';
+const ses = new aws.SES();
+const myEmail = 'moninsergei@gmail.com';
+const myDomain = 'https://build-in-saratov.com/';
 
-function getEmailMessage(emailObj) {
-  // Email Template
-  const output = `
-    You have a message
-
-    Contact Details
-    Full name: ${emailObj.fullName}
-    Email: ${emailObj.email}
-
-    Message
-    ${emailObj.message}
-    `;
-
-  const emailRequestParams = {
-    Destination: {
-      ToAddresses: [sesConfirmedAddress],
+function generateResponse(code, payload) {
+  return {
+    statusCode: code,
+    headers: {
+      'Access-Control-Allow-Origin': myDomain,
+      'Access-Control-Allow-Headers': 'x-requested-with',
+      'Access-Control-Allow-Credentials': true,
     },
+    body: JSON.stringify(payload),
+  };
+}
+
+function generateError(code, err) {
+  console.log(err);
+  return {
+    statusCode: code,
+    headers: {
+      'Access-Control-Allow-Origin': myDomain,
+      'Access-Control-Allow-Headers': 'x-requested-with',
+      'Access-Control-Allow-Credentials': true,
+    },
+    body: JSON.stringify(err.message),
+  };
+}
+
+function generateEmailParams(body) {
+  const { email, fullName, message } = JSON.parse(body);
+  console.log(email, fullName, message);
+  if (!(email && fullName && message)) {
+    throw new Error(
+      "Missing parameters! Make sure to add parameters 'email', 'fullName', 'message'.",
+    );
+  }
+
+  return {
+    Source: myEmail,
+    Destination: { ToAddresses: [myEmail] },
+    ReplyToAddresses: [email],
     Message: {
       Body: {
         Text: {
-          Data: output,
+          Charset: 'UTF-8',
+          Data: `Message sent from email ${email} by ${fullName} \nContent: ${message}`,
         },
       },
       Subject: {
-        Data: '[Build in Saratov Contact Form]',
+        Charset: 'UTF-8',
+        Data: `You received a message from ${myDomain}!`,
       },
     },
-    Source: sesConfirmedAddress,
-    ReplyToAddresses: [emailObj.email],
   };
-
-  return emailRequestParams;
 }
 
 /**
@@ -47,24 +66,12 @@ function getEmailMessage(emailObj) {
     }
  *
  */
-exports.contact = (event, context, callback) => {
-  console.log('Received event:', JSON.stringify(event, null, 2));
-  const emailObj = JSON.parse(event.body);
-  const params = getEmailMessage(emailObj);
-  const sendEmailPromise = sesClient.sendEmail(params).promise();
-
-  const response = {
-    statusCode: 200,
-  };
-
-  sendEmailPromise
-    .then(function(result) {
-      console.log(result);
-      callback(null, response);
-    })
-    .catch(function(err) {
-      console.log(err);
-      response.statusCode = 500;
-      callback(null, response);
-    });
+module.exports.contact = async event => {
+  try {
+    const emailParams = generateEmailParams(event.body);
+    const data = await ses.sendEmail(emailParams).promise();
+    return generateResponse(200, data);
+  } catch (err) {
+    return generateError(500, err);
+  }
 };

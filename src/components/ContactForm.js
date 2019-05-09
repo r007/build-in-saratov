@@ -188,7 +188,7 @@ class ContactForm extends React.Component {
           </form>
         )}
         onSubmit={({ fullName, email, message }, actions) => {
-          const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com/prod';
+          const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com/dev';
 
           axios
             .post(`${endPoint}/contact`, {
