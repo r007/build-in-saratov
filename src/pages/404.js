@@ -8,6 +8,8 @@ import Wrapper from '../components/Wrapper';
 import PostHeader from '../components/PostHeader';
 import IndexLayout from '../layouts';
 import { PostFeed, PageTitle } from '../styles/shared';
+// Import background image
+import BackgroundImage from '../content/img/funny.gif';
 
 const ErrorCode = styled.h1`
   margin: 0;
@@ -22,6 +24,10 @@ const ErrorLink = styled(Link)`
   margin-top: 5px;
 `;
 
+const ErrorWrapper = styled(PostHeader)`
+  background: #164194 center / contain no-repeat url(${BackgroundImage});
+`;
+
 const NotFoundPage = ({ data }) => {
   const { edges } = data.allMarkdownRemark;
 
@@ -29,11 +35,11 @@ const NotFoundPage = ({ data }) => {
     <IndexLayout>
       <SiteNav />
       <Wrapper>
-        <PostHeader fullHeight>
+        <ErrorWrapper fullHeight>
           <ErrorCode>404</ErrorCode>
           <PageTitle>Страница не найдена</PageTitle>
           <ErrorLink to="">Перейти на главную страницу →</ErrorLink>
-        </PostHeader>
+        </ErrorWrapper>
         <section>
           <PostFeed>
             {edges.map(({ node }) => (
