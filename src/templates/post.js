@@ -32,15 +32,13 @@ const PostCategoryLink = styled(Link)`
 `;
 
 const PostFullImage = styled.figure`
-  margin: 0 -10vw -165px;
-  padding: 0 0 0 20rem;
-  height: 800px;
+  padding: 0 0 0 15rem;
   background: ${colors.lightgrey} center center;
   background-size: cover;
   border-radius: 5px;
 
   @media only screen and (max-width: 1560px) {
-    padding: 0 0 0 15rem;
+    padding: 0 0 0 12rem;
   }
 
   @media only screen and (max-width: 1280px) {
