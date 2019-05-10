@@ -115,9 +115,15 @@ const SiteNav = () => (
     <Wrapper>
       <NavWrapper>
         <SiteNavLogo />
-        <NavLink to="/">Главная</NavLink>
-        <NavLink to="/about">О сайте</NavLink>
-        <NavLink to="/contact">Обратная связь</NavLink>
+        <NavLink title="Перейти на главную страницу" to="/">
+          Главная
+        </NavLink>
+        <NavLink title="Информация о сайте" to="/about">
+          О сайте
+        </NavLink>
+        <NavLink title="Связаться со мной" to="/contact">
+          Обратная связь
+        </NavLink>
       </NavWrapper>
     </Wrapper>
   </SiteNavWrapper>
