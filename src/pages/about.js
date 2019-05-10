@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
-import Helmet from 'react-helmet';
 import IndexLayout from '../layouts';
 import Wrapper from '../components/Wrapper';
 import SiteNav from '../components/header/SiteNav';
@@ -9,13 +8,16 @@ import SiteNav from '../components/header/SiteNav';
 import { PageTitle } from '../styles/shared';
 import { PostFullContent } from '../components/PostContent';
 import PostHeader from '../components/PostHeader';
+import SEO from '../components/SEO';
 
 const About = ({ data }) => {
   return (
     <IndexLayout>
-      <Helmet>
-        <title>О сайте</title>
-      </Helmet>
+      <SEO
+        title="Информация о сайте"
+        description="Блог веб-разработчика. Всё, что интересует людей, ответы на часто задаваемые вопросы, советы, обзоры."
+        image={data.CoverImage ? data.CoverImage.childImageSharp.fluid.src : ''}
+      />
       <SiteNav />
       <Wrapper>
         <main id="content">
@@ -76,6 +78,14 @@ export default About;
 
 export const query = graphql`
   query {
+    CoverImage: file(relativePath: { eq: "img/about-cover1.png" }) {
+      childImageSharp {
+        fluid(quality: 90) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+
     BuildInAmsterdam: file(relativePath: { eq: "img/build-in-amsterdam.jpg" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1200) {
