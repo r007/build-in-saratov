@@ -2,7 +2,7 @@
 title: "Почему не стоит использовать OpenCart"
 author: Сергей Монин
 tags: ["Разбор"]
-image: img/opencart.jpg
+image: img/no-opencart.png
 date: "2019-05-08T11:23:44+04:00"
 draft: false
 ---
