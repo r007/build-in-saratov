@@ -76,6 +76,27 @@ const About = ({ data }) => {
             </p>
 
             <p>Сказано – сделано. И вот, где-то за пару недель родился этот сайт.</p>
+
+            <h2>На чем сделан этот сайт?</h2>
+            <ul>
+              <li>
+                Генератор статических сайтов{' '}
+                <a target="_blank" rel="noreferrer noopener" href="https://www.gatsbyjs.org/">
+                  Gatsby
+                </a>
+              </li>
+              <li>
+                Хостинг{' '}
+                <a
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  href="https://aws.amazon.com/ru/amplify/"
+                >
+                  AWS Amplify
+                </a>
+              </li>
+              <li>Все записи в Markdown</li>
+            </ul>
           </PostFullContent>
         </main>
       </Wrapper>
