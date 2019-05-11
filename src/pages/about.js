@@ -16,7 +16,11 @@ const About = ({ data }) => {
       <SEO
         title="Информация о сайте"
         description="Блог веб-разработчика. Всё, что интересует людей, ответы на часто задаваемые вопросы, советы, обзоры. Рассказываю о последних трендах в сайтостроении."
-        image={data.CoverImage ? data.CoverImage.childImageSharp.fluid.src : ''}
+        image={
+          data.CoverImage
+            ? data.site.siteMetadata.siteUrl + data.CoverImage.childImageSharp.fluid.src
+            : ''
+        }
       />
       <SiteNav />
       <Wrapper>
@@ -83,6 +87,12 @@ export default About;
 
 export const query = graphql`
   query {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
+
     CoverImage: file(relativePath: { eq: "img/about-cover1.png" }) {
       childImageSharp {
         fluid(quality: 90) {
