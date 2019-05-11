@@ -66,6 +66,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
     'gatsby-plugin-feed',
+    'gatsby-plugin-advanced-sitemap',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
