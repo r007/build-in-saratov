@@ -34,7 +34,12 @@ const About = ({ data }) => {
               самый лучший город на земле. Но даже здесь есть свои специалисты и инженеры. Идея
               названия <code>«Build in Saratov»</code> родилась неслучайно. Оно взято по аналогии с
               командой{' '}
-              <a target="_blank" rel="noreferrer noopener" href="https://www.buildinamsterdam.com/">
+              <a
+                target="_blank"
+                rel="noreferrer noopener"
+                title="Сайт агенства Build in Amsterdam"
+                href="https://www.buildinamsterdam.com/"
+              >
                 Build in Amsterdam
               </a>{' '}
               , создавших знаменитый магазин{' '}

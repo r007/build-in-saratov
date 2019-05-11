@@ -118,7 +118,7 @@ const SiteNav = () => (
         <NavLink title="Перейти на главную страницу" to="/">
           Главная
         </NavLink>
-        <NavLink title="Информация о сайте" to="/about">
+        <NavLink title="Узнать больше об этом сайте" to="/about">
           О сайте
         </NavLink>
         <NavLink title="Связаться со мной" to="/contact">
