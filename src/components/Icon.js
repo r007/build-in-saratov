@@ -191,6 +191,30 @@ const Email = props => (
   </Icon>
 );
 
+const Article = props => (
+  <Icon {...props} aria-label="Article" viewBox="0 0 24 24">
+    <path d="M16,7 L19,7 L19,11 L16,11 L16,7 Z M9,15 L20,15 M9,11 L13,11 M9,7 L13,7 M6,18.5 C6,19.8807119 4.88071187,21 3.5,21 C2.11928813,21 1,19.8807119 1,18.5 L1,7 L6.02493781,7 M6,18.5 L6,3 L23,3 L23,18.5 C23,19.8807119 21.8807119,21 20.5,21 L3.5,21" />
+  </Icon>
+);
+
+const CircleQuestion = props => (
+  <Icon {...props} aria-label="CircleQuestion" viewBox="0 0 24 24">
+    <path d="M12,22 C17.5228475,22 22,17.5228475 22,12 C22,6.4771525 17.5228475,2 12,2 C6.4771525,2 2,6.4771525 2,12 C2,17.5228475 6.4771525,22 12,22 Z M12,15 L12,14 C12,13 12,12.5 13,12 C14,11.5 15,11 15,9.5 C15,8.5 14,7 12,7 C10,7 9,8.26413718 9,10 M12,16 L12,18" />
+  </Icon>
+);
+
+const Contact = props => (
+  <Icon {...props} aria-label="Contact" viewBox="0 0 24 24">
+    <path d="M1,2 L22,2 L22,18 L14,18 L6,22 L6,18 L1,18 L1,2 Z M6,10 L7,10 L7,11 L6,11 L6,10 Z M11,10 L12,10 L12,11 L11,11 L11,10 Z M16,10 L17,10 L17,11 L16,11 L16,10 Z" />
+  </Icon>
+);
+
+const Home = props => (
+  <Icon {...props} aria-label="Home" viewBox="0 0 24 24">
+    <path d="M1,11 L12,2 L23,11 M15,23 L15,15 L15,15 L9,15 L9,23 M4,23 L4,9 M20,23 L20,9" />
+  </Icon>
+);
+
 export default {
   Configure,
   Inspect,
@@ -208,4 +232,8 @@ export default {
   WeChat,
   Email,
   FacebookMessenger,
+  Article,
+  CircleQuestion,
+  Contact,
+  Home,
 };

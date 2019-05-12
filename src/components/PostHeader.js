@@ -27,6 +27,10 @@ const PostHeader = styled.section`
       align-items: center;
       text-align: center;
       padding-top: 0;
+
+      @media only screen and (max-width: 800px) {
+        height: calc(100vh - 60px);
+      }
     `}
 
   ${props =>

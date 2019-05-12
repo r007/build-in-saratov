@@ -4,6 +4,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import SiteNavLogo from './SiteNavLogo';
+import MobileNavigation from './MobileNavigation';
 import BlueArrow from '../../content/img/blue-arrow.svg';
 import DarkblueArrow from '../../content/img/darkblue-arrow.svg';
 
@@ -111,22 +112,28 @@ const NavLink = styled(Link)`
 `;
 
 const SiteNav = () => (
-  <SiteNavWrapper>
-    <Wrapper>
-      <NavWrapper>
-        <SiteNavLogo />
-        <NavLink title="Перейти на главную страницу" to="/">
-          Главная
-        </NavLink>
-        <NavLink title="Узнать больше об этом сайте" to="/about">
-          О сайте
-        </NavLink>
-        <NavLink title="Связаться со мной" to="/contact">
-          Обратная связь
-        </NavLink>
-      </NavWrapper>
-    </Wrapper>
-  </SiteNavWrapper>
+  <>
+    <MobileNavigation />
+    <SiteNavWrapper>
+      <Wrapper>
+        <NavWrapper>
+          <SiteNavLogo />
+          <NavLink title="Перейти на главную страницу" to="/">
+            Главная
+          </NavLink>
+          <NavLink title="Прочитать последние записи в блоге" to="/articles">
+            Статьи
+          </NavLink>
+          <NavLink title="Узнать больше об этом сайте" to="/about">
+            О сайте
+          </NavLink>
+          <NavLink title="Связаться со мной" to="/contact">
+            Обратная связь
+          </NavLink>
+        </NavWrapper>
+      </Wrapper>
+    </SiteNavWrapper>
+  </>
 );
 
 export default SiteNav;
