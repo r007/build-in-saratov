@@ -32,6 +32,10 @@ const SEO = ({ lang, description, type, meta, keywords, title, image }) => (
           titleTemplate={`%s | ${config.title}`}
           meta={[
             {
+              name: 'yandex-verification',
+              content: '50e6e8ee5aaa1f36',
+            },
+            {
               name: 'description',
               content: metaDescription,
             },
