@@ -55,7 +55,7 @@ const fullStyle = css`
   width: 100%;
 `;
 
-const ButtonLink = styled(GatsbyLink)`
+const ButtonStyles = css`
   appearance: none;
   backface-visibility: hidden;
   border: 0;
@@ -198,7 +198,13 @@ const ButtonLink = styled(GatsbyLink)`
   ${props => props.full && fullStyle}
 `;
 
-ButtonLink.defaultProps = {};
+const ButtonLink = styled(GatsbyLink)`
+  ${ButtonStyles}
+`;
+
+const FormButton = styled.button`
+  ${ButtonStyles}
+`;
 
 /**
  * Button component
@@ -217,9 +223,27 @@ function Button({
   border,
   customStyles,
   className,
+  type,
   ...rest
 }) {
-  return (
+  if (type && href) throw new Error("A button shouldn't have a href if it has a type!");
+
+  return type ? (
+    <FormButton
+      className={cn('Button', className)}
+      style={customStyles}
+      type={type}
+      onClick={onClick}
+      color={color}
+      size={size}
+      rounded={rounded ? 1 : undefined}
+      full={full ? 1 : undefined}
+      border={border ? 1 : undefined}
+      {...rest}
+    >
+      {children}
+    </FormButton>
+  ) : (
     <ButtonLink
       className={cn('Button', className)}
       style={customStyles}
@@ -292,6 +316,11 @@ Button.propTypes = {
    * Add classname to button
    */
   className: PropTypes.string,
+
+  /**
+   * Add type of the button
+   */
+  type: PropTypes.string,
 };
 
 Button.defaultProps = {
@@ -304,6 +333,7 @@ Button.defaultProps = {
   border: false,
   customStyles: null,
   className: null,
+  type: null,
 };
 
 export default Button;
