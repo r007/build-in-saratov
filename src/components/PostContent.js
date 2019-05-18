@@ -108,24 +108,6 @@ export const PostFullContent = styled.section`
     margin: 0 auto !important;
   }
 
-  blockquote {
-    margin: 0 0 1.5em;
-    padding: 0 1.5em;
-    border-left: #3eb0ef 3px solid;
-  }
-
-  blockquote p {
-    margin: 0 0 1em 0;
-    color: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    font-style: italic;
-  }
-
-  blockquote p:last-child {
-    margin-bottom: 0;
-  }
-
   code {
     padding: 0 5px 2px;
     font-size: 0.8em;
