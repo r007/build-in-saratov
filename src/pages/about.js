@@ -104,6 +104,20 @@ const About = ({ data }) => {
               динамических вебсайтов, тут не нужна база данных. А значит, не нужно ничего защищать
               от хакеров. А значит, не нужно кеширование.
             </p>
+            <p>
+              На данный момент, сайт набирает <strong>100 баллов из 100</strong> (по версии Google
+              PageSpeed Insights) на всех страницах. То есть, загрузка происходит молниеносно.
+              {data.PageSpeed && (
+                <figure>
+                  <Img
+                    fluid={data.PageSpeed.childImageSharp.fluid}
+                    alt="Отчет по скорости загрузки сайта PageSpeed Insights"
+                  />
+                  <figcaption>Отчет по скорости загрузки сайта PageSpeed Insights</figcaption>
+                </figure>
+              )}
+            </p>
+            <p>Технологии:</p>
             <ul>
               <li>
                 Генератор статических сайтов{' '}
@@ -150,6 +164,14 @@ export const query = graphql`
     }
 
     BuildInAmsterdam: file(relativePath: { eq: "img/build-in-amsterdam.jpg" }) {
+      childImageSharp {
+        fluid(quality: 90, maxWidth: 1200) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+
+    PageSpeed: file(relativePath: { eq: "img/pagespeed.png" }) {
       childImageSharp {
         fluid(quality: 90, maxWidth: 1200) {
           ...GatsbyImageSharpFluid_withWebp
