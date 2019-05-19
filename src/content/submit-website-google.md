@@ -2,7 +2,7 @@
 layout: post
 title: "Как добавить сайт в Google (и почему это важно)"
 author: Сергей Монин
-tags: ["Разбор"]
+tags: ["Обучение"]
 image: img/google_logo_1.jpg
 date: "2019-05-09T19:28:38+04:00"
 draft: false
