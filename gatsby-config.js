@@ -69,6 +69,7 @@ module.exports = {
     // SEO-related functionality
     'gatsby-plugin-advanced-sitemap',
     'gatsby-plugin-robots-txt',
+    'gatsby-plugin-extract-schema',
     {
       resolve: 'gatsby-plugin-postcss',
       options: {
