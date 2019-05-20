@@ -40,7 +40,15 @@ const IndexPage = ({ data, children }) => {
 
   return (
     <PostsGrid>
-      <SEO title="Домашняя страница" />
+      <SEO
+        title="Домашняя страница"
+        description="Блог веб-разработчика. Всё, что интересует людей, ответы на часто задаваемые вопросы, советы, обзоры. Рассказываю о последних трендах в сайтостроении."
+        image={
+          data.CoverImage
+            ? data.site.siteMetadata.siteUrl + data.CoverImage.childImageSharp.fluid.src
+            : ''
+        }
+      />
       <Wrapper>
         <SiteNav />
         <PostHeader fullHeight>
@@ -116,6 +124,15 @@ export const pageQuery = graphql`
         description
       }
     }
+
+    CoverImage: file(relativePath: { eq: "img/home-cover.png" }) {
+      childImageSharp {
+        fluid(quality: 90) {
+          ...GatsbyImageSharpFluid_withWebp
+        }
+      }
+    }
+
     header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
       childImageSharp {
         # Specify the image processing specifications right in the query.

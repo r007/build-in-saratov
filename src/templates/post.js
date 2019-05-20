@@ -154,13 +154,6 @@ export const query = graphql`
         siteUrl
       }
     }
-    logo: file(relativePath: { eq: "img/ghost-logo.png" }) {
-      childImageSharp {
-        fixed {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       html
       htmlAst

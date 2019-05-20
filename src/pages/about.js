@@ -155,7 +155,7 @@ export const query = graphql`
       }
     }
 
-    CoverImage: file(relativePath: { eq: "img/about-cover1.png" }) {
+    CoverImage: file(relativePath: { eq: "img/about-cover.png" }) {
       childImageSharp {
         fluid(quality: 90) {
           ...GatsbyImageSharpFluid_withWebp
