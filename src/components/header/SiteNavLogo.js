@@ -42,7 +42,7 @@ const SiteNavLogoStyled = styled(Link)`
 `;
 
 const pageQuery = graphql`
-  query {
+  query SiteLogo {
     site {
       siteMetadata {
         title
