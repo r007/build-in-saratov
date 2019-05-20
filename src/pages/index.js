@@ -122,6 +122,7 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         description
+        siteUrl
       }
     }
 
@@ -158,7 +159,7 @@ export const pageQuery = graphql`
             image {
               childImageSharp {
                 fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid
+                  ...GatsbyImageSharpFluid_withWebp
                 }
               }
             }
