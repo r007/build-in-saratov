@@ -58,7 +58,7 @@ const Tags = ({ data, pageContext }) => {
 export default Tags;
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query TagsTemplate($tag: String) {
     allTagYaml {
       edges {
         node {

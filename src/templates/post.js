@@ -148,7 +148,7 @@ const PageTemplate = ({ data, pageContext }) => {
 export default PageTemplate;
 
 export const query = graphql`
-  query($slug: String, $primaryTag: String) {
+  query PostTemplate($slug: String, $primaryTag: String) {
     site {
       siteMetadata {
         siteUrl

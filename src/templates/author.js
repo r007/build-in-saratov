@@ -160,7 +160,7 @@ const Author = ({ data }) => {
 export default Author;
 
 export const pageQuery = graphql`
-  query($author: String) {
+  query AuthorTemplate($author: String) {
     authorYaml(id: { eq: $author }) {
       id
       website

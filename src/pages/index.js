@@ -117,7 +117,7 @@ const IndexPage = ({ data, children }) => {
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query {
+  query HomePage {
     site {
       siteMetadata {
         title

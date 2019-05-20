@@ -55,7 +55,7 @@ const NotFoundPage = ({ data }) => {
 export default NotFoundPage;
 
 export const pageQuery = graphql`
-  query {
+  query NotFoundPage {
     allMarkdownRemark(limit: 3, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {

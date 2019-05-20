@@ -41,7 +41,7 @@ const ArticlesPage = ({ data, children }) => {
 export default ArticlesPage;
 
 export const pageQuery = graphql`
-  query {
+  query ArticlesPage {
     site {
       siteMetadata {
         title

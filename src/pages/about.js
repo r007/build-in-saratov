@@ -148,7 +148,7 @@ const About = ({ data }) => {
 export default About;
 
 export const query = graphql`
-  query {
+  query AboutPage {
     site {
       siteMetadata {
         siteUrl
