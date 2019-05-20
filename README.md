@@ -9,6 +9,7 @@ This is personal web development related blog of freelance developer.
 ## Features 
 
 - Built with [Gatsby](http://gatsbyjs.org/), GraphQL & AWS Amplify
+- Web safe fonts
 - Build-in Google Analytics
 - Posts are stored in Markdown
 - Syntax highlight with Prism.js
@@ -17,6 +18,7 @@ This is personal web development related blog of freelance developer.
 - Improved SEO
 
 ### Todo list
+- [ ] Add PWA functionality
 - [ ] Implement comments
 - [ ] Add social share buttons
 - [ ] Fix website navigation on tablets
