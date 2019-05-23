@@ -122,7 +122,7 @@ const PageTemplate = ({ data, pageContext }) => {
               />
             </PostFullImage>
           )}
-          <PostContent htmlAst={post.htmlAst} />
+          <PostContent htmlAst={post.htmlAst} title={post.frontmatter.title} />
 
           <PostFullFooter>
             <AuthorCard author={post.frontmatter.author} />

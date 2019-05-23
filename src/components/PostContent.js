@@ -3,10 +3,12 @@ import * as React from 'react';
 import styled from 'styled-components';
 import RehypeReact from 'rehype-react';
 
+import SocialShareContainer from './SocialShareContainer';
+import SocialShare from './SocialShare';
 import colors from '../styles/colors';
 import LinkImg from '../content/img/Externer_Link_XH.svg';
 
-export const PostFullContent = styled.section`
+export const PostFullContent = styled.article`
   h1,
   h2,
   h3,
@@ -438,12 +440,23 @@ const Ast = ({ ast, ...props }) => {
   return renderAst(abstractTree);
 };
 
-const PostContent = ({ htmlAst }) => {
+const PostContent = ({ htmlAst, title }) => {
   return (
-    <PostFullContent className="post-full-content">
-      {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
-      <Ast className="post-content" ast={htmlAst} />
-    </PostFullContent>
+    <section className="post-full-content">
+      <PostFullContent>
+        {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
+        <Ast className="post-content" ast={htmlAst} />
+      </PostFullContent>
+      {typeof window !== 'undefined' && (
+        <SocialShareContainer
+          text={title}
+          url={window.location.href}
+          headingText="Поделитесь этой записью:"
+        >
+          {SocialShare}
+        </SocialShareContainer>
+      )}
+    </section>
   );
 };
 

@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import SocialIconButton from './SocialIconButton';
 
+const Wrapper = styled.div`
+  margin-bottom: 20px;
+`;
+
 const SocialShare = ({ networks, headingText, onClick }) => (
-  <div className="SocialShare" role="complementary">
+  <Wrapper className="SocialShare" role="complementary">
     {headingText && <h3 className="ShareHeading">{headingText}</h3>}
 
     {Object.keys(networks).map(network => (
@@ -16,7 +21,7 @@ const SocialShare = ({ networks, headingText, onClick }) => (
         onClick={onClick}
       />
     ))}
-  </div>
+  </Wrapper>
 );
 
 SocialShare.propTypes = {
