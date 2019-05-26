@@ -24,9 +24,11 @@ const Contact = () => {
             </header>
           </PostHeader>
 
-          <PostFullContent>
-            <ContactForm />
-          </PostFullContent>
+          <section className="post-full-content">
+            <PostFullContent>
+              <ContactForm />
+            </PostFullContent>
+          </section>
         </main>
       </Wrapper>
     </IndexLayout>
