@@ -12,6 +12,7 @@ This is personal web development related blog of freelance developer.
 - Web safe fonts
 - Build-in Google Analytics
 - Posts are stored in Markdown
+- Social share buttons
 - Syntax highlight with Prism.js
 - Automatic sitemap, robots.txt generation
 - Contact form with Lambda endpoint
@@ -20,7 +21,6 @@ This is personal web development related blog of freelance developer.
 ### Todo list
 - [ ] Add PWA functionality
 - [ ] Implement comments
-- [ ] Add social share buttons
 - [ ] Fix website navigation on tablets
 
 ## Deploy this app (2 options)
