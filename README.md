@@ -10,6 +10,7 @@ This is personal web development related blog of freelance developer.
 
 - Built with [Gatsby](http://gatsbyjs.org/), GraphQL & AWS Amplify
 - Web safe fonts
+- Offline support with a service worker
 - Build-in Google Analytics
 - Posts are stored in Markdown
 - Social share buttons
@@ -19,7 +20,6 @@ This is personal web development related blog of freelance developer.
 - Improved SEO
 
 ### Todo list
-- [ ] Add PWA functionality
 - [ ] Implement comments
 - [ ] Fix website navigation on tablets
 
