@@ -110,42 +110,8 @@ export const PostFullContent = styled.article`
     margin: 0 auto !important;
   }
 
-  code {
-    padding: 0 5px 2px;
-    font-size: 0.8em;
-    line-height: 1em;
-    font-weight: 400 !important;
-    background: ${colors.whitegrey};
-    border-radius: 3px;
-  }
-
   p code {
     word-break: break-all;
-  }
-
-  pre {
-    overflow-x: auto;
-    /* margin: 1.5em 0 3em; */
-    padding: 20px;
-    max-width: 100%;
-    /* border: color(var(--darkgrey) l(-10%)) 1px solid; */
-    color: ${colors.whitegrey};
-    font-size: 1.4rem;
-    line-height: 1.5em;
-    /* background: color(var(--darkgrey) l(-3%)); */
-    background: #1a1f3e;
-    border-radius: 5px;
-  }
-
-  pre code {
-    padding: 0;
-    font-size: inherit;
-    line-height: inherit;
-    background: transparent;
-  }
-
-  pre code :not(span) {
-    color: inherit;
   }
 
   /* .fluid-width-video-wrapper { */
@@ -265,59 +231,6 @@ export const PostFullContent = styled.article`
     border: ${setSaturation('0.05', darken('0.01', colors.whitegrey))} 1px solid;
   }
 
-  /* Start Syntax Highlighting */
-  /* Taken from overreacted https://github.com/gaearon/overreacted.io/blob/942b41555f5e5ccbb5f93f6c26142cd90b314236/src/utils/global.css#L68 */
-  code[class*='language-'],
-  pre[class*='language-'] {
-    font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
-    font-feature-settings: normal;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    word-wrap: normal;
-    line-height: 1.5;
-    margin-bottom: 0;
-
-    -moz-tab-size: 4;
-    -o-tab-size: 4;
-    tab-size: 4;
-
-    -webkit-hyphens: none;
-    -moz-hyphens: none;
-    -ms-hyphens: none;
-    hyphens: none;
-  }
-
-  /* Code blocks */
-  pre[class*='language-'] {
-    overflow: auto;
-    padding: 1.3125rem;
-  }
-
-  pre[class*='language-']::-moz-selection {
-    /* Firefox */
-    background: hsl(207, 4%, 16%);
-  }
-
-  pre[class*='language-']::selection {
-    /* Safari */
-    background: hsl(207, 4%, 16%);
-  }
-
-  /* Text Selection colour */
-  pre[class*='language-']::-moz-selection,
-  pre[class*='language-'] ::-moz-selection {
-    text-shadow: none;
-    background: hsla(0, 0%, 100%, 0.15);
-  }
-
-  pre[class*='language-']::selection,
-  pre[class*='language-'] ::selection {
-    text-shadow: none;
-    background: hsla(0, 0%, 100%, 0.15);
-  }
-
   /* Inline code */
   :not(pre) > code[class*='language-'] {
     border-radius: 0.3em;
@@ -327,74 +240,12 @@ export const PostFullContent = styled.article`
     white-space: normal;
   }
 
-  .token.attr-name {
-    color: rgb(173, 219, 103);
-    font-style: italic;
-  }
-
-  .token.comment {
-    color: rgb(128, 147, 147);
-  }
-
-  .token.string,
-  .token.url {
-    color: rgb(173, 219, 103);
-  }
-
-  .token.variable {
-    color: rgb(214, 222, 235);
-  }
-
-  .token.number {
-    color: rgb(247, 140, 108);
-  }
-
-  .token.builtin,
-  .token.char,
-  .token.constant,
-  .token.function {
-    color: rgb(130, 170, 255);
-  }
-
-  .token.punctuation {
-    color: rgb(199, 146, 234);
-  }
-
-  .token.selector,
-  .token.doctype {
-    color: rgb(199, 146, 234);
-    font-style: 'italic';
-  }
-
-  .token.class-name {
-    color: rgb(255, 203, 139);
-  }
-
-  .token.tag,
-  .token.operator,
-  .token.keyword {
-    color: #ffa7c4;
-  }
-
-  .token.boolean {
-    color: rgb(255, 88, 116);
-  }
-
-  .token.property {
-    color: rgb(128, 203, 196);
-  }
-
-  .token.namespace {
-    color: rgb(178, 204, 214);
-  }
-
   pre[data-line] {
     padding: 1em 0 1em 3em;
     position: relative;
   }
 
   .gatsby-highlight-code-line {
-    background-color: hsla(207, 95%, 15%, 1);
     display: block;
     margin-right: -1.3125rem;
     margin-left: -1.3125rem;
@@ -403,27 +254,9 @@ export const PostFullContent = styled.article`
     border-left: 0.25em solid #ffa7c4;
   }
 
-  .gatsby-highlight {
-    margin-bottom: 1.75rem;
-    margin-left: -1.3125rem;
-    margin-right: -1.3125rem;
-    border-radius: 10px;
-    background: #1a1f3e;
-    -webkit-overflow-scrolling: touch;
-    overflow: auto;
-  }
-
-  @media (max-width: 672px) {
-    .gatsby-highlight {
-      border-radius: 0;
-    }
-  }
-
   .gatsby-highlight pre[class*='language-'] {
-    float: left;
-    min-width: 100%;
-    box-sizing: border-box;
     font-size: 0.7rem;
+    box-sizing: border-box;
   }
   /* End Syntax Highlighting */
 `;
