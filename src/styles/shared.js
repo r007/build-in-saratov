@@ -69,16 +69,16 @@ export const PostsGrid = styled(IndexLayout)`
       flex-direction: column;
       background-color: #f0f0f0;
       padding: 20px;
-    }
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image-link {
-      position: relative;
-      flex: 1 1 auto;
-      order: 1;
-    }
+      .post-card-image-wrapper {
+        position: relative;
+        flex: 1 1 auto;
+        order: 1;
+      }
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content {
-      order: 2;
+      .post-card-content {
+        order: 2;
+      }
     }
   }
 
@@ -88,37 +88,60 @@ export const PostsGrid = styled(IndexLayout)`
       flex-direction: row;
       background-color: #f0f0f0;
       padding: 35px;
-    }
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image-link {
-      position: relative;
-      flex: 1 1 auto;
-      order: 2;
-    }
+      .post-card-link {
+        flex-direction: row;
+      }
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-image {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
+      .post-card-image-wrapper {
+        position: relative;
+        flex: 1 1 auto;
+        order: 2;
+      }
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content {
-      flex: 0 1 40%;
-      order: 1;
-    }
+      .post-card-image {
+        position: absolute;
+        width: 100%;
+        height: 100%;
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) h2 {
-      font-size: 1.3rem;
-    }
+        :after {
+          content: none;
+        }
+      }
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) p {
-      font-size: 0.9rem;
-      line-height: 1.55em;
-    }
+      .post-card-content {
+        padding: 0 35px 0 0;
+        flex: 0 1 40%;
+        order: 1;
 
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-content-link,
-    .post-card:nth-of-type(6n + 1):not(.no-image) .post-card-meta {
-      padding: 0 35px 0 0;
+        :after {
+          content: '';
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0px;
+          height: 8px;
+          background: #164194;
+          transform: scaleX(0.25);
+          transform-origin: 0 0;
+          transition: all 0.4s;
+        }
+      }
+
+      :hover .post-card-content:after {
+        transition-duration: 0.2s;
+        transform: scaleX(0.9);
+        background: #ad005f;
+      }
+
+      h2 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        line-height: 1.55em;
+      }
     }
   }
 `;
