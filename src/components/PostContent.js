@@ -231,6 +231,14 @@ export const PostFullContent = styled.article`
     border: ${setSaturation('0.05', darken('0.01', colors.whitegrey))} 1px solid;
   }
 
+  code[class*='language-']::selection,
+  code[class*='language-'] span::selection,
+  pre[class*='language-']::selection,
+  pre[class*='language-'] span::selection {
+    color: inherit;
+    background: rgba(33, 66, 131, 0.85);
+  }
+
   /* Inline code */
   :not(pre) > code[class*='language-'] {
     border-radius: 0.3em;
