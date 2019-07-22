@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Шустрый WordPress на AWS Lightsail с кешированием Redis
-image: img/lightsail.jpeg
+image: img/lightsail.jpg
 author: Сергей Монин
 date: 2019-05-30T23:38:19+04:00
 draft: false
@@ -144,7 +144,7 @@ sudo nano /etc/mysql/my.cnf
 
 Добавляем следующие строки в конец конфига:
 
-```apacheconfig
+```ini
 [mysqld]
 
 # other variables here
