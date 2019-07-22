@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Почему нужно добавлять префикс www
-image: img/www1.jpg
+image: img/www.jpg
 author: Сергей Монин
 date: 2019-07-22T02:28:34+04:00
 draft: false
