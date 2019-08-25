@@ -169,13 +169,6 @@ export const pageQuery = graphql`
       bio
       quora
       location
-      profile_image {
-        childImageSharp {
-          fluid(maxWidth: 3720) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
       avatar {
         childImageSharp {
           fixed(width: 80, height: 80, quality: 100) {
