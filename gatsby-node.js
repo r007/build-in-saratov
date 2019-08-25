@@ -1,3 +1,4 @@
+const { createFilePath } = require(`gatsby-source-filesystem`);
 const path = require('path');
 const _ = require('lodash');
 
@@ -10,20 +11,15 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // trip up. An empty string is still required in replacement to `null`.
   switch (node.internal.type) {
     case 'MarkdownRemark': {
-      const { permalink, layout, primaryTag } = node.frontmatter;
-      const { relativePath } = getNode(node.parent);
+      const { layout, primaryTag } = node.frontmatter;
 
-      let slug = permalink;
-
-      if (!slug) {
-        slug = `/${relativePath.replace('.md', '')}/`;
-      }
+      const value = createFilePath({ node, getNode });
 
       // Used to generate URL to view this content.
       createNodeField({
         node,
         name: 'slug',
-        value: slug || '',
+        value,
       });
 
       // Used to determine a page layout.

@@ -3,7 +3,7 @@ layout: post
 title: "5 лучших CMS для интернет-магазина"
 author: Сергей Монин
 tags: ["Обзоры"]
-image: img/ecommerce-cover.jpg
+image: ecommerce-cover.jpg
 date: "2019-05-21T03:59:31+04:00"
 draft: false
 ---
@@ -18,7 +18,7 @@ draft: false
 
 ## 1. [PrestaShop](https://www.prestashop.com/)
 
-![Пример темы для PrestaShop - Fashion](./img/fashion-prestashop-theme.jpg)
+![Пример темы для PrestaShop - Fashion](./fashion-prestashop-theme.jpg)
 
 ### Чем хороша?
 
@@ -30,7 +30,7 @@ draft: false
 
 ## 2. [WooCommerce](https://woocommerce.com/)
 
-![Пример темы для WooCommerce - Illdy](./img/illdy-free-business-landing-page-theme.jpg)
+![Пример темы для WooCommerce - Illdy](./illdy-free-business-landing-page-theme.jpg)
 
 ### Чем хорош?
 
@@ -44,7 +44,7 @@ draft: false
 
 ## 3. [Reaction Commerce](https://www.reactioncommerce.com/)
 
-![Платформа Reaction Commerce в работе (редактирование продукта)](./img/reaction-commerce-product-detail-page-edit-view.jpg)
+![Платформа Reaction Commerce в работе (редактирование продукта)](./reaction-commerce-product-detail-page-edit-view.jpg)
 
 Один из самых амбициозных проектов последних лет. Использованы последние технологии в веб-разработке, такие как React, GraphQL, событийно-ориентированная архитектура. По количеству звезд на GitHub'е проект уже опередил Magento, WooCommerce, PrestaShop и OpenCart.
 
@@ -58,7 +58,7 @@ draft: false
 
 ## 4. [Magento](https://magento.com)
 
-![Пример темы для Magento - Barbour](./img/barbour-magento-theme.jpg)
+![Пример темы для Magento - Barbour](./barbour-magento-theme.jpg)
 
 Я долго думал, включать ли magento в этот список или не включать. Система весьма противоречивая, но всё же заслуживает упоминания.
 
@@ -72,7 +72,7 @@ draft: false
 
 ## 5. [Spree](https://spreecommerce.org/)
 
-![Стандартное оформление магазина Spree](./img/spree.png)
+![Стандартное оформление магазина Spree](./spree.png)
 
 Spree Commerce (или просто Spree) — это модульная платформа на базе Ruby on Rails. Её главное преимущество в гибкости и скорости разработки. Стоит обратить на неё внимание, если планируете создавать интернет-магазин с нуля, со своим собственным дизайном.
 
