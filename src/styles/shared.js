@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import IndexLayout from '../layouts';
+import { Link } from 'gatsby';
 
 export const outer = css`
   position: relative;
@@ -44,6 +44,20 @@ export const PageDescription = styled.h2`
   }
 `;
 
+export const HeaderLink = styled(Link)`
+  color: #ffffff;
+  word-wrap: break-word;
+  text-decoration: none;
+  padding-bottom: 0;
+  border-bottom: 2px solid #fff;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  &:hover {
+    background: #1a1f3e;
+    border-color: #1a1f3e;
+  }
+`;
+
 export const PostFeed = styled.div`
   position: relative;
   display: flex;
@@ -62,7 +76,7 @@ export const SiteHeaderContent = styled.div`
   text-align: center;
 `;
 
-export const PostsGrid = styled(IndexLayout)`
+export const PostsGrid = styled.main`
   @media (min-width: 795px) and (max-width: 1280px) {
     .post-card:nth-of-type(6n + 1):not(.no-image) {
       flex: 1 1 100%;

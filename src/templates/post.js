@@ -5,31 +5,15 @@ import * as React from 'react';
 import styled from 'styled-components';
 
 import AuthorCard from '../components/AuthorCard';
-import SiteNav from '../components/header/SiteNav';
 import PostCard from '../components/PostCard';
 import PostContent from '../components/PostContent';
 import PostFullFooter from '../components/PostFullFooter';
 import ReadNextCard from '../components/ReadNextCard';
 import PostHeader from '../components/PostHeader';
-import Wrapper from '../components/Wrapper';
 import SEO from '../components/SEO';
 import IndexLayout from '../layouts';
 import colors from '../styles/colors';
-import { outer, PageTitle, PageDescription } from '../styles/shared';
-
-const PostCategoryLink = styled(Link)`
-  color: #ffffff;
-  word-wrap: break-word;
-  text-decoration: none;
-  padding-bottom: 0;
-  border-bottom: 2px solid #fff;
-  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
-
-  &:hover {
-    background: #1a1f3e;
-    border-color: #1a1f3e;
-  }
-`;
+import { outer, PageTitle, PageDescription, HeaderLink } from '../styles/shared';
 
 const PostFullImage = styled.figure`
   padding: 0 0 0 15rem;
@@ -96,51 +80,45 @@ const PageTemplate = ({ data, pageContext }) => {
         }
         type="article"
       />
-      <Wrapper>
-        <SiteNav />
-        <main id="content">
-          <PostHeader>
-            <PageDescription>
-              <time dateTime={post.frontmatter.date}>{post.frontmatter.userDate}</time>
-              {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
-                <>
-                  <DateDivider>/</DateDivider>
-                  <PostCategoryLink to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
-                    {post.frontmatter.tags[0]}
-                  </PostCategoryLink>
-                </>
-              )}
-            </PageDescription>
-            <PageTitle>{post.frontmatter.title}</PageTitle>
-          </PostHeader>
-
-          {post.frontmatter.image && post.frontmatter.image.childImageSharp && (
-            <PostFullImage>
-              <Img
-                style={{ height: '100%' }}
-                fluid={post.frontmatter.image.childImageSharp.fluid}
-              />
-            </PostFullImage>
-          )}
-          <PostContent htmlAst={post.htmlAst} title={post.frontmatter.title} />
-
-          <PostFullFooter>
-            <AuthorCard author={post.frontmatter.author} />
-          </PostFullFooter>
-        </main>
-
-        {/* Links to Previous/Next posts */}
-        <ReadNext className="read-next">
-          <ReadNextFeed>
-            {data.relatedPosts && (
-              <ReadNextCard tags={post.frontmatter.tags} relatedPosts={data.relatedPosts} />
+      <main id="content">
+        <PostHeader>
+          <PageDescription>
+            <time dateTime={post.frontmatter.date}>{post.frontmatter.userDate}</time>
+            {post.frontmatter.tags && post.frontmatter.tags.length > 0 && (
+              <>
+                <DateDivider>/</DateDivider>
+                <HeaderLink to={`/tags/${_.kebabCase(post.frontmatter.tags[0])}/`}>
+                  {post.frontmatter.tags[0]}
+                </HeaderLink>
+              </>
             )}
+          </PageDescription>
+          <PageTitle>{post.frontmatter.title}</PageTitle>
+        </PostHeader>
 
-            {pageContext.prev && <Card post={pageContext.prev} />}
-            {pageContext.next && <Card post={pageContext.next} />}
-          </ReadNextFeed>
-        </ReadNext>
-      </Wrapper>
+        {post.frontmatter.image && post.frontmatter.image.childImageSharp && (
+          <PostFullImage>
+            <Img style={{ height: '100%' }} fluid={post.frontmatter.image.childImageSharp.fluid} />
+          </PostFullImage>
+        )}
+        <PostContent htmlAst={post.htmlAst} title={post.frontmatter.title} />
+
+        <PostFullFooter>
+          <AuthorCard author={post.frontmatter.author} />
+        </PostFullFooter>
+      </main>
+
+      {/* Links to Previous/Next posts */}
+      <ReadNext className="read-next">
+        <ReadNextFeed>
+          {data.relatedPosts && (
+            <ReadNextCard tags={post.frontmatter.tags} relatedPosts={data.relatedPosts} />
+          )}
+
+          {pageContext.prev && <Card post={pageContext.prev} />}
+          {pageContext.next && <Card post={pageContext.next} />}
+        </ReadNextFeed>
+      </ReadNext>
     </IndexLayout>
   );
 };

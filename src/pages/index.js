@@ -2,9 +2,8 @@ import { graphql } from 'gatsby';
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
 
-import SiteNav from '../components/header/SiteNav';
+import IndexLayout from '../layouts';
 import PostCard from '../components/PostCard';
-import Wrapper from '../components/Wrapper';
 import IconCalloutGroup from '../components/IconCalloutGroup';
 import IconCallout from '../components/IconCallout';
 import SEO from '../components/SEO';
@@ -39,7 +38,7 @@ const IndexPage = ({ data, children }) => {
   const config = data.site.siteMetadata;
 
   return (
-    <PostsGrid>
+    <IndexLayout>
       <SEO
         title="Домашняя страница"
         description="Блог веб-разработчика. Всё, что интересует людей, ответы на часто задаваемые вопросы, советы, обзоры. Рассказываю о последних трендах в сайтостроении."
@@ -49,68 +48,64 @@ const IndexPage = ({ data, children }) => {
             : ''
         }
       />
-      <Wrapper>
-        <SiteNav />
-        <PostHeader fullHeight>
-          <SiteHeaderContent>
-            <img
-              style={{ height: '100px', width: 'auto', display: 'block', marginBottom: '1rem' }}
-              src={Logo}
-              alt={config.title}
+      <PostHeader fullHeight>
+        <SiteHeaderContent>
+          <img
+            style={{ height: '100px', width: 'auto', display: 'block', marginBottom: '1rem' }}
+            src={Logo}
+            alt={config.title}
+          />
+          <PageTitle>{config.description}</PageTitle>
+          <ScrollDown className="scrollDown" />
+        </SiteHeaderContent>
+      </PostHeader>
+      <PostsGrid id="content">
+        <section>
+          <IconCalloutGroup>
+            <IconCallout
+              iconName="Deploy"
+              title="Ускорение сайта"
+              copy="Ведь не только Red Bull окрыляет, но и прямые руки веб-разработчика"
+              url="/contact"
             />
-            <PageTitle>{config.description}</PageTitle>
-            <ScrollDown className="scrollDown" />
-          </SiteHeaderContent>
-        </PostHeader>
-        <main id="content">
-          <section>
-            <IconCalloutGroup>
-              <IconCallout
-                iconName="Deploy"
-                title="Ускорение сайта"
-                copy="Ведь не только Red Bull окрыляет, но и прямые руки веб-разработчика"
-                url="/contact"
-              />
 
-              <IconCallout
-                iconName="Inspect"
-                title="Консультации"
-                copy="Не разбираетесь в программировании? Лучше спросите у профессионала"
-                url="/contact"
-              />
+            <IconCallout
+              iconName="Inspect"
+              title="Консультации"
+              copy="Не разбираетесь в программировании? Лучше спросите у профессионала"
+              url="/contact"
+            />
 
-              <IconCallout
-                iconName="Configure"
-                title="Доработки"
-                copy="Изменения в готовом сайте, исправление ошибок, написание плагинов"
-                url="/contact"
-              />
+            <IconCallout
+              iconName="Configure"
+              title="Доработки"
+              copy="Изменения в готовом сайте, исправление ошибок, написание плагинов"
+              url="/contact"
+            />
 
-              <IconCallout
-                iconName="Send"
-                title="Создание"
-                copy="Проектирование сайта с нуля специально под заказчика"
-                url="/contact"
-              />
-            </IconCalloutGroup>
-          </section>
-          <section>
-            <PostFeed>
-              {data.allMarkdownRemark.edges.map(post => {
-                // filter out drafts in production
-                return (
-                  (post.node.frontmatter.draft !== true ||
-                    process.env.NODE_ENV !== 'production') && (
-                    <PostCard key={post.node.fields.slug} post={post.node} />
-                  )
-                );
-              })}
-            </PostFeed>
-          </section>
-        </main>
-        {children}
-      </Wrapper>
-    </PostsGrid>
+            <IconCallout
+              iconName="Send"
+              title="Создание"
+              copy="Проектирование сайта с нуля специально под заказчика"
+              url="/contact"
+            />
+          </IconCalloutGroup>
+        </section>
+        <section>
+          <PostFeed>
+            {data.allMarkdownRemark.edges.map(post => {
+              // filter out drafts in production
+              return (
+                (post.node.frontmatter.draft !== true || process.env.NODE_ENV !== 'production') && (
+                  <PostCard key={post.node.fields.slug} post={post.node} />
+                )
+              );
+            })}
+          </PostFeed>
+        </section>
+      </PostsGrid>
+      {children}
+    </IndexLayout>
   );
 };
 

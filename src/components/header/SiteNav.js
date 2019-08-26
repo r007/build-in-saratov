@@ -1,10 +1,10 @@
-// tslint:disable:no-http-string
 import { Link } from 'gatsby';
 import * as React from 'react';
 import styled from 'styled-components';
 
 import SiteNavLogo from './SiteNavLogo';
 import MobileNavigation from './MobileNavigation';
+import SearchBox from '../search/SearchBox';
 import BlueArrow from '../../content/img/blue-arrow.svg';
 import DarkblueArrow from '../../content/img/darkblue-arrow.svg';
 
@@ -130,6 +130,7 @@ const SiteNav = () => (
           <NavLink title="Связаться со мной" to="/contact">
             Обратная связь
           </NavLink>
+          <SearchBox />
         </NavWrapper>
       </Wrapper>
     </SiteNavWrapper>

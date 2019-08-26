@@ -3,10 +3,9 @@ import React from 'react';
 import styled from 'styled-components';
 import Img from 'gatsby-image';
 
-import SiteNav from '../components/header/SiteNav';
+import IndexLayout from '../layouts';
 import PostCard from '../components/PostCard';
 import PostHeader from '../components/PostHeader';
-import Wrapper from '../components/Wrapper';
 import ProfileLink from '../components/ProfileLink';
 import SEO from '../components/SEO';
 import { PostsGrid, PostFeed, PageTitle } from '../styles/shared';
@@ -47,113 +46,110 @@ const Author = ({ data }) => {
   const totalCount = edges.length;
 
   return (
-    <PostsGrid>
+    <IndexLayout>
       <SEO
         title={author.id ? author.id : ''}
         description={author.bio ? author.bio : ''}
         image={author.profile_image ? author.profile_image.childImageSharp.fluid.src : ''}
         type="profile"
       />
-      <Wrapper>
-        <SiteNav />
-        <PostHeader
-          className="no-cover"
-          style={{
-            backgroundImage: author.profile_image
-              ? `url(${author.profile_image.childImageSharp.fluid.src})`
-              : '',
-          }}
-        >
-          <AuthorCardSection>
-            <Avatar
-              fixed={data.authorYaml.avatar.childImageSharp.fixed}
-              objectFit="cover"
-              objectPosition="50% 50%"
-              alt={author.id}
-            />
-            <div className="author-header">
-              <PageTitle>{author.id}</PageTitle>
-              <AuthorMeta>
-                {author.location && (
-                  <div className="hidden-mobile">
-                    {author.location} <Bull>&bull;</Bull>
-                  </div>
-                )}
+      <PostHeader
+        className="no-cover"
+        style={{
+          backgroundImage: author.profile_image
+            ? `url(${author.profile_image.childImageSharp.fluid.src})`
+            : '',
+        }}
+      >
+        <AuthorCardSection>
+          <Avatar
+            fixed={data.authorYaml.avatar.childImageSharp.fixed}
+            objectFit="cover"
+            objectPosition="50% 50%"
+            alt={author.id}
+          />
+          <div className="author-header">
+            <PageTitle>{author.id}</PageTitle>
+            <AuthorMeta>
+              {author.location && (
                 <div className="hidden-mobile">
-                  {totalCount > 1 && `${totalCount} записей`}
-                  {totalCount === 1 && 'Одна запись'}
-                  {totalCount === 0 && 'Нет записей'} <Bull>•</Bull>
+                  {author.location} <Bull>&bull;</Bull>
                 </div>
-                {author.website && (
-                  <div>
-                    <ProfileLink
-                      className="social-link-wb"
-                      href={author.website}
-                      title="Website"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Icon.Globe
-                        fill="none"
-                        style={{
-                          height: '1rem',
-                          width: 'auto',
-                          stroke: '#fff',
-                          strokeWidth: '2',
-                        }}
-                      />
-                    </ProfileLink>
-                  </div>
-                )}
-                {author.vk && (
+              )}
+              <div className="hidden-mobile">
+                {totalCount > 1 && `${totalCount} записей`}
+                {totalCount === 1 && 'Одна запись'}
+                {totalCount === 0 && 'Нет записей'} <Bull>•</Bull>
+              </div>
+              {author.website && (
+                <div>
                   <ProfileLink
-                    className="social-link-vk"
-                    href={`https://vk.com/${author.vk}`}
-                    title="VK"
+                    className="social-link-wb"
+                    href={author.website}
+                    title="Website"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <Icon.Vk
-                      fill="#ffffff"
+                    <Icon.Globe
+                      fill="none"
                       style={{
                         height: '1rem',
                         width: 'auto',
+                        stroke: '#fff',
+                        strokeWidth: '2',
                       }}
                     />
                   </ProfileLink>
-                )}
-                {author.quora && (
-                  <ProfileLink
-                    className="social-link-quora"
-                    href={`https://www.quora.com/profile/${author.quora}`}
-                    title="Quora"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Icon.Quora
-                      fill="#ffffff"
-                      style={{
-                        height: '1rem',
-                        width: 'auto',
-                      }}
-                    />
-                  </ProfileLink>
-                )}
-              </AuthorMeta>
-            </div>
-          </AuthorCardSection>
-        </PostHeader>
-        <main id="content">
-          <section>
-            <PostFeed>
-              {edges.map(({ node }) => {
-                return <PostCard key={node.fields.slug} post={node} />;
-              })}
-            </PostFeed>
-          </section>
-        </main>
-      </Wrapper>
-    </PostsGrid>
+                </div>
+              )}
+              {author.vk && (
+                <ProfileLink
+                  className="social-link-vk"
+                  href={`https://vk.com/${author.vk}`}
+                  title="VK"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon.Vk
+                    fill="#ffffff"
+                    style={{
+                      height: '1rem',
+                      width: 'auto',
+                    }}
+                  />
+                </ProfileLink>
+              )}
+              {author.quora && (
+                <ProfileLink
+                  className="social-link-quora"
+                  href={`https://www.quora.com/profile/${author.quora}`}
+                  title="Quora"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon.Quora
+                    fill="#ffffff"
+                    style={{
+                      height: '1rem',
+                      width: 'auto',
+                    }}
+                  />
+                </ProfileLink>
+              )}
+            </AuthorMeta>
+          </div>
+        </AuthorCardSection>
+      </PostHeader>
+      <PostsGrid id="content">
+        <section>
+          <PostFeed>
+            {edges.map(({ node }) => {
+              return <PostCard key={node.fields.slug} post={node} />;
+            })}
+          </PostFeed>
+        </section>
+      </PostsGrid>
+    </IndexLayout>
   );
 };
 

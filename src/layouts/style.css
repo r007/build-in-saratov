@@ -271,3 +271,17 @@ body {
     display: none;
   }
 }
+
+input, label {
+  border-width: 0;
+  height: 1.2rem;
+  line-height: 1.2rem;
+  margin-bottom: 8px;
+  padding-left: .25em;
+  margin-right: 8px;
+  border-radius: 0;
+}
+
+input[type="search"] {
+  box-sizing: content-box;
+}
