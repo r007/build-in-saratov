@@ -15,6 +15,7 @@ This is personal web development related blog of freelance developer.
 - Build-in Google Analytics
 - Posts are stored in Markdown
 - Social share buttons
+- Medium-style image zoom on click
 - Syntax highlight with Prism.js
 - Automatic sitemap, robots.txt generation
 - Contact form with Lambda endpoint

@@ -51,6 +51,7 @@ module.exports = {
               showCaptions: true,
               // Add webp version
               withWebp: true,
+              linkImagesToOriginal: false, // For medium-style zoom to work
             },
           },
         ],
@@ -63,6 +64,7 @@ module.exports = {
         siteUrl: 'https://build-in-saratov.com',
       },
     },
+    'gatsby-remark-images-medium-zoom',
     'gatsby-plugin-styled-components',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
