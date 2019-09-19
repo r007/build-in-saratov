@@ -9,12 +9,12 @@ const Header = styled(Link)`
 `;
 
 const PostHit = ({ hit }) => (
-  <React.Fragment>
+  <>
     <Header to={hit.fields.slug}>
       <Highlight attribute="title" hit={hit} tagName="mark" />
     </Header>
     <Snippet attribute="excerpt" hit={hit} tagName="mark" />
-  </React.Fragment>
+  </>
 );
 
 export default connectHits(PostHit);

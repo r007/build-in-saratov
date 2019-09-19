@@ -22,12 +22,12 @@ const Results = connectStateResults(({ searchResults: res, children }) =>
   res && res.nbHits > 0 ? (
     children
   ) : (
-    <React.Fragment>
+    <>
       Ничего не найдено{' '}
       <span role="img" aria-label="Думает">
         🤔
       </span>
-    </React.Fragment>
+    </>
   ),
 );
 
@@ -56,7 +56,7 @@ const HitsWrapper = styled(Hits)`
 const IndexLayout = ({ className, children }) => {
   const Content = connectStateResults(({ searchState }) =>
     searchState && searchState.query ? (
-      <React.Fragment>
+      <>
         <PostHeader>
           <PageDescription>
             Поиск предоставлен{' '}
@@ -76,7 +76,7 @@ const IndexLayout = ({ className, children }) => {
             <HitsWrapper hitComponent={PostHit} />
           </Results>
         </section>
-      </React.Fragment>
+      </>
     ) : (
       children
     ),
