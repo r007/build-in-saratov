@@ -7,6 +7,7 @@ import MobileNavigation from './MobileNavigation';
 import SearchBox from '../search/SearchBox';
 import BlueArrow from '../../content/img/blue-arrow.svg';
 import DarkblueArrow from '../../content/img/darkblue-arrow.svg';
+import Icon from '../Icon';
 
 const SiteNavWrapper = styled.nav`
   left: 0;
@@ -111,6 +112,17 @@ const NavLink = styled(Link)`
   }
 `;
 
+const SiteInfo = styled.div`
+  display: block;
+  position: absolute;
+  bottom: 0;
+  max-width: 22em;
+  box-sizing: border-box;
+  font-size: 17px;
+  letter-spacing: 0.02em;
+  margin: 0;
+`;
+
 const SiteNav = () => (
   <>
     <MobileNavigation />
@@ -131,6 +143,10 @@ const SiteNav = () => (
             Обратная связь
           </NavLink>
           <SearchBox />
+          <SiteInfo>
+            <p>Сайт адаптирован для слабовидящих, сделаем интернет чуточку доступнее.</p>
+            <Icon.Accessibility width={36} height={36} />
+          </SiteInfo>
         </NavWrapper>
       </Wrapper>
     </SiteNavWrapper>
