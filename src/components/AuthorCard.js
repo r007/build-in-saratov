@@ -45,8 +45,6 @@ const AuthorCardContent = styled.div`
 
   p {
     margin: 0;
-    color: ${colors.midgrey};
-    line-height: 1.3em;
 
     @media only screen and (min-width: 601px) {
       font-size: 0.7rem;

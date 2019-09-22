@@ -11,8 +11,8 @@ const colors = {
   bgPrimary: '#164194',
   textPrimary: '#ffffff',
   borderPrimary: '#000000',
-  bgSecondary: '#738a94',
-  textSecondary: '#bfddff',
+  bgSecondary: '#000000',
+  textSecondary: '#164194',
   accent: '#1a1f3e',
   bgAccent: 'rgba(126, 130, 126, 0.1)',
 };
