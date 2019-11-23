@@ -6,7 +6,7 @@ date: 2019-11-22T04:01:45+0000
 image: clouds-dark-lightning.jpg
 draft: false
 tags: 
-  - Разное
+  - Хостинги
 ---
 
 Несколько месяцев назад я начал переносить все мои сайты на OpenLiteSpeed. Также мигрировал несколько клиентов на OpenLiteSpeed и LiteSpeed Enterprise. Одной из главных причин была производительность.
