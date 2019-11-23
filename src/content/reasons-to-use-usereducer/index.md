@@ -6,7 +6,7 @@ date: 2019-10-07T16:50:57+0000
 image: 32eurzyx63oqbxjuy5vw8eo3-bu.png
 draft: false
 tags: 
-  - Разное
+  - React
 ---
 
 ## Что это?
