@@ -1,7 +1,7 @@
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
-
+import { Row, Col } from 'react-flexbox-grid';
 import IndexLayout from '../layouts';
 import PostCard from '../components/PostCard';
 import IconCalloutGroup from '../components/IconCalloutGroup';
@@ -9,8 +9,10 @@ import IconCallout from '../components/IconCallout';
 import SEO from '../components/SEO';
 import { PostsGrid, PostFeed, SiteHeaderContent, PageTitle } from '../styles/shared';
 import PostHeader from '../components/PostHeader';
+import Heading from '../components/Heading';
 import Logo from '../content/img/logo.svg';
 import ScrollDownArrow from '../content/img/next-arrow.svg';
+import BlueArrow from '../content/img/darkblue-arrow.svg';
 
 const scrollDownButton = keyframes`
   to {
@@ -31,6 +33,39 @@ const ScrollDown = styled.div`
     width: 50px;
     cursor: pointer;
     transform: rotate(90deg);
+  }
+`;
+
+const SectionHeading = styled(Row)`
+  margin-bottom: 2.5rem;
+
+  a {
+    margin-top: 0.5rem;
+    display: block;
+    position: relative;
+
+    &:after {
+      content: '';
+      background: url(${BlueArrow});
+      background-repeat: no-repeat;
+      width: 0.8em;
+      height: 0.8em;
+      position: relative;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: -10px;
+      opacity: 0;
+      transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    :hover {
+      text-decoration: none;
+
+      &:after {
+        margin-left: 10px;
+        opacity: 1;
+      }
+    }
   }
 `;
 
@@ -92,6 +127,16 @@ const IndexPage = ({ data, children }) => {
           </IconCalloutGroup>
         </section>
         <section>
+          <SectionHeading center="xs">
+            <Col xs={12} md={10} lg={9}>
+              <Heading>Полевые заметки</Heading>
+              <small>
+                Подробные статьи, уроки. Здесь я делюсь мыслями о веб-разработке, современных
+                JavaScript фреймворках, CMS и интернет-магазинах.
+              </small>
+              <Link to="/articles">Все статьи</Link>
+            </Col>
+          </SectionHeading>
           <PostFeed>
             {data.allMarkdownRemark.edges.map(post => {
               // filter out drafts in production
@@ -141,7 +186,7 @@ export const pageQuery = graphql`
     allMarkdownRemark(
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { draft: { ne: true } } }
-      limit: 1000
+      limit: 4
     ) {
       edges {
         node {

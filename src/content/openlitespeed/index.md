@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 5 причин почему я использую OpenLiteSpeed вместо Nginx
+title: 5 причин использовать OpenLiteSpeed вместо Nginx
 author: Сергей Монин
 date: 2019-11-22T04:01:45+0000
 image: clouds-dark-lightning.jpg
