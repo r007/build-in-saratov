@@ -37,7 +37,7 @@ const ScrollDown = styled.div`
 `;
 
 const SectionHeading = styled(Row)`
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.5rem;
 
   a {
     margin-top: 0.5rem;
@@ -96,6 +96,11 @@ const IndexPage = ({ data, children }) => {
       </PostHeader>
       <PostsGrid id="content">
         <section>
+          <SectionHeading center="xs">
+            <Col xs={12} md={10} lg={9}>
+              <Heading>Оказываю услуги</Heading>
+            </Col>
+          </SectionHeading>
           <IconCalloutGroup>
             <IconCallout
               iconName="Deploy"
@@ -129,7 +134,7 @@ const IndexPage = ({ data, children }) => {
         <section>
           <SectionHeading center="xs">
             <Col xs={12} md={10} lg={9}>
-              <Heading>Полевые заметки</Heading>
+              <Heading>Пишу заметки</Heading>
               <small>
                 Подробные статьи, уроки. Здесь я делюсь мыслями о веб-разработке, современных
                 JavaScript фреймворках, CMS и интернет-магазинах.
