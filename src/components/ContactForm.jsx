@@ -104,7 +104,7 @@ class ContactForm extends React.Component {
                 placeholder="Например: Акакий Акакиевич"
               />
               <ErrorMessage name="fullName">
-                {msg => <FormRequirement>{msg}</FormRequirement>}
+                {(msg) => <FormRequirement>{msg}</FormRequirement>}
               </ErrorMessage>
             </FormItem>
 
@@ -119,7 +119,7 @@ class ContactForm extends React.Component {
                 validate={ContactForm.validateEmail}
               />
               <ErrorMessage name="email">
-                {msg => <FormRequirement>{msg}</FormRequirement>}
+                {(msg) => <FormRequirement>{msg}</FormRequirement>}
               </ErrorMessage>
             </FormItem>
 
@@ -136,7 +136,7 @@ class ContactForm extends React.Component {
                 placeholder="Краткое описание того, что необходимо сделать"
               />
               <ErrorMessage name="message">
-                {msg => <FormRequirement>{msg}</FormRequirement>}
+                {(msg) => <FormRequirement>{msg}</FormRequirement>}
               </ErrorMessage>
             </FormItem>
 
@@ -155,7 +155,7 @@ class ContactForm extends React.Component {
               email,
               message,
             })
-            .then(response => {
+            .then((response) => {
               if (response.status === 200) {
                 this.handleFormSubmitSuccess();
                 actions.resetForm();
@@ -163,7 +163,7 @@ class ContactForm extends React.Component {
                 this.handleFormSubmitError();
               }
             })
-            .catch(error => {
+            .catch((error) => {
               this.handleFormSubmitError(error);
             });
         }}

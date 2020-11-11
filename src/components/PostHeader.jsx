@@ -17,7 +17,7 @@ const PostHeader = styled.section`
     padding-bottom: 2rem;
   }
 
-  ${props =>
+  ${(props) =>
     props.fullHeight &&
     css`
       height: 100vh;
@@ -33,7 +33,7 @@ const PostHeader = styled.section`
       }
     `}
 
-  ${props =>
+  ${(props) =>
     props.bgImage &&
     css`
       :before {

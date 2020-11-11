@@ -87,11 +87,11 @@ export default connectSearchBox(({ currentRefinement, refine, ...rest }) => (
       placeholder="Например, WordPress"
       aria-label="Искать"
       value={currentRefinement}
-      onChange={e => refine(e.target.value)}
+      onChange={(e) => refine(e.target.value)}
       {...rest}
     />
     <SearchButton
-      onClick={event => {
+      onClick={(event) => {
         event.preventDefault();
         refine('');
       }}

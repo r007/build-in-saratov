@@ -34,13 +34,13 @@ const Results = connectStateResults(({ searchResults: res, children }) =>
 const HitsWrapper = styled(Hits)`
   > * + * {
     padding-top: 1em !important;
-    border-top: 2px solid ${props => props.theme.darkGray};
+    border-top: 2px solid ${(props) => props.theme.darkGray};
   }
 
   li + li {
     margin-top: 0.7em;
     padding-top: 0.7em;
-    border-top: 1px solid ${props => props.theme.lightGray};
+    border-top: 1px solid ${(props) => props.theme.lightGray};
   }
 
   * {

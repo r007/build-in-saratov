@@ -154,7 +154,7 @@ const ReadNextCard = ({ tags, relatedPosts }) => {
           </ReadNextDivider>
           <ReadNextCardContent>
             <ul>
-              {relatedPosts.edges.map(n => {
+              {relatedPosts.edges.map((n) => {
                 return (
                   <li key={n.node.frontmatter.title}>
                     <Link to={n.node.fields.slug}>{n.node.frontmatter.title}</Link>

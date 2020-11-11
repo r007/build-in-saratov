@@ -78,7 +78,7 @@ const ButtonStyles = css`
   vertical-align: middle;
   white-space: nowrap;
   position: relative;
-  
+
   :before,
   :after {
     box-sizing: border-box;
@@ -86,7 +86,7 @@ const ButtonStyles = css`
     content: '';
     transition: 70ms cubic-bezier(0, 0, 0.38, 0.9);
   }
-  
+
   :before {
     top: calc(-1px + 3px);
     left: 2px;
@@ -94,7 +94,7 @@ const ButtonStyles = css`
     height: calc(100% + (2 * 1px) - (2 * 3px));
     border: 1px solid transparent;
   }
-  
+
   :after {
     top: -1px;
     left: -1px;
@@ -194,8 +194,8 @@ const ButtonStyles = css`
     `,
   })}
     
-  ${props => props.rounded && roundedStyle}
-  ${props => props.full && fullStyle}
+  ${(props) => props.rounded && roundedStyle}
+  ${(props) => props.full && fullStyle}
 `;
 
 const ButtonLink = styled(GatsbyLink)`

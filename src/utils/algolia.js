@@ -36,7 +36,7 @@ const postQuery = `{
     }
   }
 }`;
-const flatten = arr =>
+const flatten = (arr) =>
   arr.map(({ node: { frontmatter, ...rest } }) => ({
     ...frontmatter,
     ...rest,

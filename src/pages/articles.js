@@ -17,7 +17,7 @@ const ArticlesPage = ({ data, children }) => {
       <PostsGrid id="content">
         <section>
           <PostFeed>
-            {data.allMarkdownRemark.edges.map(post => {
+            {data.allMarkdownRemark.edges.map((post) => {
               // filter out drafts in production
               return (
                 (post.node.frontmatter.draft !== true || process.env.NODE_ENV !== 'production') && (

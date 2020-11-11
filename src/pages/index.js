@@ -143,7 +143,7 @@ const IndexPage = ({ data, children }) => {
             </Col>
           </SectionHeading>
           <PostFeed>
-            {data.allMarkdownRemark.edges.map(post => {
+            {data.allMarkdownRemark.edges.map((post) => {
               // filter out drafts in production
               return (
                 (post.node.frontmatter.draft !== true || process.env.NODE_ENV !== 'production') && (

@@ -34,9 +34,9 @@ const IconButton = styled.a`
   cursor: pointer;
   display: inline-block;
   font-size: ${prop('iconSize', 16)}px;
-  width: ${withProp('iconSize', size => `${size * sizeMultiplier}`)}px;
-  height: ${withProp('iconSize', size => `${size * sizeMultiplier}`)}px;
-  line-height: ${withProp('iconSize', size => `${size * sizeMultiplier}`)}px;
+  width: ${withProp('iconSize', (size) => `${size * sizeMultiplier}`)}px;
+  height: ${withProp('iconSize', (size) => `${size * sizeMultiplier}`)}px;
+  line-height: ${withProp('iconSize', (size) => `${size * sizeMultiplier}`)}px;
   text-align: center;
   text-decoration: none;
   border-radius: 100%;

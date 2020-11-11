@@ -10,7 +10,7 @@ import SEO from '../components/SEO';
 const Tags = ({ data, pageContext }) => {
   const tag = pageContext.tag ? pageContext.tag : '';
   const { edges, totalCount } = data.allMarkdownRemark;
-  const tagData = data.allTagYaml.edges.find(n => n.node.id.toLowerCase() === tag.toLowerCase());
+  const tagData = data.allTagYaml.edges.find((n) => n.node.id.toLowerCase() === tag.toLowerCase());
 
   return (
     <IndexLayout>

@@ -54,7 +54,7 @@ const pageQuery = graphql`
 const SiteNavLogo = () => (
   <StaticQuery
     query={pageQuery}
-    render={data => (
+    render={(data) => (
       <SiteNavLogoStyled className="site-nav-logo" title="Перейти на главную страницу" to="/">
         <img src={Logo} alt={data.site.siteMetadata.title} />
       </SiteNavLogoStyled>

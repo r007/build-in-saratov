@@ -19,7 +19,7 @@ const detailsQuery = graphql`
 const SEO = ({ lang, description, type, meta, keywords, title, image }) => (
   <StaticQuery
     query={detailsQuery}
-    render={data => {
+    render={(data) => {
       const config = data.site.siteMetadata;
       const metaLang = lang || config.lang;
       const metaDescription = description || config.description;

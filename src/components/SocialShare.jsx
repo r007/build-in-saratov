@@ -11,7 +11,7 @@ const SocialShare = ({ networks, headingText, onClick }) => (
   <Wrapper className="SocialShare" role="complementary">
     {headingText && <h3 className="ShareHeading">{headingText}</h3>}
 
-    {Object.keys(networks).map(network => (
+    {Object.keys(networks).map((network) => (
       <SocialIconButton
         key={networks[network].name}
         className={networks[network].name}
