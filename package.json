@@ -63,7 +63,7 @@
     "styled-tools": "^1.7.2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.16.3",
     "babel-plugin-styled-components": "^2.0.2",
     "eslint": "^8.4.0",
     "eslint-config-airbnb": "^19.0.2",
