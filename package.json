@@ -10,7 +10,8 @@
     "start": "npm run develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "prepare": "husky install"
   },
   "dependencies": {
     "algoliasearch": "^4.11.0",
@@ -75,11 +76,6 @@
     "eslint-plugin-react": "^7.27.1",
     "husky": "^7.0.4",
     "prettier": "^2.5.1"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "npm run lint"
-    }
   },
   "engines": {
     "node": ">=8.0.0"
