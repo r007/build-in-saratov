@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 
 module.exports = {
   extends: ['airbnb', 'prettier'],
@@ -32,33 +33,45 @@ module.exports = {
     'graphql/named-operations': [
       'error',
       {
-        env: 'relay',
-        schemaJsonFilepath: path.resolve(__dirname, './schema.json'),
-        tagName: 'graphql',
+        env: `relay`,
+        schemaString: fs.readFileSync(path.resolve(__dirname, './schema.graphql'), {
+          encoding: 'utf-8',
+          flag: 'r',
+        }),
+        tagName: `graphql`,
       },
     ],
     'graphql/capitalized-type-name': [
       'error',
       {
-        env: 'relay',
-        schemaJsonFilepath: path.resolve(__dirname, './schema.json'),
-        tagName: 'graphql',
+        env: `relay`,
+        schemaString: fs.readFileSync(path.resolve(__dirname, './schema.graphql'), {
+          encoding: 'utf-8',
+          flag: 'r',
+        }),
+        tagName: `graphql`,
       },
     ],
     'graphql/no-deprecated-fields': [
       'error',
       {
-        env: 'relay',
-        schemaJsonFilepath: path.resolve(__dirname, './schema.json'),
-        tagName: 'graphql',
+        env: `relay`,
+        schemaString: fs.readFileSync(path.resolve(__dirname, './schema.graphql'), {
+          encoding: 'utf-8',
+          flag: 'r',
+        }),
+        tagName: `graphql`,
       },
     ],
     'graphql/template-strings': [
       'error',
       {
-        env: 'relay',
-        schemaJsonFilepath: path.resolve(__dirname, './schema.json'),
-        tagName: 'graphql',
+        env: `relay`,
+        schemaString: fs.readFileSync(path.resolve(__dirname, './schema.graphql'), {
+          encoding: 'utf-8',
+          flag: 'r',
+        }),
+        tagName: `graphql`,
       },
     ],
   },
