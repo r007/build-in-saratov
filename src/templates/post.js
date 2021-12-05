@@ -136,7 +136,6 @@ export const query = graphql`
       html
       htmlAst
       excerpt
-      timeToRead
       frontmatter {
         title
         userDate: date(formatString: "D MMMM YYYY", locale: "ru")
@@ -172,7 +171,6 @@ export const query = graphql`
       edges {
         node {
           id
-          timeToRead
           excerpt
           frontmatter {
             title

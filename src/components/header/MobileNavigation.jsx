@@ -56,15 +56,13 @@ const Link = styled(GatsbyLink)`
   }
 `;
 
-const getProps = ({ isPartiallyCurrent }) => {
-  return {
-    ...(isPartiallyCurrent
-      ? {
-          'data-active': true,
-        }
-      : {}),
-  };
-};
+const getProps = ({ isPartiallyCurrent }) => ({
+  ...(isPartiallyCurrent
+    ? {
+        'data-active': true,
+      }
+    : {}),
+});
 
 const MobileNavItem = ({ linkTo, label, icon }) => (
   <Link getProps={getProps} to={linkTo}>
@@ -74,14 +72,12 @@ const MobileNavItem = ({ linkTo, label, icon }) => (
 );
 
 const MobileNavigation = () => (
-  <>
-    <Wrapper>
-      <MobileNavItem linkTo="/" label="Главная" icon="Home" />
-      <MobileNavItem linkTo="/articles/" label="Статьи" icon="Article" />
-      <MobileNavItem linkTo="/about/" label="О сайте" icon="CircleQuestion" />
-      <MobileNavItem linkTo="/contact" label="Контакт" icon="Contact" />
-    </Wrapper>
-  </>
+  <Wrapper>
+    <MobileNavItem linkTo="/" label="Главная" icon="Home" />
+    <MobileNavItem linkTo="/articles/" label="Статьи" icon="Article" />
+    <MobileNavItem linkTo="/about/" label="О сайте" icon="CircleQuestion" />
+    <MobileNavItem linkTo="/contact" label="Контакт" icon="Contact" />
+  </Wrapper>
 );
 
 export default MobileNavigation;

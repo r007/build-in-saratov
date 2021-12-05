@@ -7,31 +7,28 @@ import SEO from '../components/SEO';
 import { PostsGrid, PostFeed, PageTitle } from '../styles/shared';
 import PostHeader from '../components/PostHeader';
 
-const ArticlesPage = ({ data, children }) => {
-  return (
-    <IndexLayout>
-      <SEO title="Последние записи в блоге" />
-      <PostHeader>
-        <PageTitle>Статьи</PageTitle>
-      </PostHeader>
-      <PostsGrid id="content">
-        <section>
-          <PostFeed>
-            {data.allMarkdownRemark.edges.map((post) => {
+const ArticlesPage = ({ data, children }) => (
+  <IndexLayout>
+    <SEO title="Последние записи в блоге" />
+    <PostHeader>
+      <PageTitle>Статьи</PageTitle>
+    </PostHeader>
+    <PostsGrid id="content">
+      <section>
+        <PostFeed>
+          {data.allMarkdownRemark.edges.map(
+            (post) =>
               // filter out drafts in production
-              return (
-                (post.node.frontmatter.draft !== true || process.env.NODE_ENV !== 'production') && (
-                  <PostCard key={post.node.fields.slug} post={post.node} />
-                )
-              );
-            })}
-          </PostFeed>
-        </section>
-      </PostsGrid>
-      {children}
-    </IndexLayout>
-  );
-};
+              (post.node.frontmatter.draft !== true || process.env.NODE_ENV !== 'production') && (
+                <PostCard key={post.node.fields.slug} post={post.node} />
+              ),
+          )}
+        </PostFeed>
+      </section>
+    </PostsGrid>
+    {children}
+  </IndexLayout>
+);
 
 export default ArticlesPage;
 
@@ -50,7 +47,6 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          timeToRead
           frontmatter {
             title
             date

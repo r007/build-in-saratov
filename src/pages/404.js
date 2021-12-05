@@ -54,7 +54,6 @@ export const pageQuery = graphql`
     allMarkdownRemark(limit: 3, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          timeToRead
           frontmatter {
             title
             date

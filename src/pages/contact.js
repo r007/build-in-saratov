@@ -7,27 +7,25 @@ import { PageTitle } from '../styles/shared';
 import { PostFullContent } from '../components/PostContent';
 import PostHeader from '../components/PostHeader';
 
-const Contact = () => {
-  return (
-    <IndexLayout>
-      <Helmet>
-        <title>Обратная связь</title>
-      </Helmet>
-      <main id="content">
-        <PostHeader>
-          <header>
-            <PageTitle>Обратная связь</PageTitle>
-          </header>
-        </PostHeader>
+const Contact = () => (
+  <IndexLayout>
+    <Helmet>
+      <title>Обратная связь</title>
+    </Helmet>
+    <main id="content">
+      <PostHeader>
+        <header>
+          <PageTitle>Обратная связь</PageTitle>
+        </header>
+      </PostHeader>
 
-        <section className="post-full-content">
-          <PostFullContent>
-            <ContactForm />
-          </PostFullContent>
-        </section>
-      </main>
-    </IndexLayout>
-  );
-};
+      <section className="post-full-content">
+        <PostFullContent>
+          <ContactForm />
+        </PostFullContent>
+      </section>
+    </main>
+  </IndexLayout>
+);
 
 export default Contact;

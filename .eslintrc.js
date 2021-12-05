@@ -22,6 +22,13 @@ module.exports = {
     'react/jsx-one-expression-per-line': [0],
     'react/jsx-props-no-spreading': [0],
     'react/destructuring-assignment': [0],
+    'react/function-component-definition': [
+      1,
+      {
+        namedComponents: 'arrow-function',
+        unnamedComponents: 'arrow-function',
+      },
+    ],
     'graphql/named-operations': [
       'error',
       {

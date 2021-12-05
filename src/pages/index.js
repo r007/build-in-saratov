@@ -143,14 +143,13 @@ const IndexPage = ({ data, children }) => {
             </Col>
           </SectionHeading>
           <PostFeed>
-            {data.allMarkdownRemark.edges.map((post) => {
-              // filter out drafts in production
-              return (
+            {data.allMarkdownRemark.edges.map(
+              (post) =>
+                // filter out drafts in production
                 (post.node.frontmatter.draft !== true || process.env.NODE_ENV !== 'production') && (
                   <PostCard key={post.node.fields.slug} post={post.node} />
-                )
-              );
-            })}
+                ),
+            )}
           </PostFeed>
         </section>
       </PostsGrid>
@@ -195,7 +194,6 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
-          timeToRead
           frontmatter {
             title
             date
@@ -222,7 +220,6 @@ export const pageQuery = graphql`
               }
             }
           }
-          excerpt
           fields {
             layout
             slug

@@ -17,13 +17,11 @@ const Underline = styled.span`
   background-color: #ad005f;
 `;
 
-const Heading = ({ children }) => {
-  return (
-    <HTag>
-      {children}
-      <Underline />
-    </HTag>
-  );
-};
+const Heading = ({ children }) => (
+  <HTag>
+    {children}
+    <Underline />
+  </HTag>
+);
 
 export default Heading;

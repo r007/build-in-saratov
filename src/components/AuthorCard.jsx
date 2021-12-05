@@ -40,29 +40,27 @@ const AuthorCardContent = styled.div`
   }
 `;
 
-const AuthorCard = ({ author }) => {
-  return (
-    <AuthorCardSection>
-      {/* TODO: default avatar */}
-      {/* TODO: author page url */}
-      <Avatar
-        fixed={author.avatar.children[0].fixed}
-        objectFit="cover"
-        objectPosition="50% 50%"
-        alt={author.id}
-      />
-      <AuthorCardContent>
-        <AuthorCardName>{author.id}</AuthorCardName>
-        {author.bio ? (
-          <p>{author.bio}</p>
-        ) : (
-          <p>
-            Read <Link to={`/author/${_.kebabCase(author.id)}/`}>more posts</Link> by this author.
-          </p>
-        )}
-      </AuthorCardContent>
-    </AuthorCardSection>
-  );
-};
+const AuthorCard = ({ author }) => (
+  <AuthorCardSection>
+    {/* TODO: default avatar */}
+    {/* TODO: author page url */}
+    <Avatar
+      fixed={author.avatar.children[0].fixed}
+      objectFit="cover"
+      objectPosition="50% 50%"
+      alt={author.id}
+    />
+    <AuthorCardContent>
+      <AuthorCardName>{author.id}</AuthorCardName>
+      {author.bio ? (
+        <p>{author.bio}</p>
+      ) : (
+        <p>
+          Read <Link to={`/author/${_.kebabCase(author.id)}/`}>more posts</Link> by this author.
+        </p>
+      )}
+    </AuthorCardContent>
+  </AuthorCardSection>
+);
 
 export default AuthorCard;

@@ -7,8 +7,8 @@ const StyledWrapper = styled.div`
   min-height: 100vh;
 `;
 
-const Wrapper = ({ children, className }) => {
-  return <StyledWrapper className={className}>{children}</StyledWrapper>;
-};
+const Wrapper = ({ children, className }) => (
+  <StyledWrapper className={className}>{children}</StyledWrapper>
+);
 
 export default Wrapper;

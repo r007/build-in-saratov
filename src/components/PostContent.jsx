@@ -282,24 +282,22 @@ const Ast = ({ ast, ...props }) => {
   return renderAst(abstractTree);
 };
 
-const PostContent = ({ htmlAst, title }) => {
-  return (
-    <section className="post-full-content">
-      <PostFullContent>
-        {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
-        <Ast className="post-content" ast={htmlAst} />
-      </PostFullContent>
-      {typeof window !== 'undefined' && (
-        <SocialShareContainer
-          text={title}
-          url={window.location.href}
-          headingText="Поделитесь этой записью:"
-        >
-          {SocialShare}
-        </SocialShareContainer>
-      )}
-    </section>
-  );
-};
+const PostContent = ({ htmlAst, title }) => (
+  <section className="post-full-content">
+    <PostFullContent>
+      {/* TODO: this will apply the class when rehype-react is published https://github.com/rhysd/rehype-react/pull/11 */}
+      <Ast className="post-content" ast={htmlAst} />
+    </PostFullContent>
+    {typeof window !== 'undefined' && (
+      <SocialShareContainer
+        text={title}
+        url={window.location.href}
+        headingText="Поделитесь этой записью:"
+      >
+        {SocialShare}
+      </SocialShareContainer>
+    )}
+  </section>
+);
 
 export default PostContent;

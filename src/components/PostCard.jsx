@@ -96,44 +96,40 @@ const PostCardExcerpt = styled.div`
   }
 `;
 
-const PostCard = ({ className, post }) => {
-  return (
-    <PostCardWrapper
-      className={`post-card ${post.frontmatter.image ? '' : 'no-image'} ${className}`}
+const PostCard = ({ className, post }) => (
+  <PostCardWrapper className={`post-card ${post.frontmatter.image ? '' : 'no-image'} ${className}`}>
+    <PostCardLink
+      aria-label={post.frontmatter.title}
+      className="post-card-link"
+      to={post.fields.slug}
     >
-      <PostCardLink
-        aria-label={post.frontmatter.title}
-        className="post-card-link"
-        to={post.fields.slug}
-      >
-        <div className="post-card-image-wrapper">
-          {post.frontmatter.image && (
-            <PostCardImage className="post-card-image">
-              {post.frontmatter.image &&
-                post.frontmatter.image.childImageSharp &&
-                post.frontmatter.image.childImageSharp.fluid && (
-                  <Img
-                    alt={`${post.frontmatter.title} cover image`}
-                    style={{ height: '100%' }}
-                    fluid={post.frontmatter.image.childImageSharp.fluid}
-                  />
-                )}
-            </PostCardImage>
-          )}
-        </div>
-        <PostCardContent className="post-card-content">
-          <header className="post-card-header">
-            {post.frontmatter.tags && <PostCardTags>{post.frontmatter.tags[0]}</PostCardTags>}
-            <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
-          </header>
-          <PostCardExcerpt>
-            <p>{post.excerpt}</p>
-          </PostCardExcerpt>
-        </PostCardContent>
-      </PostCardLink>
-    </PostCardWrapper>
-  );
-};
+      <div className="post-card-image-wrapper">
+        {post.frontmatter.image && (
+          <PostCardImage className="post-card-image">
+            {post.frontmatter.image &&
+              post.frontmatter.image.childImageSharp &&
+              post.frontmatter.image.childImageSharp.fluid && (
+                <Img
+                  alt={`${post.frontmatter.title} cover image`}
+                  style={{ height: '100%' }}
+                  fluid={post.frontmatter.image.childImageSharp.fluid}
+                />
+              )}
+          </PostCardImage>
+        )}
+      </div>
+      <PostCardContent className="post-card-content">
+        <header className="post-card-header">
+          {post.frontmatter.tags && <PostCardTags>{post.frontmatter.tags[0]}</PostCardTags>}
+          <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
+        </header>
+        <PostCardExcerpt>
+          <p>{post.excerpt}</p>
+        </PostCardExcerpt>
+      </PostCardContent>
+    </PostCardLink>
+  </PostCardWrapper>
+);
 
 PostCard.propTypes = {
   className: PropTypes.string,
