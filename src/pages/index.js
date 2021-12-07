@@ -186,6 +186,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          excerpt
           frontmatter {
             title
             date
