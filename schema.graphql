@@ -348,7 +348,6 @@ type Site implements Node {
   siteMetadata: SiteSiteMetadata
   port: Int
   host: String
-  mapping: SiteMapping
   polyfill: Boolean
   pathPrefix: String
   jsxRuntime: String
@@ -356,10 +355,6 @@ type Site implements Node {
   parent: Node
   children: [Node!]!
   internal: Internal!
-}
-
-type SiteMapping {
-  MarkdownRemark_frontmatter_author: String
 }
 
 type SiteSiteMetadata {
@@ -472,7 +467,7 @@ type MarkdownWordCount {
 
 type MarkdownRemark implements Node {
   id: ID!
-  frontmatter: MarkdownRemarkFrontmatter
+  frontmatter: Frontmatter
   excerpt(pruneLength: Int = 140, truncate: Boolean = false, format: MarkdownExcerptFormats = PLAIN): String
   rawMarkdownBody: String
   fileAbsolutePath: String
@@ -489,32 +484,32 @@ type MarkdownRemark implements Node {
   internal: Internal!
 }
 
-type MarkdownRemarkFrontmatter {
-  title: String
-  layout: String
-  image: File
-  author: AuthorYaml
-  date(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
-  draft: Boolean
-  tags: [String]
-}
-
 type MarkdownRemarkFields {
   slug: String
   layout: String
   primaryTag: String
+}
+
+enum GatsbyImageFormat {
+  NO_CHANGE
+  AUTO
+  JPG
+  PNG
+  WEBP
+  AVIF
+}
+
+enum GatsbyImageLayout {
+  FIXED
+  FULL_WIDTH
+  CONSTRAINED
+}
+
+enum GatsbyImagePlaceholder {
+  DOMINANT_COLOR
+  TRACED_SVG
+  BLURRED
+  NONE
 }
 
 enum ImageFormat {
@@ -779,14 +774,36 @@ type ImageSharpResize {
   originalName: String
 }
 
+type Frontmatter {
+  author: AuthorYaml
+  title: String
+  layout: String
+  image: File
+  date(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to "milliseconds" but you can also pass in as the measurement "years", "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  draft: Boolean
+  tags: [String]
+}
+
 type TagYaml implements Node {
   id: ID!
   parent: Node
   children: [Node!]!
   internal: Internal!
+  slug: String
   description: String
   image: String
-  yamlId: String
 }
 
 type AuthorYaml implements Node {
@@ -794,6 +811,7 @@ type AuthorYaml implements Node {
   parent: Node
   children: [Node!]!
   internal: Internal!
+  name: String
   avatar: File
   bio: String
   twitter: String
@@ -801,7 +819,6 @@ type AuthorYaml implements Node {
   quora: String
   website: String
   location: String
-  yamlId: String
 }
 
 type Query {
@@ -809,7 +826,7 @@ type Query {
   allFile(filter: FileFilterInput, sort: FileSortInput, skip: Int, limit: Int): FileConnection!
   directory(sourceInstanceName: StringQueryOperatorInput, absolutePath: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, extension: StringQueryOperatorInput, size: IntQueryOperatorInput, prettySize: StringQueryOperatorInput, modifiedTime: DateQueryOperatorInput, accessTime: DateQueryOperatorInput, changeTime: DateQueryOperatorInput, birthTime: DateQueryOperatorInput, root: StringQueryOperatorInput, dir: StringQueryOperatorInput, base: StringQueryOperatorInput, ext: StringQueryOperatorInput, name: StringQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, dev: IntQueryOperatorInput, mode: IntQueryOperatorInput, nlink: IntQueryOperatorInput, uid: IntQueryOperatorInput, gid: IntQueryOperatorInput, rdev: IntQueryOperatorInput, ino: FloatQueryOperatorInput, atimeMs: FloatQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, atime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, ctime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Directory
   allDirectory(filter: DirectoryFilterInput, sort: DirectorySortInput, skip: Int, limit: Int): DirectoryConnection!
-  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, mapping: SiteMappingFilterInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, jsxRuntime: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput, port: IntQueryOperatorInput, host: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, pathPrefix: StringQueryOperatorInput, jsxRuntime: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): Site
   allSite(filter: SiteFilterInput, sort: SiteSortInput, skip: Int, limit: Int): SiteConnection!
   siteFunction(functionRoute: StringQueryOperatorInput, pluginName: StringQueryOperatorInput, originalAbsoluteFilePath: StringQueryOperatorInput, originalRelativeFilePath: StringQueryOperatorInput, relativeCompiledFilePath: StringQueryOperatorInput, absoluteCompiledFilePath: StringQueryOperatorInput, matchPath: StringQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteFunction
   allSiteFunction(filter: SiteFunctionFilterInput, sort: SiteFunctionSortInput, skip: Int, limit: Int): SiteFunctionConnection!
@@ -819,13 +836,13 @@ type Query {
   allSitePlugin(filter: SitePluginFilterInput, sort: SitePluginSortInput, skip: Int, limit: Int): SitePluginConnection!
   siteBuildMetadata(buildTime: DateQueryOperatorInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): SiteBuildMetadata
   allSiteBuildMetadata(filter: SiteBuildMetadataFilterInput, sort: SiteBuildMetadataSortInput, skip: Int, limit: Int): SiteBuildMetadataConnection!
-  markdownRemark(id: StringQueryOperatorInput, frontmatter: MarkdownRemarkFrontmatterFilterInput, excerpt: StringQueryOperatorInput, rawMarkdownBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, fields: MarkdownRemarkFieldsFilterInput, html: StringQueryOperatorInput, htmlAst: JSONQueryOperatorInput, excerptAst: JSONQueryOperatorInput, headings: MarkdownHeadingFilterListInput, timeToRead: IntQueryOperatorInput, tableOfContents: StringQueryOperatorInput, wordCount: MarkdownWordCountFilterInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): MarkdownRemark
+  markdownRemark(id: StringQueryOperatorInput, frontmatter: FrontmatterFilterInput, excerpt: StringQueryOperatorInput, rawMarkdownBody: StringQueryOperatorInput, fileAbsolutePath: StringQueryOperatorInput, fields: MarkdownRemarkFieldsFilterInput, html: StringQueryOperatorInput, htmlAst: JSONQueryOperatorInput, excerptAst: JSONQueryOperatorInput, headings: MarkdownHeadingFilterListInput, timeToRead: IntQueryOperatorInput, tableOfContents: StringQueryOperatorInput, wordCount: MarkdownWordCountFilterInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): MarkdownRemark
   allMarkdownRemark(filter: MarkdownRemarkFilterInput, sort: MarkdownRemarkSortInput, skip: Int, limit: Int): MarkdownRemarkConnection!
   imageSharp(fixed: ImageSharpFixedFilterInput, fluid: ImageSharpFluidFilterInput, gatsbyImageData: JSONQueryOperatorInput, original: ImageSharpOriginalFilterInput, resize: ImageSharpResizeFilterInput, id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput): ImageSharp
   allImageSharp(filter: ImageSharpFilterInput, sort: ImageSharpSortInput, skip: Int, limit: Int): ImageSharpConnection!
-  tagYaml(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, description: StringQueryOperatorInput, image: StringQueryOperatorInput, yamlId: StringQueryOperatorInput): TagYaml
+  tagYaml(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, slug: StringQueryOperatorInput, description: StringQueryOperatorInput, image: StringQueryOperatorInput): TagYaml
   allTagYaml(filter: TagYamlFilterInput, sort: TagYamlSortInput, skip: Int, limit: Int): TagYamlConnection!
-  authorYaml(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, avatar: FileFilterInput, bio: StringQueryOperatorInput, twitter: StringQueryOperatorInput, vk: StringQueryOperatorInput, quora: StringQueryOperatorInput, website: StringQueryOperatorInput, location: StringQueryOperatorInput, yamlId: StringQueryOperatorInput): AuthorYaml
+  authorYaml(id: StringQueryOperatorInput, parent: NodeFilterInput, children: NodeFilterListInput, internal: InternalFilterInput, name: StringQueryOperatorInput, avatar: FileFilterInput, bio: StringQueryOperatorInput, twitter: StringQueryOperatorInput, vk: StringQueryOperatorInput, quora: StringQueryOperatorInput, website: StringQueryOperatorInput, location: StringQueryOperatorInput): AuthorYaml
   allAuthorYaml(filter: AuthorYamlFilterInput, sort: AuthorYamlSortInput, skip: Int, limit: Int): AuthorYamlConnection!
 }
 
@@ -877,7 +894,7 @@ input MarkdownRemarkFilterListInput {
 
 input MarkdownRemarkFilterInput {
   id: StringQueryOperatorInput
-  frontmatter: MarkdownRemarkFrontmatterFilterInput
+  frontmatter: FrontmatterFilterInput
   excerpt: StringQueryOperatorInput
   rawMarkdownBody: StringQueryOperatorInput
   fileAbsolutePath: StringQueryOperatorInput
@@ -894,14 +911,58 @@ input MarkdownRemarkFilterInput {
   internal: InternalFilterInput
 }
 
-input MarkdownRemarkFrontmatterFilterInput {
+input FrontmatterFilterInput {
+  author: AuthorYamlFilterInput
   title: StringQueryOperatorInput
   layout: StringQueryOperatorInput
   image: FileFilterInput
-  author: AuthorYamlFilterInput
   date: DateQueryOperatorInput
   draft: BooleanQueryOperatorInput
   tags: StringQueryOperatorInput
+}
+
+input AuthorYamlFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+  name: StringQueryOperatorInput
+  avatar: FileFilterInput
+  bio: StringQueryOperatorInput
+  twitter: StringQueryOperatorInput
+  vk: StringQueryOperatorInput
+  quora: StringQueryOperatorInput
+  website: StringQueryOperatorInput
+  location: StringQueryOperatorInput
+}
+
+input NodeFilterInput {
+  id: StringQueryOperatorInput
+  parent: NodeFilterInput
+  children: NodeFilterListInput
+  internal: InternalFilterInput
+}
+
+input NodeFilterListInput {
+  elemMatch: NodeFilterInput
+}
+
+input InternalFilterInput {
+  content: StringQueryOperatorInput
+  contentDigest: StringQueryOperatorInput
+  description: StringQueryOperatorInput
+  fieldOwners: StringQueryOperatorInput
+  ignoreType: BooleanQueryOperatorInput
+  mediaType: StringQueryOperatorInput
+  owner: StringQueryOperatorInput
+  type: StringQueryOperatorInput
+}
+
+input BooleanQueryOperatorInput {
+  eq: Boolean
+  ne: Boolean
+  in: [Boolean]
+  nin: [Boolean]
 }
 
 input FileFilterInput {
@@ -1021,35 +1082,6 @@ input ImageSharpResizeFilterInput {
   originalName: StringQueryOperatorInput
 }
 
-input NodeFilterInput {
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-}
-
-input NodeFilterListInput {
-  elemMatch: NodeFilterInput
-}
-
-input InternalFilterInput {
-  content: StringQueryOperatorInput
-  contentDigest: StringQueryOperatorInput
-  description: StringQueryOperatorInput
-  fieldOwners: StringQueryOperatorInput
-  ignoreType: BooleanQueryOperatorInput
-  mediaType: StringQueryOperatorInput
-  owner: StringQueryOperatorInput
-  type: StringQueryOperatorInput
-}
-
-input BooleanQueryOperatorInput {
-  eq: Boolean
-  ne: Boolean
-  in: [Boolean]
-  nin: [Boolean]
-}
-
 input TagYamlFilterListInput {
   elemMatch: TagYamlFilterInput
 }
@@ -1059,28 +1091,13 @@ input TagYamlFilterInput {
   parent: NodeFilterInput
   children: NodeFilterListInput
   internal: InternalFilterInput
+  slug: StringQueryOperatorInput
   description: StringQueryOperatorInput
   image: StringQueryOperatorInput
-  yamlId: StringQueryOperatorInput
 }
 
 input AuthorYamlFilterListInput {
   elemMatch: AuthorYamlFilterInput
-}
-
-input AuthorYamlFilterInput {
-  id: StringQueryOperatorInput
-  parent: NodeFilterInput
-  children: NodeFilterListInput
-  internal: InternalFilterInput
-  avatar: FileFilterInput
-  bio: StringQueryOperatorInput
-  twitter: StringQueryOperatorInput
-  vk: StringQueryOperatorInput
-  quora: StringQueryOperatorInput
-  website: StringQueryOperatorInput
-  location: StringQueryOperatorInput
-  yamlId: StringQueryOperatorInput
 }
 
 input MarkdownRemarkFieldsFilterInput {
@@ -1170,6 +1187,15 @@ enum FileFieldsEnum {
   publicURL
   childrenMarkdownRemark
   childrenMarkdownRemark___id
+  childrenMarkdownRemark___frontmatter___author___id
+  childrenMarkdownRemark___frontmatter___author___children
+  childrenMarkdownRemark___frontmatter___author___name
+  childrenMarkdownRemark___frontmatter___author___bio
+  childrenMarkdownRemark___frontmatter___author___twitter
+  childrenMarkdownRemark___frontmatter___author___vk
+  childrenMarkdownRemark___frontmatter___author___quora
+  childrenMarkdownRemark___frontmatter___author___website
+  childrenMarkdownRemark___frontmatter___author___location
   childrenMarkdownRemark___frontmatter___title
   childrenMarkdownRemark___frontmatter___layout
   childrenMarkdownRemark___frontmatter___image___sourceInstanceName
@@ -1212,15 +1238,6 @@ enum FileFieldsEnum {
   childrenMarkdownRemark___frontmatter___image___childrenAuthorYaml
   childrenMarkdownRemark___frontmatter___image___id
   childrenMarkdownRemark___frontmatter___image___children
-  childrenMarkdownRemark___frontmatter___author___id
-  childrenMarkdownRemark___frontmatter___author___children
-  childrenMarkdownRemark___frontmatter___author___bio
-  childrenMarkdownRemark___frontmatter___author___twitter
-  childrenMarkdownRemark___frontmatter___author___vk
-  childrenMarkdownRemark___frontmatter___author___quora
-  childrenMarkdownRemark___frontmatter___author___website
-  childrenMarkdownRemark___frontmatter___author___location
-  childrenMarkdownRemark___frontmatter___author___yamlId
   childrenMarkdownRemark___frontmatter___date
   childrenMarkdownRemark___frontmatter___draft
   childrenMarkdownRemark___frontmatter___tags
@@ -1280,6 +1297,15 @@ enum FileFieldsEnum {
   childrenMarkdownRemark___internal___owner @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childrenMarkdownRemark___internal___type @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___id
+  childMarkdownRemark___frontmatter___author___id
+  childMarkdownRemark___frontmatter___author___children
+  childMarkdownRemark___frontmatter___author___name
+  childMarkdownRemark___frontmatter___author___bio
+  childMarkdownRemark___frontmatter___author___twitter
+  childMarkdownRemark___frontmatter___author___vk
+  childMarkdownRemark___frontmatter___author___quora
+  childMarkdownRemark___frontmatter___author___website
+  childMarkdownRemark___frontmatter___author___location
   childMarkdownRemark___frontmatter___title
   childMarkdownRemark___frontmatter___layout
   childMarkdownRemark___frontmatter___image___sourceInstanceName
@@ -1322,15 +1348,6 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___image___childrenAuthorYaml
   childMarkdownRemark___frontmatter___image___id
   childMarkdownRemark___frontmatter___image___children
-  childMarkdownRemark___frontmatter___author___id
-  childMarkdownRemark___frontmatter___author___children
-  childMarkdownRemark___frontmatter___author___bio
-  childMarkdownRemark___frontmatter___author___twitter
-  childMarkdownRemark___frontmatter___author___vk
-  childMarkdownRemark___frontmatter___author___quora
-  childMarkdownRemark___frontmatter___author___website
-  childMarkdownRemark___frontmatter___author___location
-  childMarkdownRemark___frontmatter___author___yamlId
   childMarkdownRemark___frontmatter___date
   childMarkdownRemark___frontmatter___draft
   childMarkdownRemark___frontmatter___tags
@@ -1569,9 +1586,9 @@ enum FileFieldsEnum {
   childrenTagYaml___internal___mediaType
   childrenTagYaml___internal___owner
   childrenTagYaml___internal___type
+  childrenTagYaml___slug
   childrenTagYaml___description
   childrenTagYaml___image
-  childrenTagYaml___yamlId
   childTagYaml___id
   childTagYaml___parent___id
   childTagYaml___parent___parent___id
@@ -1610,9 +1627,9 @@ enum FileFieldsEnum {
   childTagYaml___internal___mediaType
   childTagYaml___internal___owner
   childTagYaml___internal___type
+  childTagYaml___slug
   childTagYaml___description
   childTagYaml___image
-  childTagYaml___yamlId
   childrenAuthorYaml
   childrenAuthorYaml___id
   childrenAuthorYaml___parent___id
@@ -1652,6 +1669,7 @@ enum FileFieldsEnum {
   childrenAuthorYaml___internal___mediaType
   childrenAuthorYaml___internal___owner
   childrenAuthorYaml___internal___type
+  childrenAuthorYaml___name
   childrenAuthorYaml___avatar___sourceInstanceName
   childrenAuthorYaml___avatar___absolutePath
   childrenAuthorYaml___avatar___relativePath
@@ -1719,33 +1737,33 @@ enum FileFieldsEnum {
   childrenAuthorYaml___avatar___childrenTagYaml
   childrenAuthorYaml___avatar___childrenTagYaml___id
   childrenAuthorYaml___avatar___childrenTagYaml___children
+  childrenAuthorYaml___avatar___childrenTagYaml___slug
   childrenAuthorYaml___avatar___childrenTagYaml___description
   childrenAuthorYaml___avatar___childrenTagYaml___image
-  childrenAuthorYaml___avatar___childrenTagYaml___yamlId
   childrenAuthorYaml___avatar___childTagYaml___id
   childrenAuthorYaml___avatar___childTagYaml___children
+  childrenAuthorYaml___avatar___childTagYaml___slug
   childrenAuthorYaml___avatar___childTagYaml___description
   childrenAuthorYaml___avatar___childTagYaml___image
-  childrenAuthorYaml___avatar___childTagYaml___yamlId
   childrenAuthorYaml___avatar___childrenAuthorYaml
   childrenAuthorYaml___avatar___childrenAuthorYaml___id
   childrenAuthorYaml___avatar___childrenAuthorYaml___children
+  childrenAuthorYaml___avatar___childrenAuthorYaml___name
   childrenAuthorYaml___avatar___childrenAuthorYaml___bio
   childrenAuthorYaml___avatar___childrenAuthorYaml___twitter
   childrenAuthorYaml___avatar___childrenAuthorYaml___vk
   childrenAuthorYaml___avatar___childrenAuthorYaml___quora
   childrenAuthorYaml___avatar___childrenAuthorYaml___website
   childrenAuthorYaml___avatar___childrenAuthorYaml___location
-  childrenAuthorYaml___avatar___childrenAuthorYaml___yamlId
   childrenAuthorYaml___avatar___childAuthorYaml___id
   childrenAuthorYaml___avatar___childAuthorYaml___children
+  childrenAuthorYaml___avatar___childAuthorYaml___name
   childrenAuthorYaml___avatar___childAuthorYaml___bio
   childrenAuthorYaml___avatar___childAuthorYaml___twitter
   childrenAuthorYaml___avatar___childAuthorYaml___vk
   childrenAuthorYaml___avatar___childAuthorYaml___quora
   childrenAuthorYaml___avatar___childAuthorYaml___website
   childrenAuthorYaml___avatar___childAuthorYaml___location
-  childrenAuthorYaml___avatar___childAuthorYaml___yamlId
   childrenAuthorYaml___avatar___id
   childrenAuthorYaml___avatar___parent___id
   childrenAuthorYaml___avatar___parent___children
@@ -1766,7 +1784,6 @@ enum FileFieldsEnum {
   childrenAuthorYaml___quora
   childrenAuthorYaml___website
   childrenAuthorYaml___location
-  childrenAuthorYaml___yamlId
   childAuthorYaml___id
   childAuthorYaml___parent___id
   childAuthorYaml___parent___parent___id
@@ -1805,6 +1822,7 @@ enum FileFieldsEnum {
   childAuthorYaml___internal___mediaType
   childAuthorYaml___internal___owner
   childAuthorYaml___internal___type
+  childAuthorYaml___name
   childAuthorYaml___avatar___sourceInstanceName
   childAuthorYaml___avatar___absolutePath
   childAuthorYaml___avatar___relativePath
@@ -1872,33 +1890,33 @@ enum FileFieldsEnum {
   childAuthorYaml___avatar___childrenTagYaml
   childAuthorYaml___avatar___childrenTagYaml___id
   childAuthorYaml___avatar___childrenTagYaml___children
+  childAuthorYaml___avatar___childrenTagYaml___slug
   childAuthorYaml___avatar___childrenTagYaml___description
   childAuthorYaml___avatar___childrenTagYaml___image
-  childAuthorYaml___avatar___childrenTagYaml___yamlId
   childAuthorYaml___avatar___childTagYaml___id
   childAuthorYaml___avatar___childTagYaml___children
+  childAuthorYaml___avatar___childTagYaml___slug
   childAuthorYaml___avatar___childTagYaml___description
   childAuthorYaml___avatar___childTagYaml___image
-  childAuthorYaml___avatar___childTagYaml___yamlId
   childAuthorYaml___avatar___childrenAuthorYaml
   childAuthorYaml___avatar___childrenAuthorYaml___id
   childAuthorYaml___avatar___childrenAuthorYaml___children
+  childAuthorYaml___avatar___childrenAuthorYaml___name
   childAuthorYaml___avatar___childrenAuthorYaml___bio
   childAuthorYaml___avatar___childrenAuthorYaml___twitter
   childAuthorYaml___avatar___childrenAuthorYaml___vk
   childAuthorYaml___avatar___childrenAuthorYaml___quora
   childAuthorYaml___avatar___childrenAuthorYaml___website
   childAuthorYaml___avatar___childrenAuthorYaml___location
-  childAuthorYaml___avatar___childrenAuthorYaml___yamlId
   childAuthorYaml___avatar___childAuthorYaml___id
   childAuthorYaml___avatar___childAuthorYaml___children
+  childAuthorYaml___avatar___childAuthorYaml___name
   childAuthorYaml___avatar___childAuthorYaml___bio
   childAuthorYaml___avatar___childAuthorYaml___twitter
   childAuthorYaml___avatar___childAuthorYaml___vk
   childAuthorYaml___avatar___childAuthorYaml___quora
   childAuthorYaml___avatar___childAuthorYaml___website
   childAuthorYaml___avatar___childAuthorYaml___location
-  childAuthorYaml___avatar___childAuthorYaml___yamlId
   childAuthorYaml___avatar___id
   childAuthorYaml___avatar___parent___id
   childAuthorYaml___avatar___parent___children
@@ -1919,7 +1937,6 @@ enum FileFieldsEnum {
   childAuthorYaml___quora
   childAuthorYaml___website
   childAuthorYaml___location
-  childAuthorYaml___yamlId
   id
   parent___id
   parent___parent___id
@@ -2241,10 +2258,6 @@ input SiteSiteMetadataFilterInput {
   showSubscribe: BooleanQueryOperatorInput
 }
 
-input SiteMappingFilterInput {
-  MarkdownRemark_frontmatter_author: StringQueryOperatorInput
-}
-
 type SiteConnection {
   totalCount: Int!
   edges: [SiteEdge!]!
@@ -2278,7 +2291,6 @@ enum SiteFieldsEnum {
   siteMetadata___showSubscribe
   port
   host
-  mapping___MarkdownRemark_frontmatter_author
   polyfill
   pathPrefix
   jsxRuntime
@@ -2389,7 +2401,6 @@ input SiteFilterInput {
   siteMetadata: SiteSiteMetadataFilterInput
   port: IntQueryOperatorInput
   host: StringQueryOperatorInput
-  mapping: SiteMappingFilterInput
   polyfill: BooleanQueryOperatorInput
   pathPrefix: StringQueryOperatorInput
   jsxRuntime: StringQueryOperatorInput
@@ -3050,6 +3061,67 @@ type MarkdownRemarkEdge {
 
 enum MarkdownRemarkFieldsEnum {
   id
+  frontmatter___author___id
+  frontmatter___author___parent___id
+  frontmatter___author___parent___children
+  frontmatter___author___children
+  frontmatter___author___children___id
+  frontmatter___author___children___children
+  frontmatter___author___internal___content
+  frontmatter___author___internal___contentDigest
+  frontmatter___author___internal___description
+  frontmatter___author___internal___fieldOwners
+  frontmatter___author___internal___ignoreType
+  frontmatter___author___internal___mediaType
+  frontmatter___author___internal___owner
+  frontmatter___author___internal___type
+  frontmatter___author___name
+  frontmatter___author___avatar___sourceInstanceName
+  frontmatter___author___avatar___absolutePath
+  frontmatter___author___avatar___relativePath
+  frontmatter___author___avatar___extension
+  frontmatter___author___avatar___size
+  frontmatter___author___avatar___prettySize
+  frontmatter___author___avatar___modifiedTime
+  frontmatter___author___avatar___accessTime
+  frontmatter___author___avatar___changeTime
+  frontmatter___author___avatar___birthTime
+  frontmatter___author___avatar___root
+  frontmatter___author___avatar___dir
+  frontmatter___author___avatar___base
+  frontmatter___author___avatar___ext
+  frontmatter___author___avatar___name
+  frontmatter___author___avatar___relativeDirectory
+  frontmatter___author___avatar___dev
+  frontmatter___author___avatar___mode
+  frontmatter___author___avatar___nlink
+  frontmatter___author___avatar___uid
+  frontmatter___author___avatar___gid
+  frontmatter___author___avatar___rdev
+  frontmatter___author___avatar___ino
+  frontmatter___author___avatar___atimeMs
+  frontmatter___author___avatar___mtimeMs
+  frontmatter___author___avatar___ctimeMs
+  frontmatter___author___avatar___atime
+  frontmatter___author___avatar___mtime
+  frontmatter___author___avatar___ctime
+  frontmatter___author___avatar___birthtime
+  frontmatter___author___avatar___birthtimeMs
+  frontmatter___author___avatar___blksize
+  frontmatter___author___avatar___blocks
+  frontmatter___author___avatar___publicURL
+  frontmatter___author___avatar___childrenMarkdownRemark
+  frontmatter___author___avatar___childrenImageSharp
+  frontmatter___author___avatar___childrenTagYaml
+  frontmatter___author___avatar___childrenAuthorYaml
+  frontmatter___author___avatar___id
+  frontmatter___author___avatar___children
+  frontmatter___author___bio
+  frontmatter___author___twitter
+  frontmatter___author___vk
+  frontmatter___author___quora
+  frontmatter___author___website
+  frontmatter___author___location
   frontmatter___title
   frontmatter___layout
   frontmatter___image___sourceInstanceName
@@ -3119,33 +3191,33 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___image___childrenTagYaml
   frontmatter___image___childrenTagYaml___id
   frontmatter___image___childrenTagYaml___children
+  frontmatter___image___childrenTagYaml___slug
   frontmatter___image___childrenTagYaml___description
   frontmatter___image___childrenTagYaml___image
-  frontmatter___image___childrenTagYaml___yamlId
   frontmatter___image___childTagYaml___id
   frontmatter___image___childTagYaml___children
+  frontmatter___image___childTagYaml___slug
   frontmatter___image___childTagYaml___description
   frontmatter___image___childTagYaml___image
-  frontmatter___image___childTagYaml___yamlId
   frontmatter___image___childrenAuthorYaml
   frontmatter___image___childrenAuthorYaml___id
   frontmatter___image___childrenAuthorYaml___children
+  frontmatter___image___childrenAuthorYaml___name
   frontmatter___image___childrenAuthorYaml___bio
   frontmatter___image___childrenAuthorYaml___twitter
   frontmatter___image___childrenAuthorYaml___vk
   frontmatter___image___childrenAuthorYaml___quora
   frontmatter___image___childrenAuthorYaml___website
   frontmatter___image___childrenAuthorYaml___location
-  frontmatter___image___childrenAuthorYaml___yamlId
   frontmatter___image___childAuthorYaml___id
   frontmatter___image___childAuthorYaml___children
+  frontmatter___image___childAuthorYaml___name
   frontmatter___image___childAuthorYaml___bio
   frontmatter___image___childAuthorYaml___twitter
   frontmatter___image___childAuthorYaml___vk
   frontmatter___image___childAuthorYaml___quora
   frontmatter___image___childAuthorYaml___website
   frontmatter___image___childAuthorYaml___location
-  frontmatter___image___childAuthorYaml___yamlId
   frontmatter___image___id
   frontmatter___image___parent___id
   frontmatter___image___parent___children
@@ -3160,67 +3232,6 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___image___internal___mediaType
   frontmatter___image___internal___owner
   frontmatter___image___internal___type
-  frontmatter___author___id
-  frontmatter___author___parent___id
-  frontmatter___author___parent___children
-  frontmatter___author___children
-  frontmatter___author___children___id
-  frontmatter___author___children___children
-  frontmatter___author___internal___content
-  frontmatter___author___internal___contentDigest
-  frontmatter___author___internal___description
-  frontmatter___author___internal___fieldOwners
-  frontmatter___author___internal___ignoreType
-  frontmatter___author___internal___mediaType
-  frontmatter___author___internal___owner
-  frontmatter___author___internal___type
-  frontmatter___author___avatar___sourceInstanceName
-  frontmatter___author___avatar___absolutePath
-  frontmatter___author___avatar___relativePath
-  frontmatter___author___avatar___extension
-  frontmatter___author___avatar___size
-  frontmatter___author___avatar___prettySize
-  frontmatter___author___avatar___modifiedTime
-  frontmatter___author___avatar___accessTime
-  frontmatter___author___avatar___changeTime
-  frontmatter___author___avatar___birthTime
-  frontmatter___author___avatar___root
-  frontmatter___author___avatar___dir
-  frontmatter___author___avatar___base
-  frontmatter___author___avatar___ext
-  frontmatter___author___avatar___name
-  frontmatter___author___avatar___relativeDirectory
-  frontmatter___author___avatar___dev
-  frontmatter___author___avatar___mode
-  frontmatter___author___avatar___nlink
-  frontmatter___author___avatar___uid
-  frontmatter___author___avatar___gid
-  frontmatter___author___avatar___rdev
-  frontmatter___author___avatar___ino
-  frontmatter___author___avatar___atimeMs
-  frontmatter___author___avatar___mtimeMs
-  frontmatter___author___avatar___ctimeMs
-  frontmatter___author___avatar___atime
-  frontmatter___author___avatar___mtime
-  frontmatter___author___avatar___ctime
-  frontmatter___author___avatar___birthtime
-  frontmatter___author___avatar___birthtimeMs
-  frontmatter___author___avatar___blksize
-  frontmatter___author___avatar___blocks
-  frontmatter___author___avatar___publicURL
-  frontmatter___author___avatar___childrenMarkdownRemark
-  frontmatter___author___avatar___childrenImageSharp
-  frontmatter___author___avatar___childrenTagYaml
-  frontmatter___author___avatar___childrenAuthorYaml
-  frontmatter___author___avatar___id
-  frontmatter___author___avatar___children
-  frontmatter___author___bio
-  frontmatter___author___twitter
-  frontmatter___author___vk
-  frontmatter___author___quora
-  frontmatter___author___website
-  frontmatter___author___location
-  frontmatter___author___yamlId
   frontmatter___date
   frontmatter___draft
   frontmatter___tags
@@ -3611,9 +3622,9 @@ enum TagYamlFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  slug
   description
   image
-  yamlId
 }
 
 type TagYamlGroupConnection {
@@ -3740,6 +3751,7 @@ enum AuthorYamlFieldsEnum {
   internal___mediaType
   internal___owner
   internal___type
+  name
   avatar___sourceInstanceName
   avatar___absolutePath
   avatar___relativePath
@@ -3957,9 +3969,9 @@ enum AuthorYamlFieldsEnum {
   avatar___childrenTagYaml___internal___mediaType
   avatar___childrenTagYaml___internal___owner
   avatar___childrenTagYaml___internal___type
+  avatar___childrenTagYaml___slug
   avatar___childrenTagYaml___description
   avatar___childrenTagYaml___image
-  avatar___childrenTagYaml___yamlId
   avatar___childTagYaml___id
   avatar___childTagYaml___parent___id
   avatar___childTagYaml___parent___children
@@ -3974,9 +3986,9 @@ enum AuthorYamlFieldsEnum {
   avatar___childTagYaml___internal___mediaType
   avatar___childTagYaml___internal___owner
   avatar___childTagYaml___internal___type
+  avatar___childTagYaml___slug
   avatar___childTagYaml___description
   avatar___childTagYaml___image
-  avatar___childTagYaml___yamlId
   avatar___childrenAuthorYaml
   avatar___childrenAuthorYaml___id
   avatar___childrenAuthorYaml___parent___id
@@ -3992,6 +4004,7 @@ enum AuthorYamlFieldsEnum {
   avatar___childrenAuthorYaml___internal___mediaType
   avatar___childrenAuthorYaml___internal___owner
   avatar___childrenAuthorYaml___internal___type
+  avatar___childrenAuthorYaml___name
   avatar___childrenAuthorYaml___avatar___sourceInstanceName
   avatar___childrenAuthorYaml___avatar___absolutePath
   avatar___childrenAuthorYaml___avatar___relativePath
@@ -4038,7 +4051,6 @@ enum AuthorYamlFieldsEnum {
   avatar___childrenAuthorYaml___quora
   avatar___childrenAuthorYaml___website
   avatar___childrenAuthorYaml___location
-  avatar___childrenAuthorYaml___yamlId
   avatar___childAuthorYaml___id
   avatar___childAuthorYaml___parent___id
   avatar___childAuthorYaml___parent___children
@@ -4053,6 +4065,7 @@ enum AuthorYamlFieldsEnum {
   avatar___childAuthorYaml___internal___mediaType
   avatar___childAuthorYaml___internal___owner
   avatar___childAuthorYaml___internal___type
+  avatar___childAuthorYaml___name
   avatar___childAuthorYaml___avatar___sourceInstanceName
   avatar___childAuthorYaml___avatar___absolutePath
   avatar___childAuthorYaml___avatar___relativePath
@@ -4099,7 +4112,6 @@ enum AuthorYamlFieldsEnum {
   avatar___childAuthorYaml___quora
   avatar___childAuthorYaml___website
   avatar___childAuthorYaml___location
-  avatar___childAuthorYaml___yamlId
   avatar___id
   avatar___parent___id
   avatar___parent___parent___id
@@ -4144,7 +4156,6 @@ enum AuthorYamlFieldsEnum {
   quora
   website
   location
-  yamlId
 }
 
 type AuthorYamlGroupConnection {

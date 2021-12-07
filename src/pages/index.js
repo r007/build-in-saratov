@@ -1,6 +1,7 @@
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 import styled, { keyframes } from 'styled-components';
+import { getSrc } from 'gatsby-plugin-image';
 import { Row, Col } from 'react-flexbox-grid';
 import IndexLayout from '../layouts';
 import PostCard from '../components/PostCard';
@@ -71,17 +72,14 @@ const SectionHeading = styled(Row)`
 
 const IndexPage = ({ data, children }) => {
   const config = data.site.siteMetadata;
+  const coverImage = getSrc(data.CoverImage);
 
   return (
     <IndexLayout>
       <SEO
         title="Домашняя страница"
         description="Блог веб-разработчика. Всё, что интересует людей, ответы на часто задаваемые вопросы, советы, обзоры. Рассказываю о последних трендах в сайтостроении."
-        image={
-          data.CoverImage
-            ? data.site.siteMetadata.siteUrl + data.CoverImage.childImageSharp.fluid.src
-            : ''
-        }
+        image={data.CoverImage ? data.site.siteMetadata.siteUrl + coverImage : ''}
       />
       <PostHeader fullHeight>
         <SiteHeaderContent>
@@ -147,7 +145,14 @@ const IndexPage = ({ data, children }) => {
               (post) =>
                 // filter out drafts in production
                 (post.node.frontmatter.draft !== true || process.env.NODE_ENV !== 'production') && (
-                  <PostCard key={post.node.fields.slug} post={post.node} />
+                  <PostCard
+                    key={post.node.fields.slug}
+                    slug={post.node.fields.slug}
+                    title={post.node.frontmatter.title}
+                    excerpt={post.node.excerpt}
+                    image={post.node.frontmatter.image?.childImageSharp.gatsbyImageData}
+                    tags={post.node.frontmatter.tags}
+                  />
                 ),
             )}
           </PostFeed>
@@ -169,22 +174,9 @@ export const pageQuery = graphql`
         siteUrl
       }
     }
-
     CoverImage: file(relativePath: { eq: "img/home-cover.png" }) {
       childImageSharp {
-        fluid(quality: 90) {
-          ...GatsbyImageSharpFluid_withWebp
-        }
-      }
-    }
-
-    header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
-      childImageSharp {
-        # Specify the image processing specifications right in the query.
-        # Makes it trivial to update as your page's design changes.
-        fluid(maxWidth: 2000) {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData(quality: 90, layout: FULL_WIDTH)
       }
     }
     allMarkdownRemark(
@@ -201,22 +193,7 @@ export const pageQuery = graphql`
             draft
             image {
               childImageSharp {
-                fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
-              }
-            }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fixed(quality: 90) {
-                      src
-                    }
-                  }
-                }
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }

@@ -16,9 +16,6 @@ module.exports = {
     vk: 'id242988580',
     showSubscribe: false,
   },
-  mapping: {
-    'MarkdownRemark.frontmatter.author': 'AuthorYaml',
-  },
   plugins: [
     'gatsby-plugin-sharp',
     {
@@ -72,6 +69,7 @@ module.exports = {
     },
     'gatsby-remark-images-medium-zoom',
     'gatsby-plugin-styled-components',
+    'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',

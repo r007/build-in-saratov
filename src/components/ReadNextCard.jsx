@@ -120,11 +120,7 @@ const ReadNextCard = ({ tags, relatedPosts }) => (
       query ReadNextQuery {
         header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
           childImageSharp {
-            # Specify the image processing specifications right in the query.
-            # Makes it trivial to update as your page's design changes.
-            fluid(maxWidth: 2000) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
       }

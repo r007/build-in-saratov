@@ -20,7 +20,14 @@ const ArticlesPage = ({ data, children }) => (
             (post) =>
               // filter out drafts in production
               (post.node.frontmatter.draft !== true || process.env.NODE_ENV !== 'production') && (
-                <PostCard key={post.node.fields.slug} post={post.node} />
+                <PostCard
+                  key={post.node.fields.slug}
+                  slug={post.node.fields.slug}
+                  title={post.node.frontmatter.title}
+                  excerpt={post.node.excerpt}
+                  image={post.node.frontmatter.image?.childImageSharp.gatsbyImageData}
+                  tags={post.node.frontmatter.tags}
+                />
               ),
           )}
         </PostFeed>
@@ -54,22 +61,7 @@ export const pageQuery = graphql`
             draft
             image {
               childImageSharp {
-                fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fixed(quality: 90) {
-                      src
-                    }
-                  }
-                }
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }
