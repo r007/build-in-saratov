@@ -54,10 +54,10 @@ const ContactForm = () => {
 
   const onSubmit = ({ fullName, email, message }) => {
     if (isValid) {
-      const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com';
+      const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com/dev';
 
       axios
-        .post(`${endPoint}/dev/contact`, {
+        .post(`${endPoint}/contact`, {
           // HACK: Endpoint expects name property
           fullName,
           email,
