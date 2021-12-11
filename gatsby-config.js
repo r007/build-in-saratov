@@ -30,7 +30,7 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-images-grid',
+            resolve: 'gatsby-remark-images-grid-v4',
             options: {
               gridGap: '0',
               margin: '20px auto',

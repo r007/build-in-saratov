@@ -37,7 +37,7 @@
     "gatsby-plugin-styled-components": "^5.3.0",
     "gatsby-remark-copy-linked-files": "5.3.0",
     "gatsby-remark-images": "6.3.0",
-    "gatsby-remark-images-grid": "^1.1.2",
+    "gatsby-remark-images-grid-v4": "^1.2.3",
     "gatsby-remark-images-medium-zoom": "^1.7.0",
     "gatsby-remark-prismjs": "6.3.0",
     "gatsby-remark-responsive-iframe": "5.3.0",
