@@ -63,7 +63,6 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             title
-            date
             tags
             image {
               childImageSharp {

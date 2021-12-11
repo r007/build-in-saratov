@@ -189,7 +189,6 @@ export const pageQuery = graphql`
           excerpt
           frontmatter {
             title
-            date
             tags
             draft
             image {

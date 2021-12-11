@@ -56,7 +56,6 @@ export const pageQuery = graphql`
         node {
           frontmatter {
             title
-            date
             tags
             draft
             image {
@@ -67,7 +66,6 @@ export const pageQuery = graphql`
           }
           excerpt
           fields {
-            layout
             slug
           }
         }
