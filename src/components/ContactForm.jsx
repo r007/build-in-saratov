@@ -1,5 +1,5 @@
-import React from 'react';
-import { Formik, ErrorMessage } from 'formik';
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import styled, { css } from 'styled-components';
 import { ifProp } from 'styled-tools';
@@ -34,144 +34,115 @@ const Alert = styled.span`
   )};
 `;
 
-class ContactForm extends React.Component {
-  static validateMessage(value) {
-    let error;
-    if (!value) {
-      error = 'Пожалуйста, введите ваше сообщение';
+const ContactForm = () => {
+  const { register, handleSubmit, reset, formState } = useForm({
+    mode: 'onBlur',
+    defaultValues: {
+      fullName: '',
+      email: '',
+      message: '',
+    },
+  });
+  const [formSuccess, setFormSuccess] = useState(false);
+  const [formMessage, setFormMessage] = useState(null);
+  const { isSubmitting, isValid, errors } = formState;
+
+  const handleFormSubmitError = (error) => {
+    setFormSuccess(false);
+    setFormMessage(`Невозможно отправить форму. ${error}. Пожалуйста, попробуйте снова.`);
+  };
+
+  const onSubmit = ({ fullName, email, message }) => {
+    if (isValid) {
+      const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com';
+
+      axios
+        .post(`${endPoint}/dev`, {
+          // HACK: Endpoint expects name property
+          fullName,
+          email,
+          message,
+        })
+        .then((response) => {
+          if (response.status === 200) {
+            setFormSuccess(true);
+            setFormMessage(
+              'Ваше сообщение было успешно отправлено. Вы получите ответ в течении 24 часов.',
+            );
+            reset();
+          } else {
+            handleFormSubmitError();
+          }
+        })
+        .catch((error) => {
+          handleFormSubmitError(error);
+        });
     }
+  };
 
-    return error;
-  }
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {formMessage && <Alert success={formSuccess}>{formMessage}</Alert>}
 
-  static validateEmail(value) {
-    let error;
-    if (!value) {
-      error = 'Пожалуйста, введите ваш почтовый адрес';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-      error = 'Пожалуйста, введите верный e-mail, чтобы я мог с вами связаться';
-    }
+      <FormItem>
+        <Label htmlFor="fullName">Как мне к вам обращаться?</Label>
+        <Input
+          type="text"
+          name="fullName"
+          id="fullName"
+          aria-required="true"
+          aria-invalid={errors.fullName ? 'true' : 'false'}
+          placeholder="Например: Акакий Акакиевич"
+          {...register('fullName', { required: true })}
+        />
+        {errors.fullName && <FormRequirement>Пожалуйста, введите ваше имя</FormRequirement>}
+      </FormItem>
 
-    return error;
-  }
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      submitSuccess: false,
-      formMessage: null,
-    };
-
-    // Bind class methods
-    this.handleFormSubmitSuccess = this.handleFormSubmitSuccess.bind(this);
-    this.handleFormSubmitError = this.handleFormSubmitError.bind(this);
-  }
-
-  handleFormSubmitSuccess() {
-    this.setState({
-      submitSuccess: true,
-      formMessage: 'Ваше сообщение было успешно отправлено. Вы получите ответ в течении 24 часов.',
-    });
-  }
-
-  handleFormSubmitError(error) {
-    this.setState({
-      submitSuccess: false,
-      formMessage: `Невозможно отправить форму. ${error}. Пожалуйста, попробуйте снова.`,
-    });
-  }
-
-  render() {
-    return (
-      <Formik
-        initialValues={{
-          fullName: '',
-          email: '',
-          message: '',
-        }}
-        onSubmit={({ fullName, email, message }, actions) => {
-          const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com/dev';
-
-          axios
-            .post(`${endPoint}/contact`, {
-              // HACK: Endpoint expects name property
-              fullName,
-              email,
-              message,
-            })
-            .then((response) => {
-              if (response.status === 200) {
-                this.handleFormSubmitSuccess();
-                actions.resetForm();
-              } else {
-                this.handleFormSubmitError();
-              }
-            })
-            .catch((error) => {
-              this.handleFormSubmitError(error);
-            });
-        }}
-      >
-        {({ errors, touched, handleSubmit, isSubmitting }) => (
-          <form onSubmit={handleSubmit}>
-            {this.state.formMessage && (
-              <Alert success={this.state.submitSuccess}>{this.state.formMessage}</Alert>
-            )}
-            <FormItem>
-              <Label htmlFor="fullName">Как мне к вам обращаться?</Label>
-              <Input
-                type="text"
-                name="fullName"
-                id="fullName"
-                className={`form-control ${errors.fullName && touched.fullName && 'is-invalid'}`}
-                placeholder="Например: Акакий Акакиевич"
-              />
-              <ErrorMessage name="fullName">
-                {(msg) => <FormRequirement>{msg}</FormRequirement>}
-              </ErrorMessage>
-            </FormItem>
-
-            <FormItem>
-              <Label htmlFor="email">Контактный e-mail (обязательно)</Label>
-              <Input
-                type="email"
-                name="email"
-                id="email"
-                className={`form-control ${errors.email && touched.email && 'is-invalid'}`}
-                placeholder="Например: ceo@supercompany.ru"
-                validate={ContactForm.validateEmail}
-              />
-              <ErrorMessage name="email">
-                {(msg) => <FormRequirement>{msg}</FormRequirement>}
-              </ErrorMessage>
-            </FormItem>
-
-            <FormItem>
-              <Label htmlFor="message">Ваше сообщение (Обязательно)</Label>
-              <Textarea
-                name="message"
-                id="message"
-                component="textarea"
-                className={`form-control ${errors.message && touched.message && 'is-invalid'}`}
-                validate={ContactForm.validateMessage}
-                cols={40}
-                rows={10}
-                placeholder="Краткое описание того, что необходимо сделать"
-              />
-              <ErrorMessage name="message">
-                {(msg) => <FormRequirement>{msg}</FormRequirement>}
-              </ErrorMessage>
-            </FormItem>
-
-            <Button type="submit" disabled={isSubmitting}>
-              Отправить
-            </Button>
-          </form>
+      <FormItem>
+        <Label htmlFor="email">Контактный e-mail (обязательно)</Label>
+        <Input
+          type="email"
+          name="email"
+          id="email"
+          className="form-control"
+          aria-required="true"
+          aria-invalid={errors.email ? 'true' : 'false'}
+          placeholder="Например: ceo@supercompany.ru"
+          {...register('email', {
+            required: true,
+            pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+          })}
+        />
+        {errors.email && (
+          <FormRequirement>
+            Пожалуйста, введите верный e-mail, чтобы я мог с вами связаться
+          </FormRequirement>
         )}
-      </Formik>
-    );
-  }
-}
+      </FormItem>
+
+      <FormItem>
+        <Label htmlFor="message">Ваше сообщение (Обязательно)</Label>
+        <Textarea
+          name="message"
+          id="message"
+          component="textarea"
+          className="form-control"
+          cols={40}
+          rows={10}
+          aria-required="true"
+          aria-invalid={errors.message ? 'true' : 'false'}
+          placeholder="Краткое описание того, что необходимо сделать"
+          {...register('message', { required: true })}
+        />
+        {errors.message && <FormRequirement>Пожалуйста, введите ваше сообщение</FormRequirement>}
+      </FormItem>
+
+      <Button type="submit" disabled={isSubmitting}>
+        Отправить
+      </Button>
+    </form>
+  );
+};
 
 ContactForm.propTypes = {};
 ContactForm.defaultProps = {};
