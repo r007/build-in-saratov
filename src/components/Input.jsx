@@ -1,7 +1,6 @@
-import { Field } from 'formik';
 import styled from 'styled-components';
 
-const Input = styled(Field)`
+const Input = styled.input`
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.125rem;
@@ -24,7 +23,7 @@ const Input = styled(Field)`
     outline-offset: -2px;
   }
 
-  &.is-invalid,
+  &[aria-invalid='true'],
   &:invalid {
     /*border-color: #dc3545;*/
     outline: 2px solid #da1e28;

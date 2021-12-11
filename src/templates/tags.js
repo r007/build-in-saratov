@@ -1,6 +1,5 @@
 import { graphql } from 'gatsby';
 import React from 'react';
-
 import IndexLayout from '../layouts';
 import PostCard from '../components/PostCard';
 import PostHeader from '../components/PostHeader';
@@ -10,21 +9,14 @@ import SEO from '../components/SEO';
 const Tags = ({ data, pageContext }) => {
   const tag = pageContext.tag ? pageContext.tag : '';
   const { edges, totalCount } = data.allMarkdownRemark;
-  const tagData = data.allTagYaml.edges.find((n) => n.node.id.toLowerCase() === tag.toLowerCase());
+  const tagData = data.allTagYaml.edges.find(
+    (n) => n.node.slug.toLowerCase() === tag.toLowerCase(),
+  );
 
   return (
     <IndexLayout>
-      <SEO
-        title={tag}
-        description={tagData && tagData.node ? tagData.node.description : ''}
-        image={tagData && tagData.node.image ? tagData.node.image.childImageSharp.fluid.src : ''}
-      />
-      <PostHeader
-        className={`${tagData && tagData.node.image ? '' : 'no-cover'}`}
-        bgImage={`${
-          tagData && tagData.node.image ? tagData.node.image.childImageSharp.fluid.src : ''
-        }`}
-      >
+      <SEO title={tag} description={tagData && tagData.node ? tagData.node.description : ''} />
+      <PostHeader>
         <PageDescription>{tag}</PageDescription>
         <PageTitle>
           {tagData && tagData.node.description ? (
@@ -42,7 +34,14 @@ const Tags = ({ data, pageContext }) => {
         <section>
           <PostFeed>
             {edges.map(({ node }) => (
-              <PostCard key={node.fields.slug} post={node} />
+              <PostCard
+                key={node.fields.slug}
+                slug={node.fields.slug}
+                title={node.frontmatter.title}
+                excerpt={node.excerpt}
+                image={node.frontmatter.image?.childImageSharp.gatsbyImageData}
+                tags={node.frontmatter.tags}
+              />
             ))}
           </PostFeed>
         </section>
@@ -55,10 +54,15 @@ export default Tags;
 
 export const pageQuery = graphql`
   query TagsTemplate($tag: String) {
+    site {
+      siteMetadata {
+        siteUrl
+      }
+    }
     allTagYaml {
       edges {
         node {
-          id
+          slug
           description
           image
         }
@@ -73,29 +77,13 @@ export const pageQuery = graphql`
       edges {
         node {
           excerpt
-          timeToRead
           frontmatter {
             title
             tags
             date
             image {
               childImageSharp {
-                fluid(maxWidth: 1240) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fixed(quality: 90) {
-                      src
-                    }
-                  }
-                }
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }

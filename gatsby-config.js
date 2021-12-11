@@ -16,9 +16,6 @@ module.exports = {
     vk: 'id242988580',
     showSubscribe: false,
   },
-  mapping: {
-    'MarkdownRemark.frontmatter.author': 'AuthorYaml',
-  },
   plugins: [
     'gatsby-plugin-sharp',
     {
@@ -33,7 +30,7 @@ module.exports = {
       options: {
         plugins: [
           {
-            resolve: 'gatsby-remark-images-grid',
+            resolve: 'gatsby-remark-images-grid-v4',
             options: {
               gridGap: '0',
               margin: '20px auto',
@@ -48,7 +45,6 @@ module.exports = {
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
-          'gatsby-remark-abbr',
           {
             resolve: 'gatsby-remark-images',
             options: {
@@ -73,10 +69,10 @@ module.exports = {
     },
     'gatsby-remark-images-medium-zoom',
     'gatsby-plugin-styled-components',
+    'gatsby-plugin-image',
     'gatsby-transformer-sharp',
     'gatsby-plugin-react-helmet',
     'gatsby-transformer-yaml',
-    'gatsby-plugin-feed',
     // SEO-related functionality
     'gatsby-plugin-advanced-sitemap',
     'gatsby-plugin-robots-txt',

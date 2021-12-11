@@ -14,8 +14,6 @@ const StyledLabel = styled.label`
   line-height: 1rem;
 `;
 
-const Label = ({ children, ...rest }) => {
-  return <StyledLabel {...rest}>{children}</StyledLabel>;
-};
+const Label = ({ children, ...rest }) => <StyledLabel {...rest}>{children}</StyledLabel>;
 
 export default Label;

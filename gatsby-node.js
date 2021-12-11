@@ -9,33 +9,66 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   // interpreter if not a single content uses it. Therefore, we're putting them
   // through `createNodeField` so that the fields still exist and GraphQL won't
   // trip up. An empty string is still required in replacement to `null`.
-  switch (node.internal.type) {
-    case 'MarkdownRemark': {
-      const { layout, primaryTag } = node.frontmatter;
+  if (node.internal.type === 'MarkdownRemark') {
+    const { layout, primaryTag } = node.frontmatter;
 
-      const value = createFilePath({ node, getNode });
+    const value = createFilePath({ node, getNode });
 
-      // Used to generate URL to view this content.
-      createNodeField({
-        node,
-        name: 'slug',
-        value,
-      });
+    // Used to generate URL to view this content.
+    createNodeField({
+      node,
+      name: 'slug',
+      value,
+    });
 
-      // Used to determine a page layout.
-      createNodeField({
-        node,
-        name: 'layout',
-        value: layout || '',
-      });
+    // Used to determine a page layout.
+    createNodeField({
+      node,
+      name: 'layout',
+      value: layout || '',
+    });
 
-      createNodeField({
-        node,
-        name: 'primaryTag',
-        value: primaryTag || '',
-      });
-    }
+    createNodeField({
+      node,
+      name: 'primaryTag',
+      value: primaryTag || '',
+    });
   }
+};
+
+exports.createSchemaCustomization = ({ actions, schema }) => {
+  const { createTypes } = actions;
+  const typeDefs = [
+    'type MarkdownRemark implements Node { frontmatter: Frontmatter }',
+    schema.buildObjectType({
+      name: 'Frontmatter',
+      fields: {
+        author: {
+          type: 'AuthorYaml',
+          resolve: (source, args, context) =>
+            // If you were linking by ID, you could use `getNodeById` to
+            // find the correct author:
+            //
+            // return context.nodeModel.getNodeById({
+            //   id: source.author,
+            //   type: "AuthorJson",
+            // })
+            //
+            // But since here we are using the author name as foreign key,
+            // you can use `nodeModel.findOne` to find the linked author node.
+            // Note: Instead of getting all nodes and then using Array.prototype.find()
+            // Use nodeModel.findOne instead where possible!
+            context.nodeModel.findOne({
+              type: 'AuthorYaml',
+              query: {
+                filter: { name: { eq: source.author } },
+              },
+            }),
+        },
+      },
+    }),
+  ];
+  createTypes(typeDefs);
 };
 
 exports.createPages = async ({ graphql, actions }) => {
@@ -51,7 +84,6 @@ exports.createPages = async ({ graphql, actions }) => {
         edges {
           node {
             excerpt
-            timeToRead
             frontmatter {
               title
               tags
@@ -59,13 +91,7 @@ exports.createPages = async ({ graphql, actions }) => {
               draft
               image {
                 childImageSharp {
-                  fluid(maxWidth: 3720) {
-                    aspectRatio
-                    base64
-                    sizes
-                    src
-                    srcSet
-                  }
+                  gatsbyImageData(placeholder: BLURRED, layout: FULL_WIDTH)
                 }
               }
               author {
@@ -74,9 +100,7 @@ exports.createPages = async ({ graphql, actions }) => {
                 avatar {
                   children {
                     ... on ImageSharp {
-                      fixed(quality: 90) {
-                        src
-                      }
+                      gatsbyImageData(quality: 90, layout: FULL_WIDTH)
                     }
                   }
                 }
@@ -130,12 +154,12 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagTemplate = path.resolve('./src/templates/tags.js');
   const tags = _.uniq(
     _.flatten(
-      result.data.allMarkdownRemark.edges.map(edge => {
-        return _.castArray(_.get(edge, 'node.frontmatter.tags', []));
-      }),
+      result.data.allMarkdownRemark.edges.map((edge) =>
+        _.castArray(_.get(edge, 'node.frontmatter.tags', [])),
+      ),
     ),
   );
-  tags.forEach(tag => {
+  tags.forEach((tag) => {
     createPage({
       path: `/tags/${_.kebabCase(tag)}/`,
       component: tagTemplate,

@@ -1,7 +1,7 @@
 import { Link } from 'gatsby';
 import * as _ from 'lodash';
 import * as React from 'react';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 const AuthorCardSection = styled.div`
@@ -13,10 +13,12 @@ const AuthorCardSection = styled.div`
   }
 `;
 
-const Avatar = styled(Img)`
+const Avatar = styled(GatsbyImage)`
   flex-shrink: 0;
   border-radius: 100%;
   margin-right: 15px;
+  width: 80px;
+  height: 80px;
 `;
 
 const AuthorCardName = styled.h4`
@@ -40,29 +42,22 @@ const AuthorCardContent = styled.div`
   }
 `;
 
-const AuthorCard = ({ author }) => {
-  return (
-    <AuthorCardSection>
-      {/* TODO: default avatar */}
-      {/* TODO: author page url */}
-      <Avatar
-        fixed={author.avatar.children[0].fixed}
-        objectFit="cover"
-        objectPosition="50% 50%"
-        alt={author.id}
-      />
-      <AuthorCardContent>
-        <AuthorCardName>{author.id}</AuthorCardName>
-        {author.bio ? (
-          <p>{author.bio}</p>
-        ) : (
-          <p>
-            Read <Link to={`/author/${_.kebabCase(author.id)}/`}>more posts</Link> by this author.
-          </p>
-        )}
-      </AuthorCardContent>
-    </AuthorCardSection>
-  );
-};
+const AuthorCard = ({ image, name, bio }) => (
+  <AuthorCardSection>
+    {/* TODO: default avatar */}
+    {/* TODO: author page url */}
+    <Avatar image={image} objectFit="cover" objectPosition="50% 50%" alt={name} />
+    <AuthorCardContent>
+      <AuthorCardName>{name}</AuthorCardName>
+      {bio ? (
+        <p>{bio}</p>
+      ) : (
+        <p>
+          Read <Link to={`/author/${_.kebabCase(name)}/`}>more posts</Link> by this author.
+        </p>
+      )}
+    </AuthorCardContent>
+  </AuthorCardSection>
+);
 
 export default AuthorCard;

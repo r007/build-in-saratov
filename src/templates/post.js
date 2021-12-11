@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage, getSrc } from 'gatsby-plugin-image';
 import * as _ from 'lodash';
 import * as React from 'react';
 import styled from 'styled-components';
@@ -67,17 +67,14 @@ const ReadNext = styled.aside`
 const PageTemplate = ({ data, pageContext }) => {
   const config = data.site.siteMetadata;
   const post = data.markdownRemark;
+  const coverImage = getSrc(post.frontmatter.image);
 
   return (
     <IndexLayout className="post-template">
       <SEO
         title={post.frontmatter.title}
         description={post.excerpt}
-        image={
-          post.frontmatter.image && post.frontmatter.image.childImageSharp
-            ? `${config.siteUrl}${post.frontmatter.image.childImageSharp.fluid.src}`
-            : ''
-        }
+        image={post.frontmatter.image ? `${config.siteUrl}${coverImage}` : ''}
         type="article"
       />
       <main id="content">
@@ -98,13 +95,21 @@ const PageTemplate = ({ data, pageContext }) => {
 
         {post.frontmatter.image && post.frontmatter.image.childImageSharp && (
           <PostFullImage>
-            <Img style={{ height: '100%' }} fluid={post.frontmatter.image.childImageSharp.fluid} />
+            <GatsbyImage
+              alt={post.frontmatter.title}
+              image={post.frontmatter.image.childImageSharp.gatsbyImageData}
+              style={{ height: '100%' }}
+            />
           </PostFullImage>
         )}
         <PostContent htmlAst={post.htmlAst} title={post.frontmatter.title} />
 
         <PostFullFooter>
-          <AuthorCard author={post.frontmatter.author} />
+          <AuthorCard
+            image={post.frontmatter.author.avatar.children[0].gatsbyImageData}
+            name={post.frontmatter.author.name}
+            bio={post.frontmatter.author.bio}
+          />
         </PostFullFooter>
       </main>
 
@@ -115,8 +120,26 @@ const PageTemplate = ({ data, pageContext }) => {
             <ReadNextCard tags={post.frontmatter.tags} relatedPosts={data.relatedPosts} />
           )}
 
-          {pageContext.prev && <Card post={pageContext.prev} />}
-          {pageContext.next && <Card post={pageContext.next} />}
+          {pageContext.prev && (
+            <Card
+              key={pageContext.prev.fields.slug}
+              slug={pageContext.prev.fields.slug}
+              title={pageContext.prev.frontmatter.title}
+              excerpt={pageContext.prev.excerpt}
+              image={pageContext.prev.frontmatter.image?.childImageSharp.gatsbyImageData}
+              tags={pageContext.prev.frontmatter.tags}
+            />
+          )}
+          {pageContext.next && (
+            <Card
+              key={pageContext.next.fields.slug}
+              slug={pageContext.next.fields.slug}
+              title={pageContext.next.frontmatter.title}
+              excerpt={pageContext.next.excerpt}
+              image={pageContext.next.frontmatter.image?.childImageSharp.gatsbyImageData}
+              tags={pageContext.next.frontmatter.tags}
+            />
+          )}
         </ReadNextFeed>
       </ReadNext>
     </IndexLayout>
@@ -136,7 +159,6 @@ export const query = graphql`
       html
       htmlAst
       excerpt
-      timeToRead
       frontmatter {
         title
         userDate: date(formatString: "D MMMM YYYY", locale: "ru")
@@ -144,20 +166,16 @@ export const query = graphql`
         tags
         image {
           childImageSharp {
-            fluid(maxWidth: 3720) {
-              ...GatsbyImageSharpFluid
-            }
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
         author {
-          id
+          name
           bio
           avatar {
             children {
               ... on ImageSharp {
-                fixed(width: 80, height: 80, quality: 100) {
-                  ...GatsbyImageSharpFixed
-                }
+                gatsbyImageData(quality: 100, width: 80, height: 80)
               }
             }
           }
@@ -172,7 +190,6 @@ export const query = graphql`
       edges {
         node {
           id
-          timeToRead
           excerpt
           frontmatter {
             title

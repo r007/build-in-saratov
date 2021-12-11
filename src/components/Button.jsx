@@ -212,7 +212,7 @@ const FormButton = styled.button`
  * @usage
  * <Button href="/foo">Bar</Button>
  */
-function Button({
+const Button = ({
   href,
   children,
   onClick,
@@ -225,7 +225,7 @@ function Button({
   className,
   type,
   ...rest
-}) {
+}) => {
   if (type && href) throw new Error("A button shouldn't have a href if it has a type!");
 
   return type ? (
@@ -259,7 +259,7 @@ function Button({
       {children}
     </ButtonLink>
   );
-}
+};
 
 Button.propTypes = {
   /**
