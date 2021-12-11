@@ -48,19 +48,18 @@ const About = ({ data }) => {
               </a>
               . Этот магазин получил награду «<i>сайт года</i>» по версии awwwards.
             </p>
-            <p>
-              {data.BuildInAmsterdam && (
-                <figure>
-                  <GatsbyImage
-                    image={data.BuildInAmsterdam.childImageSharp.gatsbyImageData}
-                    alt="Сайт команды Build in Amsterdam"
-                  />
-                  <figcaption>
-                    Сайт агенства <i>Build in Amsterdam</i>
-                  </figcaption>
-                </figure>
-              )}
-            </p>
+            {data.BuildInAmsterdam && (
+              <figure>
+                <GatsbyImage
+                  image={data.BuildInAmsterdam.childImageSharp.gatsbyImageData}
+                  alt="Сайт команды Build in Amsterdam"
+                />
+                <figcaption>
+                  Сайт агенства <i>Build in Amsterdam</i>
+                </figcaption>
+              </figure>
+            )}
+
             <h2>Окей! Продолжай, я заинтригован</h2>
             <p>
               Долгое время я отвечал на анонимном форуме, вконтакте. Помогал людям с
@@ -102,16 +101,17 @@ const About = ({ data }) => {
             <p>
               На данный момент, сайт набирает <strong>100 баллов из 100</strong> (по версии Google
               PageSpeed Insights) на всех страницах. То есть, загрузка происходит молниеносно.
-              {data.PageSpeed && (
-                <figure>
-                  <GatsbyImage
-                    image={data.PageSpeed.childImageSharp.gatsbyImageData}
-                    alt="Отчет по скорости загрузки сайта PageSpeed Insights"
-                  />
-                  <figcaption>Отчет по скорости загрузки сайта PageSpeed Insights</figcaption>
-                </figure>
-              )}
             </p>
+            {data.PageSpeed && (
+              <figure>
+                <GatsbyImage
+                  image={data.PageSpeed.childImageSharp.gatsbyImageData}
+                  alt="Отчет по скорости загрузки сайта PageSpeed Insights"
+                />
+                <figcaption>Отчет по скорости загрузки сайта PageSpeed Insights</figcaption>
+              </figure>
+            )}
+
             <p>Технологии:</p>
             <ul>
               <li>
