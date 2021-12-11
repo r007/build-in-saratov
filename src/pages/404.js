@@ -39,7 +39,14 @@ const NotFoundPage = ({ data }) => {
       <section>
         <PostFeed>
           {edges.map(({ node }) => (
-            <PostCard key={node.fields.slug} post={node} />
+            <PostCard
+              key={node.fields.slug}
+              slug={node.fields.slug}
+              title={node.frontmatter.title}
+              excerpt={node.excerpt}
+              image={node.frontmatter.image?.childImageSharp.gatsbyImageData}
+              tags={node.frontmatter.tags}
+            />
           ))}
         </PostFeed>
       </section>
@@ -54,29 +61,12 @@ export const pageQuery = graphql`
     allMarkdownRemark(limit: 3, sort: { fields: [frontmatter___date], order: DESC }) {
       edges {
         node {
-          timeToRead
           frontmatter {
             title
-            date
             tags
             image {
               childImageSharp {
-                fluid(maxWidth: 3720) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-            author {
-              id
-              bio
-              avatar {
-                children {
-                  ... on ImageSharp {
-                    fixed(quality: 90) {
-                      src
-                    }
-                  }
-                }
+                gatsbyImageData(layout: FULL_WIDTH)
               }
             }
           }

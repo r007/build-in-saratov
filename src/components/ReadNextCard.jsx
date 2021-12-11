@@ -114,66 +114,58 @@ const ReadNextCardFooter = styled.footer`
   }
 `;
 
-const ReadNextCard = ({ tags, relatedPosts }) => {
-  return (
-    <StaticQuery
-      query={graphql`
-        query ReadNextQuery {
-          header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
-            childImageSharp {
-              # Specify the image processing specifications right in the query.
-              # Makes it trivial to update as your page's design changes.
-              fluid(maxWidth: 2000) {
-                ...GatsbyImageSharpFluid
-              }
-            }
+const ReadNextCard = ({ tags, relatedPosts }) => (
+  <StaticQuery
+    query={graphql`
+      query ReadNextQuery {
+        header: file(relativePath: { eq: "img/blog-cover.jpg" }) {
+          childImageSharp {
+            gatsbyImageData(layout: FULL_WIDTH)
           }
         }
-      `}
-      // tslint:disable-next-line:react-this-binding-issue
-      render={() => (
-        <ReadNextCardStyles>
-          <ReadNextCardHeader>
-            <ReadNextCardHeaderSitetitle>Категория</ReadNextCardHeaderSitetitle>
-            <ReadNextCardHeaderTitle>
-              <Link to={`/tags/${_.kebabCase(tags[0])}/`}>{tags[0]}</Link>
-            </ReadNextCardHeaderTitle>
-          </ReadNextCardHeader>
-          <ReadNextDivider>
-            <Icon.Inf
-              fill="#ffffff"
-              style={{
-                width: '40px',
-                height: 'auto',
-                fill: 'transparent',
-                stroke: '#fff',
-                strokeWidth: '0.5px',
-                strokeOpacity: 0.65,
-              }}
-            />
-          </ReadNextDivider>
-          <ReadNextCardContent>
-            <ul>
-              {relatedPosts.edges.map((n) => {
-                return (
-                  <li key={n.node.frontmatter.title}>
-                    <Link to={n.node.fields.slug}>{n.node.frontmatter.title}</Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </ReadNextCardContent>
-          <ReadNextCardFooter>
-            <Link to={`/tags/${_.kebabCase(tags[0])}/`}>
-              {relatedPosts.totalCount > 1 && `Все ${relatedPosts.totalCount} записи`}
-              {relatedPosts.totalCount === 1 && '1 запись'}
-              {relatedPosts.totalCount === 0 && 'Нет записей'} →
-            </Link>
-          </ReadNextCardFooter>
-        </ReadNextCardStyles>
-      )}
-    />
-  );
-};
+      }
+    `}
+    // tslint:disable-next-line:react-this-binding-issue
+    render={() => (
+      <ReadNextCardStyles>
+        <ReadNextCardHeader>
+          <ReadNextCardHeaderSitetitle>Категория</ReadNextCardHeaderSitetitle>
+          <ReadNextCardHeaderTitle>
+            <Link to={`/tags/${_.kebabCase(tags[0])}/`}>{tags[0]}</Link>
+          </ReadNextCardHeaderTitle>
+        </ReadNextCardHeader>
+        <ReadNextDivider>
+          <Icon.Inf
+            fill="#ffffff"
+            style={{
+              width: '40px',
+              height: 'auto',
+              fill: 'transparent',
+              stroke: '#fff',
+              strokeWidth: '0.5px',
+              strokeOpacity: 0.65,
+            }}
+          />
+        </ReadNextDivider>
+        <ReadNextCardContent>
+          <ul>
+            {relatedPosts.edges.map((n) => (
+              <li key={n.node.frontmatter.title}>
+                <Link to={n.node.fields.slug}>{n.node.frontmatter.title}</Link>
+              </li>
+            ))}
+          </ul>
+        </ReadNextCardContent>
+        <ReadNextCardFooter>
+          <Link to={`/tags/${_.kebabCase(tags[0])}/`}>
+            {relatedPosts.totalCount > 1 && `Все ${relatedPosts.totalCount} записи`}
+            {relatedPosts.totalCount === 1 && '1 запись'}
+            {relatedPosts.totalCount === 0 && 'Нет записей'} →
+          </Link>
+        </ReadNextCardFooter>
+      </ReadNextCardStyles>
+    )}
+  />
+);
 
 export default ReadNextCard;

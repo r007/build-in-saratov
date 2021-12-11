@@ -82,23 +82,21 @@ const styles = {
   },
 };
 
-function IconCallout({ iconName, title, copy, url }) {
-  return (
-    <Container className="IconCallout">
-      <IconLink to={url}>
-        {iconFromString(iconName, {
-          style: styles.icon,
-          ariaHidden: true,
-          className: 'IconCallout-icon',
-        })}
+const IconCallout = ({ iconName, title, copy, url }) => (
+  <Container className="IconCallout">
+    <IconLink to={url}>
+      {iconFromString(iconName, {
+        style: styles.icon,
+        ariaHidden: true,
+        className: 'IconCallout-icon',
+      })}
 
-        <Title>{title}</Title>
+      <Title>{title}</Title>
 
-        <Paragraph className="IconCallout-copy">{copy}</Paragraph>
-      </IconLink>
-    </Container>
-  );
-}
+      <Paragraph className="IconCallout-copy">{copy}</Paragraph>
+    </IconLink>
+  </Container>
+);
 
 IconCallout.propTypes = {
   iconName: PropTypes.oneOf(Object.keys(Icon)).isRequired,

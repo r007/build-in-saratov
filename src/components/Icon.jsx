@@ -34,12 +34,11 @@ function getIconAriaData(label) {
   return aria;
 }
 
-function Icon(props) {
-  const { children, className, fill, height, label, viewBox, width } = props;
+const Icon = ({ children, className, fill, height, label, viewBox, width, style }) => {
   const dimensions = getIconDimensions(height, width);
   const aria = getIconAriaData(label);
 
-  const style = {
+  const iconStyle = {
     display: 'inline-block',
     fill: fill || 'currentColor',
     height: dimensions.height,
@@ -52,7 +51,7 @@ function Icon(props) {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       className={classNames('Icon', className)}
-      style={props && props.style ? assign({}, style, props.style) : style}
+      style={style ? assign({}, iconStyle, style) : iconStyle}
       viewBox={viewBox}
       role={label ? 'img' : null}
       {...aria}
@@ -60,7 +59,7 @@ function Icon(props) {
       {children}
     </svg>
   );
-}
+};
 
 Icon.propTypes = {
   children: PropTypes.node.isRequired,

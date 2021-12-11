@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 
 import colors from '../styles/colors';
@@ -96,53 +96,45 @@ const PostCardExcerpt = styled.div`
   }
 `;
 
-const PostCard = ({ className, post }) => {
-  return (
-    <PostCardWrapper
-      className={`post-card ${post.frontmatter.image ? '' : 'no-image'} ${className}`}
-    >
-      <PostCardLink
-        aria-label={post.frontmatter.title}
-        className="post-card-link"
-        to={post.fields.slug}
-      >
-        <div className="post-card-image-wrapper">
-          {post.frontmatter.image && (
-            <PostCardImage className="post-card-image">
-              {post.frontmatter.image &&
-                post.frontmatter.image.childImageSharp &&
-                post.frontmatter.image.childImageSharp.fluid && (
-                  <Img
-                    alt={`${post.frontmatter.title} cover image`}
-                    style={{ height: '100%' }}
-                    fluid={post.frontmatter.image.childImageSharp.fluid}
-                  />
-                )}
-            </PostCardImage>
-          )}
-        </div>
-        <PostCardContent className="post-card-content">
-          <header className="post-card-header">
-            {post.frontmatter.tags && <PostCardTags>{post.frontmatter.tags[0]}</PostCardTags>}
-            <PostCardTitle>{post.frontmatter.title}</PostCardTitle>
-          </header>
-          <PostCardExcerpt>
-            <p>{post.excerpt}</p>
-          </PostCardExcerpt>
-        </PostCardContent>
-      </PostCardLink>
-    </PostCardWrapper>
-  );
-};
+const PostCard = ({ className, title, slug, image, excerpt, tags }) => (
+  <PostCardWrapper className={`post-card ${image ? '' : 'no-image'} ${className}`}>
+    <PostCardLink aria-label={title} className="post-card-link" to={slug}>
+      <div className="post-card-image-wrapper">
+        {image && (
+          <PostCardImage className="post-card-image">
+            {image && (
+              <GatsbyImage image={image} alt={`${title} cover image`} style={{ height: '100%' }} />
+            )}
+          </PostCardImage>
+        )}
+      </div>
+      <PostCardContent className="post-card-content">
+        <header className="post-card-header">
+          {tags && <PostCardTags>{tags[0]}</PostCardTags>}
+          <PostCardTitle>{title}</PostCardTitle>
+        </header>
+        <PostCardExcerpt>
+          <p>{excerpt}</p>
+        </PostCardExcerpt>
+      </PostCardContent>
+    </PostCardLink>
+  </PostCardWrapper>
+);
 
 PostCard.propTypes = {
   className: PropTypes.string,
-  post: PropTypes.oneOfType([PropTypes.object]),
+  title: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  image: PropTypes.objectOf(PropTypes.any),
+  excerpt: PropTypes.string,
+  tags: PropTypes.arrayOf(PropTypes.string),
 };
 
 PostCard.defaultProps = {
   className: '',
-  post: {},
+  image: {},
+  excerpt: '',
+  tags: [],
 };
 
 export default PostCard;

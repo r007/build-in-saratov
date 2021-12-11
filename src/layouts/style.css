@@ -47,19 +47,19 @@ html {
 section {
   background: #fff;
   position: relative;
-  padding: 3rem 3rem 0 20rem;
+  padding: 3rem 3rem 1rem 20rem;
   overflow: hidden;
 }
 
 @media only screen and (max-width: 1560px) {
   section {
-    padding: 1rem 2rem 0 15rem;
+    padding: 1rem 2rem 1rem 15rem;
   }
 }
 
 @media only screen and (max-width: 1280px) {
   section {
-    padding: 2rem 3rem 0 3.4rem;
+    padding: 2rem 3rem 1rem 3.4rem;
   }
 }
 
