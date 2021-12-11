@@ -89,7 +89,30 @@ class ContactForm extends React.Component {
           email: '',
           message: '',
         }}
-        render={({ errors, touched, handleSubmit, isSubmitting }) => (
+        onSubmit={({ fullName, email, message }, actions) => {
+          const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com/dev';
+
+          axios
+            .post(`${endPoint}/contact`, {
+              // HACK: Endpoint expects name property
+              fullName,
+              email,
+              message,
+            })
+            .then((response) => {
+              if (response.status === 200) {
+                this.handleFormSubmitSuccess();
+                actions.resetForm();
+              } else {
+                this.handleFormSubmitError();
+              }
+            })
+            .catch((error) => {
+              this.handleFormSubmitError(error);
+            });
+        }}
+      >
+        {({ errors, touched, handleSubmit, isSubmitting }) => (
           <form onSubmit={handleSubmit}>
             {this.state.formMessage && (
               <Alert success={this.state.submitSuccess}>{this.state.formMessage}</Alert>
@@ -145,29 +168,7 @@ class ContactForm extends React.Component {
             </Button>
           </form>
         )}
-        onSubmit={({ fullName, email, message }, actions) => {
-          const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com/dev';
-
-          axios
-            .post(`${endPoint}/contact`, {
-              // HACK: Endpoint expects name property
-              fullName,
-              email,
-              message,
-            })
-            .then((response) => {
-              if (response.status === 200) {
-                this.handleFormSubmitSuccess();
-                actions.resetForm();
-              } else {
-                this.handleFormSubmitError();
-              }
-            })
-            .catch((error) => {
-              this.handleFormSubmitError(error);
-            });
-        }}
-      />
+      </Formik>
     );
   }
 }
