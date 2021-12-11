@@ -57,7 +57,7 @@ const ContactForm = () => {
       const endPoint = 'https://qveaqjxu0g.execute-api.us-east-1.amazonaws.com';
 
       axios
-        .post(`${endPoint}/dev`, {
+        .post(`${endPoint}/dev/contact`, {
           // HACK: Endpoint expects name property
           fullName,
           email,

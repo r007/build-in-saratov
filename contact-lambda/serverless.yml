@@ -11,6 +11,8 @@
 #
 # Happy Coding!
 
+org: 0xcoder
+app: contact-lambda
 service: contact-lambda # NOTE: update this with your service name
 
 # You can pin your service to only deploy with a specific Serverless version
@@ -19,7 +21,8 @@ service: contact-lambda # NOTE: update this with your service name
 
 provider:
   name: aws
-  runtime: nodejs8.10
+  runtime: nodejs14.x
+  lambdaHashingVersion: 20201221
 
 # you can overwrite defaults here
 #  stage: dev
