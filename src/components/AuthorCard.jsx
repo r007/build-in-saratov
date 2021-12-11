@@ -17,6 +17,8 @@ const Avatar = styled(GatsbyImage)`
   flex-shrink: 0;
   border-radius: 100%;
   margin-right: 15px;
+  width: 80px;
+  height: 80px;
 `;
 
 const AuthorCardName = styled.h4`
