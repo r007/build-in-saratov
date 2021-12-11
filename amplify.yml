@@ -3,11 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        - nvm use 16
+        - nvm install 14.17.0
+        - nvm use 14.17.0
         - npm ci
     build:
       commands:
-        - nvm use 16
+        - nvm install 14.17.0
+        - nvm use 14.17.0
         - node -v
         - npm run build
   artifacts:
