@@ -1,0 +1,16 @@
+{
+  "app": "npx tsx infra/bin/app.ts",
+  "watch": {
+    "include": ["infra/**", "server/**"],
+    "exclude": ["node_modules", "cdk.out", "build"]
+  },
+  "context": {
+    "@aws-cdk/core:target-partitions": ["aws"],
+    "hostedZoneId": "Z00740211T11XSS4JPC6M",
+    "attachDomain": false,
+    "contactEmail": "moninsergei@gmail.com",
+    "sourceRepository": "r007/build-in-saratov",
+    "sourceBranch": "master",
+    "githubConnectionParameter": "/build-in-saratov/github-connection-arn"
+  }
+}
