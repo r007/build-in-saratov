@@ -137,7 +137,10 @@ export class WebsiteStack extends Stack {
       memorySize: 1024,
       timeout: Duration.seconds(10),
       awsSdkConnectionReuse: false,
-      currentVersionOptions: { removalPolicy: RemovalPolicy.DESTROY },
+      // CloudFront needs hours to retire edge replicas after a version is
+      // replaced. Retain old versions so stack cleanup does not try to delete
+      // them while they are still replicated.
+      currentVersionOptions: { removalPolicy: RemovalPolicy.RETAIN },
       bundling: {
         minify: true,
         define: {
