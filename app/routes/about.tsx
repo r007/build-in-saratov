@@ -7,13 +7,12 @@ import { site } from '~/site';
 import type { Route } from './+types/about';
 
 export const loader = async () => {
-  const [cover, amsterdam, pageSpeed] = await Promise.all([
+  const [cover, amsterdam] = await Promise.all([
     getImage('about-cover.png'),
     getImage('build-in-amsterdam.jpg'),
-    getImage('pagespeed.png'),
   ]);
 
-  return { socialImage: cover?.social, amsterdam, pageSpeed };
+  return { socialImage: cover?.social, amsterdam };
 };
 
 export const meta: Route.MetaFunction = ({ loaderData: data }) =>
@@ -27,7 +26,7 @@ export const meta: Route.MetaFunction = ({ loaderData: data }) =>
 const external = { target: '_blank', rel: 'noreferrer noopener' } as const;
 
 export default function About({ loaderData }: Route.ComponentProps) {
-  const { amsterdam, pageSpeed } = loaderData;
+  const { amsterdam } = loaderData;
 
   return (
     <article>
@@ -91,41 +90,40 @@ export default function About({ loaderData }: Route.ComponentProps) {
 
           <h2>На чем сделан этот сайт?</h2>
           <p>
-            Весь сайт полностью статичный, построенный на базе прекрасного фреймворка{' '}
-            <a {...external} href="https://www.gatsbyjs.org/">
-              Gatsby
+            Сайт построен на React и{' '}
+            <a {...external} href="https://reactrouter.com/">
+              React Router
             </a>
-            . Основные преимущества такого подхода в безопасности и скорости. В отличии от
-            динамических вебсайтов, тут не нужна база данных. А значит, не нужно ничего защищать от
-            хакеров. А значит, не нужно кеширование.
+            . Страницы формируются на сервере с помощью AWS Lambda@Edge и кешируются в CloudFront.
+            Готовые страницы, изображения и скрипты загружаются с ближайшего доступного узла сети
+            доставки контента.
           </p>
           <p>
-            На данный момент, сайт набирает <strong>100 баллов из 100</strong> (по версии Google
-            PageSpeed Insights) на всех страницах. То есть, загрузка происходит молниеносно.
+            Статьи хранятся в Markdown, без базы данных. При сборке Vite обрабатывает текст,
+            добавляет подсветку кода и подготавливает изображения в формате WebP для разных экранов.
+            Поиск работает по содержимому статей, а сообщения из формы обратной связи отправляются
+            через Amazon SES.
           </p>
-          {pageSpeed ? (
-            <figure>
-              <Image source={pageSpeed} alt="Отчет по скорости загрузки сайта PageSpeed Insights" />
-              <figcaption>Отчет по скорости загрузки сайта PageSpeed Insights</figcaption>
-            </figure>
-          ) : null}
 
           <p>Технологии:</p>
           <ul>
             <li>
-              Генератор статических сайтов{' '}
-              <a {...external} href="https://www.gatsbyjs.org/">
-                Gatsby
+              React 19 и{' '}
+              <a {...external} href="https://reactrouter.com/">
+                React Router 8
               </a>
             </li>
+            <li>TypeScript и Vite</li>
+            <li>Стили на Griffel и CSS</li>
             <li>
-              Хостинг{' '}
-              <a {...external} href="https://aws.amazon.com/ru/amplify/">
-                AWS Amplify
+              AWS:{' '}
+              <a {...external} href="https://aws.amazon.com/cloudfront/">
+                CloudFront
               </a>
+              , Lambda@Edge и S3
             </li>
-            <li>Все записи в Markdown</li>
-            <li>GraphQL для запросов</li>
+            <li>Статьи в Markdown, подсветка кода Shiki и изображения WebP</li>
+            <li>Поиск MiniSearch и отправка почты через Amazon SES</li>
           </ul>
         </div>
       </Section>

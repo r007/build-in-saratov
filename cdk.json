@@ -7,7 +7,7 @@
   "context": {
     "@aws-cdk/core:target-partitions": ["aws"],
     "hostedZoneId": "Z00740211T11XSS4JPC6M",
-    "attachDomain": false,
+    "attachDomain": true,
     "contactEmail": "moninsergei@gmail.com",
     "sourceRepository": "r007/build-in-saratov",
     "sourceBranch": "master",
